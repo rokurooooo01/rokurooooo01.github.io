@@ -41,6 +41,18 @@ body {
   filter: brightness(1.05);
 }
 
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.page-nav .button {
+  margin-top: 0;
+}
+
 .content {
   text-align: left;
   margin-top: 1.25rem;
