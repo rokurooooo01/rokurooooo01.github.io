@@ -14,10 +14,12 @@ something something a webpage
 - `css/style.css` - shared old-school page styles
 - `js/main.js` - small client-side behavior
 - `images/` - image assets + favicon
+- and more things i either forgot or really forgot to put
 
 ## Optional improvements
 - added a custom domain in **Settings > Pages** and create matching DNS records.
 - keep metadata (`title`, description, social tags) updated for SEO.
+- and other stuff idk
 
 ## extra note
 - this was done with the help of github copilot, but if anyone wanna help me doing ts, id be more than happy to welcome. after all im just a future mathematician
