@@ -7,8 +7,11 @@ something something a webpage
 - published from the `main` branch root folder.
 
 ## Local structure
-- `index.html` - homepage
-- `css/style.css` - styles
+- `index.html` - main home page
+- `mathematics.html` - mathematics landing page
+- `topics.html`, `why-mathematics.html` - mathematics-related info pages
+- `limits-and-continuity.html`, `differential-equations.html`, `arithmetic.html`, `number-system.html` - mathematics subpages
+- `css/style.css` - shared old-school page styles
 - `js/main.js` - small client-side behavior
 - `images/` - image assets + favicon
 
