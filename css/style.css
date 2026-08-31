@@ -51,6 +51,8 @@ body {
   box-shadow: var(--shadow);
   border-radius: var(--radius);
   padding: clamp(2rem, 4vw, 3rem) clamp(1.6rem, 4vw, 3.2rem);
+  overflow-wrap: break-word;
+  overflow-x: auto;
 }
 
 .topic-page--arithmetic {
