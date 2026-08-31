@@ -15,23 +15,29 @@
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <main class="container">
-      <h1>Topics I Like</h1>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">topics</p>
+          <h1>Topics I Like</h1>
+        </div>
+        <nav class="page-nav" aria-label="Site pages">
+          <a class="button" href="index.html">Home</a>
+          <a class="button" href="mathematics.html">Math</a>
+          <a class="button" href="why-mathematics.html">Why Math?</a>
+        </nav>
+      </header>
 
-      <section class="content">
-        <ul>
+      <section class="content card" aria-labelledby="topic-list-heading">
+        <h2 id="topic-list-heading">The areas that keep pulling me back in</h2>
+        <ul class="link-list">
           <li>Algebra and number theory</li>
           <li>Calculus and differential equations</li>
           <li>Geometry and proofs</li>
-          <li>Problem solving strategies</li>
+          <li>Problem-solving strategies</li>
+          <li>Patterns and structure in abstract mathematics</li>
         </ul>
       </section>
-
-      <nav class="page-nav" aria-label="Site pages">
-        <a class="button" href="index.html">Home</a>
-        <a class="button" href="mathematics.html">Mathematics Notes</a>
-        <a class="button" href="why-mathematics.html">Why Mathematics?</a>
-      </nav>
     </main>
   </body>
 </html>

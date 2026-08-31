@@ -22,36 +22,48 @@
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <main class="container">
-      <h1>About Me</h1>
-      <p>
-        rokuro is the type of name one thinks its cool, but im just an idiot who is slightly different.
-      </p>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">about</p>
+          <h1>About Me</h1>
+        </div>
+        <nav class="page-nav" aria-label="Site pages">
+          <a class="button" href="index.html">Home</a>
+          <a class="button" href="now.html">/now</a>
+          <a class="button" href="mathematics.html">Math</a>
+        </nav>
+      </header>
 
-      <nav class="page-nav" aria-label="Site pages">
-        <a class="button" href="index.html">Home</a>
-        <a class="button" href="now.html">/now</a>
-        <a class="button" href="mathematics.html">Mathematics Notes</a>
-      </nav>
-
-      <section class="content status-widget" aria-labelledby="about-heading">
-        <h2 id="about-heading">things about me (that no one really gives a damn)</h2>
-        <ul class="status-list">
-          <li>i like mathematics, which is why people call me insane.</li>
-          <li>while yes i have charlie puth as my most listened artist for like 4 years in a row, and while yes i mostly listen to pop, if the song suits me, i like it.</li>
-        </ul>
-      </section>
-
-      <section class="content">
-        <h2>What I care about</h2>
+      <section class="content hero-card" aria-labelledby="about-intro-heading">
+        <p class="eyebrow">who i am</p>
+        <h2 id="about-intro-heading">I’m the kind of person who likes math a little too much, and is still learning how to turn that into something useful.</h2>
         <p>
-          tbf nothing really, live the way you wanna live.
+          The name rokuro is just a username, but the idea behind it is simple: build a place for notes,
+          ideas, and the occasional thought that seems obvious at 2 AM but not at 10 AM.
         </p>
       </section>
 
-      <section class="content">
-        <h2>Links</h2>
-        <ul>
+      <section class="content status-widget" aria-labelledby="about-heading">
+        <h2 id="about-heading">Things about me</h2>
+        <ul class="status-list">
+          <li>I like mathematics, which is why people call me a little strange.</li>
+          <li>I mostly listen to pop, but I’m not loyal to one genre if the song actually lands.</li>
+          <li>I enjoy learning things deeply enough that they start making sense instead of just memorizing them.</li>
+        </ul>
+      </section>
+
+      <section class="content card">
+        <h2>What I care about</h2>
+        <p>
+          I care about learning, curiosity, and not wasting too much time pretending I have everything figured out.
+          A lot of what I do online is just trying to create a cleaner, more honest version of my own thinking.
+        </p>
+      </section>
+
+      <section class="content card" aria-labelledby="links-heading">
+        <h2 id="links-heading">Links</h2>
+        <ul class="link-list">
           <li><a href="https://github.com/rokurooooo01">GitHub</a></li>
           <li><a href="https://x.com/rokurooooo07">X</a></li>
           <li><a href="https://www.youtube.com/@rokurooooo07">YouTube</a></li>

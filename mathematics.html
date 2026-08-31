@@ -29,25 +29,48 @@
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <main class="container">
-      <h1>rokuro's math universe</h1>
-      <p>the main page where i spam a lot of shit about mathematics.</p>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">mathematics</p>
+          <h1>rokuro's math universe</h1>
+        </div>
+        <nav class="page-nav" aria-label="Site pages">
+          <a class="button" href="index.html">Home</a>
+          <a class="button" href="now.html">/now</a>
+          <a class="button" href="topics.html">Topics</a>
+          <a class="button" href="why-mathematics.html">Why Math?</a>
+        </nav>
+      </header>
 
-      <nav class="page-nav" aria-label="Site pages">
-        <a class="button" href="index.html">Home</a>
-        <a class="button" href="now.html">/now</a>
-        <a class="button" href="topics.html">Topics I Like</a>
-        <a class="button" href="why-mathematics.html">Why Mathematics?</a>
-      </nav>
+      <section class="content hero-card" aria-labelledby="math-intro-heading">
+        <p class="eyebrow">main page</p>
+        <h2 id="math-intro-heading">A collection of notes, ideas, and study pages around the parts of mathematics I keep coming back to.</h2>
+        <p>
+          This is where I keep the topics that feel important, interesting, or genuinely worth understanding.
+          The goal is not perfection — it is clarity.
+        </p>
+      </section>
 
-      <section class="content">
-        <h2>Topic Subpages</h2>
-        <ul>
-          <li><a href="limits-and-continuity.html">Limits and Continuity</a></li>
-          <li><a href="differential-equations.html">Differential Equations</a></li>
-          <li><a href="arithmetic.html">Arithmetic</a></li>
-          <li><a href="number-system.html">Number System</a></li>
-        </ul>
+      <section class="content grid two-col" aria-label="Mathematics topic links">
+        <article class="card">
+          <h2>Core topics</h2>
+          <ul class="link-list">
+            <li><a href="limits-and-continuity.html">Limits and Continuity</a></li>
+            <li><a href="differential-equations.html">Differential Equations</a></li>
+            <li><a href="arithmetic.html">Arithmetic</a></li>
+            <li><a href="number-system.html">Number System</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>Study direction</h2>
+          <ul class="link-list">
+            <li>Build intuition before formulas</li>
+            <li>Connect concepts across topics</li>
+            <li>Turn notes into understanding, not just summaries</li>
+          </ul>
+        </article>
       </section>
     </main>
   </body>

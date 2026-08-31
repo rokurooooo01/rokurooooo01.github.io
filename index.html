@@ -22,52 +22,84 @@
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <main class="container">
-      <h1>main page</h1>
-      <p>yes this is the main page of rokurooooo01.github.io, a pretty dogshit webpage ik. more to come.... if degree
-        didnt fuck me over.
-      </p>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">personal site</p>
+          <h1>rokurooooo01.github.io</h1>
+        </div>
+        <nav class="page-nav" aria-label="Site pages">
+          <a class="button" href="index.html">Home</a>
+          <a class="button" href="about.html">About</a>
+          <a class="button" href="now.html">/now</a>
+          <a class="button" href="mathematics.html">Math</a>
+        </nav>
+      </header>
 
-      <nav class="page-nav" aria-label="Site pages">
-        <a class="button" href="now.html">/now</a>
-        <a class="button" href="about.html">About Me</a>
-        <a class="button" href="mathematics.html">Mathematics Notes</a>
-      </nav>
+      <section class="content hero-card" aria-labelledby="site-intro-heading">
+        <p class="eyebrow">what this is</p>
+        <h2 id="site-intro-heading">A small corner of the internet for thinking, learning, and doing mathematics.</h2>
+        <p>
+          This site is mainly a place for notes, ideas, and the occasional weird thought about math,
+          learning, and the way I spend my time. It is not polished, but it is honest.
+        </p>
+      </section>
 
       <section class="content status-widget" aria-labelledby="now-status-heading">
-        <h2 id="now-status-heading">Now</h2>
+        <h2 id="now-status-heading">Right now</h2>
         <ul class="status-list">
           <li><strong>Reading:</strong> Quantum Antara Ruang dan Masa by Muhammad Eilham.</li>
-          <li><strong>Frustrating project:</strong> stuff after making Foundational Mathematics.</li>
+          <li><strong>Working on:</strong> the next batch of mathematics notes after Foundational Mathematics.</li>
           <li><strong>On repeat:</strong> Problems by Amber Mark.</li>
         </ul>
         <p><a href="now.html">Read the full /now page</a></p>
       </section>
 
+      <section class="content grid two-col" aria-label="Featured content and current focus">
+        <article class="card">
+          <h2>Featured math topics</h2>
+          <ul class="link-list">
+            <li><a href="limits-and-continuity.html">Limits and Continuity</a></li>
+            <li><a href="differential-equations.html">Differential Equations</a></li>
+            <li><a href="arithmetic.html">Arithmetic</a></li>
+            <li><a href="number-system.html">Number System</a></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>Current focus</h2>
+          <ul class="link-list">
+            <li>Building a better set of mathematics notes</li>
+            <li>Trying to learn more deeply instead of just collecting topics</li>
+            <li>Making this site feel less like a placeholder and more like a home</li>
+          </ul>
+        </article>
+      </section>
+
       <section class="content til-section" aria-labelledby="til-heading">
-        <h2 id="til-heading">TIL / Notes</h2>
+        <h2 id="til-heading">TIL / notes</h2>
         <ul class="til-list">
           <li>
             <span class="til-date">2026-08-31</span>
-            <p>Today's the 69th anniversary of Malaysia's independence. Proud to be Malaysians</p>
+            <p>Today's the 69th anniversary of Malaysia's independence. Proud to be Malaysians.</p>
           </li>
           <li>
             <span class="til-date">2026-08-30</span>
-            <p>Nothing really extraordinary happen</p>
+            <p>Nothing really extraordinary happened, which is normal and fine.</p>
           </li>
           <li>
             <span class="til-date">2026-08-29</span>
-            <p>Apart from playing games for long, yeah that's pretty much it</p>
+            <p>Apart from playing games for far too long, nothing big really happened.</p>
           </li>
         </ul>
       </section>
 
-      <section class="content">
-        <h2>Site Sections</h2>
-        <ul>
+      <section class="content card" aria-labelledby="links-heading">
+        <h2 id="links-heading">Elsewhere</h2>
+        <ul class="link-list">
           <li><a href="about.html">About Me</a></li>
           <li><a href="mathematics.html">rokuro's math universe</a></li>
-          <li><a href="https://github.com/rokurooooo01">GitHube</a></li>
+          <li><a href="https://github.com/rokurooooo01">GitHub</a></li>
           <li><a href="https://x.com/rokurooooo07">X</a></li>
           <li><a href="https://www.youtube.com/@rokurooooo07">YouTube</a></li>
         </ul>
