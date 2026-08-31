@@ -3,28 +3,81 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Differential Equations | Mathematics Notes</title>
+    <title>Differential Equations | rokuro's math universe</title>
     <meta
       name="description"
       content="Notes on differential equations in mathematics."
     />
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <main class="container">
-      <h1>Differential Equations</h1>
-      <section class="content">
-        <p>
-          This subpage is for topics like first-order equations, separable
-          forms, and applications.
-        </p>
-      </section>
-      <nav class="page-nav" aria-label="Site pages">
-        <a class="button" href="index.html">Home</a>
-        <a class="button" href="mathematics.html">Mathematics Notes</a>
-      </nav>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">mathematics</p>
+          <h1>Differential Equations</h1>
+        </div>
+        <nav class="page-nav" aria-label="Site pages">
+          <a class="button" href="index.html">Home</a>
+          <a class="button" href="mathematics.html">Math</a>
+          <a class="button" href="arithmetic.html">Arithmetic</a>
+          <a class="button" href="limits-and-continuity.html">Limits</a>
+        </nav>
+      </header>
+
+      <article class="arithmetic-card">
+        <p class="eyebrow">applied calculus</p>
+        <h2>Differential equations express how quantities change.</h2>
+
+        <section class="arithmetic-section">
+          <h3>Definition</h3>
+          <p>
+            A <strong>differential equation</strong> is an equation involving a function and
+            one or more of its derivatives. Such equations describe how a quantity changes
+            in relation to itself or to other variables.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Why they matter</h3>
+          <p>
+            Differential equations appear in physics, biology, economics, and engineering.
+            They can be used tomodel processes such as population growth, cooling, motion, and electrical
+            circuits.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Simple example</h3>
+          <p>
+            The equation dy/dx = ky describes exponential growth or decay. If k > 0, the
+            quantity grows; if k < 0, it decays. This is one of the simplest and most useful
+            models in applied mathematics.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Types</h3>
+          <p>
+            There are many kinds of differential equations, including first-order equations,
+            second-order equations, linear equations, and separable equations. Different
+            types often require different techniques for solving them.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Key idea</h3>
+          <p>
+            Differential equations are not just symbolic puzzles. They express change in a
+            language that can model real systems. The goal is often not only to solve them,
+            but to interpret what the solution means in context.
+          </p>
+        </section>
+      </article>
     </main>
   </body>
 </html>

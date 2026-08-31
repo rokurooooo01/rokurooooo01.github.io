@@ -10,62 +10,155 @@
     />
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <main class="arithmetic-screen">
-      <article class="arithmetic-notes">
-        <h1 class="arithmetic-title">Arithmetic notes</h1>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">mathematics</p>
+          <h1>Arithmetic</h1>
+        </div>
+        <nav class="page-nav" aria-label="Site pages">
+          <a class="button" href="index.html">Home</a>
+          <a class="button" href="mathematics.html">Math</a>
+          <a class="button" href="number-system.html">Number System</a>
+          <a class="button" href="limits-and-continuity.html">Limits</a>
+        </nav>
+      </header>
+
+      <article class="arithmetic-card">
+        <p class="eyebrow">fundamental ideas</p>
+        <h2>Arithmetic is the language of calculation.</h2>
 
         <section class="arithmetic-section">
-          <h2>Definition</h2>
+          <h3>Definition</h3>
           <p>
-            <strong class="accent">Arithmetic</strong> is an elementary branch of
-            <strong class="accent">mathematics</strong> that deals with numerical
-            operations like addition, subtraction, multiplication, and division. In a
-            wider sense, it also includes exponentiation, extraction of roots, and
-            taking logarithms.
+            <strong>Arithmetic</strong> is the branch of mathematics concerned with the
+            basic operations on numbers: addition, subtraction, multiplication, and
+            division. In a broader sense, it also includes exponentiation, roots, and
+            logarithms. Put simply, arithmetic is the part of mathematics that studies
+            how numbers behave under calculation.
           </p>
         </section>
 
         <section class="arithmetic-section">
-          <h2>Arithmetic Operations</h2>
+          <h3>Core operations</h3>
           <p>
-            Arithmetic operations are ways of combining, transforming, or manipulating
-            numbers. They are functions that have numbers both as input and output. The
-            most important operations in arithmetic are
-            <strong class="accent">addition</strong>,
-            <strong class="accent">subtraction</strong>,
-            <strong class="accent">multiplication</strong>, and
-            <strong class="accent">division</strong>. Further operations include
-            <strong class="accent">exponentiation</strong>,
-            <strong class="accent">extraction of roots</strong>, and
-            <strong class="accent">logarithm</strong>. If these operations are performed
-            on variables rather than numbers, they are sometimes referred to as
-            <strong class="accent">algebraic operations</strong>.
+            Arithmetic deals with how numbers can be combined, transformed, and compared.
+            The most important operations are <strong>addition</strong>,
+            <strong>subtraction</strong>, <strong>multiplication</strong>, and
+            <strong>division</strong>. These operations let us describe quantities,
+            compare values, and model change. From these basic rules, more advanced ideas
+            in algebra and calculus are built.
           </p>
         </section>
 
         <section class="arithmetic-section">
-          <ol class="arithmetic-list">
-            <li><span>a)</span> Addition and subtraction</li>
-            <li><span>b)</span> Multiplication and division</li>
-            <li><span>c)</span> Exponentiation and logarithm</li>
-          </ol>
+          <h3>Examples</h3>
+          <p>
+            A few familiar examples are:
+          </p>
+          <ul class="inline-list">
+            <li>7 + 5 = 12</li>
+            <li>9 - 4 = 5</li>
+            <li>3 × 6 = 18</li>
+            <li>20 ÷ 4 = 5</li>
+          </ul>
+          <p>
+            Notice that each statement gives us a different kind of relationship: combining,
+            removing, scaling, and distributing. Arithmetic is not merely about computing,
+            but about understanding how operations transform quantities.
+          </p>
         </section>
 
         <section class="arithmetic-section">
-          <h2>Types of Arithmetic</h2>
+          <h3>Why arithmetic matters</h3>
+          <p>
+            Arithmetic is often the first structured way a person learns to reason with
+            numbers. It teaches consistency, precision, and symbolic thinking. Without it,
+            topics such as algebra, geometry, probability, and calculus would not have
+            the same foundation.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Types of arithmetic</h3>
           <ol class="arithmetic-list">
             <li><span>a)</span> Integer arithmetic</li>
             <li><span>b)</span> Rational number arithmetic</li>
             <li><span>c)</span> Real number arithmetic</li>
-            <li><span>d)</span> Approximations</li>
+            <li><span>d)</span> Approximation and estimation</li>
           </ol>
+          <p>
+            Different number systems lead to different rules and subtleties. For example,
+            operations on whole numbers are not always identical to those on fractions or
+            irrational numbers, even though the basic ideas remain similar.
+          </p>
         </section>
 
-        <section class="arithmetic-section axioms">
-          <h2>Axioms of arithmetic</h2>
+        <section class="arithmetic-section">
+          <h3>Properties of arithmetic</h3>
+          <p>
+            Arithmetic is governed by a few basic properties that make calculations
+            consistent. These include the <strong>commutative property</strong>, which says
+            that order does not matter in addition or multiplication, and the
+            <strong>associative property</strong>, which says that grouping does not matter.
+            There is also the <strong>distributive property</strong>, which connects
+            multiplication with addition:
+          </p>
+          <p>
+            a(b + c) = ab + ac
+          </p>
+          <p>
+            These properties are essential because they explain why arithmetic behaves the
+            way it does and why algebraic manipulation is possible.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Worked example</h3>
+          <p>
+            Suppose we want to simplify 6 × (4 + 3). Using the distributive property,
+            we can write:
+          </p>
+          <p>
+            6 × (4 + 3) = 6 × 4 + 6 × 3 = 24 + 18 = 42
+          </p>
+          <p>
+            This shows how arithmetic can be reorganized without changing the value.
+            Such transformations are central to algebra and problem solving.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Key idea</h3>
+          <p>
+            Everything else in mathematics often grows from the simple operations of
+            arithmetic. Even when notation becomes more advanced, the underlying idea is the
+            same: numbers can be transformed in consistent, meaningful ways. This is why
+            arithmetic remains one of the most foundational parts of mathematical thinking.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Summary</h3>
+          <p>
+            Arithmetic is the study of the basic operations on numbers and the rules that
+            govern them. It gives us a language for calculation, a foundation for algebra,
+            and the structure needed for deeper mathematical reasoning.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Next topics</h3>
+          <ul class="inline-list">
+            <li><a href="number-system.html">Number system</a></li>
+            <li><a href="limits-and-continuity.html">Limits and continuity</a></li>
+            <li><a href="differential-equations.html">Differential equations</a></li>
+          </ul>
         </section>
       </article>
     </main>

@@ -3,28 +3,81 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Limits and Continuity | Mathematics Notes</title>
+    <title>Limits and Continuity | rokuro's math universe</title>
     <meta
       name="description"
       content="Notes on limits and continuity in mathematics."
     />
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <main class="container">
-      <h1>Limits and Continuity</h1>
-      <section class="content">
-        <p>
-          This subpage is for key ideas about limits, continuity, and related
-          examples.
-        </p>
-      </section>
-      <nav class="page-nav" aria-label="Site pages">
-        <a class="button" href="index.html">Home</a>
-        <a class="button" href="mathematics.html">Mathematics Notes</a>
-      </nav>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">mathematics</p>
+          <h1>Limits and Continuity</h1>
+        </div>
+        <nav class="page-nav" aria-label="Site pages">
+          <a class="button" href="index.html">Home</a>
+          <a class="button" href="mathematics.html">Math</a>
+          <a class="button" href="arithmetic.html">Arithmetic</a>
+          <a class="button" href="differential-equations.html">Differential Equations</a>
+        </nav>
+      </header>
+
+      <article class="arithmetic-card">
+        <p class="eyebrow">calculus foundations</p>
+        <h2>Limits ask what happens as a value approaches a point.</h2>
+
+        <section class="arithmetic-section">
+          <h3>Definition</h3>
+          <p>
+            The <strong>limit</strong> of a function describes the value a function approaches
+            as its input gets closer and closer to some point. It is a central idea in
+            calculus because it captures behavior near a point without requiring exact value
+            at that point.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Example</h3>
+          <p>
+            Consider the function f(x) = (x^2 - 1) / (x - 1). For x ≠ 1, this simplifies to
+            x + 1. As x approaches 1, the function approaches 2, even though the original
+            expression is undefined at x = 1.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Continuity</h3>
+          <p>
+            A function is <strong>continuous</strong> at a point if the limit exists, the
+            function value exists, and they are equal. Intuitively, a continuous function
+            can be drawn without lifting the pen.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Why it matters</h3>
+          <p>
+            Limits and continuity are the foundation of derivatives and integrals. They allow
+            us to study motion, rates of change, and accumulation in a precise mathematical way.
+          </p>
+        </section>
+
+        <section class="arithmetic-section">
+          <h3>Key idea</h3>
+          <p>
+            A limit is about approach, not necessarily equality at the point itself. This idea
+            is what gives calculus its power: it allows us to understand behavior near values
+            that may not be directly defined there.
+          </p>
+        </section>
+      </article>
     </main>
   </body>
 </html>
