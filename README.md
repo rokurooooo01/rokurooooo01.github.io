@@ -22,4 +22,4 @@ something something a webpage
 - and other stuff idk
 
 ## extra note
-- this was done with the help of github copilot, but if anyone wanna help me doing ts, id be more than happy to welcome. after all im just a future mathematician
+- this was done with the help of github copilot and through ollama, but if anyone wanna help me doing ts, id be more than happy to welcome. after all im just a future mathematician
