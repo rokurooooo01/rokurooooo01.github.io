@@ -89,4 +89,43 @@ document.addEventListener("DOMContentLoaded", () => {
   // Update immediately and then every 30 seconds
   updateSpotifyStatus();
   setInterval(updateSpotifyStatus, 30000);
+
+  // --- New Decorations Logic ---
+
+  // 1. Digital Clock
+  const clockEl = document.getElementById("site-clock");
+  if (clockEl) {
+    function updateClock() {
+      const now = new Date();
+      clockEl.textContent = now.toLocaleString('en-US', { 
+        hour: 'numeric', 
+        minute: '2-digit', 
+        second: '2-digit', 
+        hour12: true 
+      }) + " | " + now.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric', 
+        year: 'numeric' 
+      });
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+  }
+
+  // 2. Random Quote
+  const quoteEl = document.getElementById("random-quote");
+  if (quoteEl) {
+    const quotes = [
+      "Mathematics is the music of reason.",
+      "Pure mathematics is, in its way, the poetry of logical ideas.",
+      "Nature is written in mathematical language.",
+      "The only way to learn mathematics is to do mathematics.",
+      "Imagination is more important than knowledge.",
+      "The essence of mathematics is not to make simple things complicated, but to make complicated things simple.",
+      "Every great mathematical discovery is a simple idea that was very hard to find.",
+      "Mathematics is a place where you can do and explore things that you can't do in the real world."
+    ];
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    quoteEl.textContent = `"${randomQuote}"`;
+  }
 });

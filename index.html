@@ -25,9 +25,12 @@
   <body>
     <main class="container page-shell">
       <header class="site-header">
-        <div>
-          <p class="eyebrow">personal site</p>
-          <h1>rokurooooo</h1>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+          <div>
+            <p class="eyebrow">Their minds are like sensitive film, capturing every detail with vivid clarity.</p>
+            <h1>rokurooooo</h1>
+          </div>
+          <div id="site-clock" style="font-family: monospace; font-size: 0.9rem; text-align: right; color: var(--muted);"></div>
         </div>
         <nav class="page-nav" aria-label="Site pages">
           <a class="button" href="index.html">Home</a>
@@ -40,6 +43,9 @@
       </header>
 
       <section class="content hero-card" aria-labelledby="site-intro-heading">
+        <div id="random-quote" style="font-style: italic; font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; border-left: 3px solid var(--accent); padding-left: 1rem;">
+          Loading thought...
+        </div>
         <p class="eyebrow">what this is</p>
         <h2 id="site-intro-heading">A place for my thoughts and musings.</h2>
         <p>
