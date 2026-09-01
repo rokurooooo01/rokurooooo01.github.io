@@ -23,16 +23,21 @@
   </head>
   <body>
     <main class="container">
-      <h1>/now</h1>
+      <header class="site-header">
+        <div>
+          <p class="eyebrow">/now</p>
+          <h1>/now</h1>
+        </div>
+        <div id="site-clock" aria-live="polite"></div>
+        <nav class="page-nav" aria-label="Site pages">
+          <a class="button" href="index.html">Home</a>
+          <a class="button" href="mathematics.html">Mathematics Notes</a>
+          <a class="button" href="topics.html">Topics I Like</a>
+        </nav>
+      </header>
       <p>
         This is my little status page inspired by the <a href="https://sive.rs/nowff">/now</a> movement: a quick snapshot of what I’m up to lately.
       </p>
-
-      <nav class="page-nav" aria-label="Site pages">
-        <a class="button" href="index.html">Home</a>
-        <a class="button" href="mathematics.html">Mathematics Notes</a>
-        <a class="button" href="topics.html">Topics I Like</a>
-      </nav>
 
       <section class="status-widget content" aria-labelledby="now-status-heading">
         <h2 id="now-status-heading">What I’m doing right now</h2>
