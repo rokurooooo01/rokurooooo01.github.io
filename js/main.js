@@ -37,27 +37,35 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!user) return;
 
       const statusText = spotifyStatusEl.querySelector(".status-text");
+      const albumArtEl = document.getElementById("spotify-album-art");
       let track = null;
       let artist = null;
       let url = null;
+      let albumArt = null;
 
-      // 1. Try the dedicated spotify object (if it exists)
+      // 1. Try the dedicated spotify object
       if (user.spotify) {
         track = user.spotify.track;
         artist = user.spotify.artist;
         url = user.spotify.track_url;
+        albumArt = user.spotify.album_art;
       } 
-      
-      // 2. Search the activities array for "Spotify" (This is where your data is!)
+      // 2. Search the activities array for "Spotify"
       if (!track && user.activities) {
         const spotifyAct = user.activities.find(act => act.name === "Spotify");
         if (spotifyAct) {
-          track = spotifyAct.details; // e.g. "Life Goes On"
-          artist = spotifyAct.state;   // e.g. "The Sundays"
+          track = spotifyAct.details;
+          artist = spotifyAct.state;
+          if (spotifyAct.assets && spotifyAct.assets.large_image) {
+             albumArt = spotifyAct.assets.large_image;
+          }
         }
       }
 
       if (track && artist) {
+        if (albumArt && albumArtEl) {
+          albumArtEl.src = albumArt;
+        }
         if (url) {
           statusText.innerHTML = `<a href="${url}" target="_blank" style="color: inherit;">${track} by ${artist}</a>`;
         } else {
