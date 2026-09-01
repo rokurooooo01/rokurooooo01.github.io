@@ -28,10 +28,23 @@ document.addEventListener("DOMContentLoaded", () => {
         signal: controller.signal 
       });
       clearTimeout(timeoutId);
-      const { data } = await response.json();
+      const data = await response.json();
+      const user = data.data;
 
-      const spotify = data.spotify;
+      let spotify = user.spotify;
       const statusText = spotifyStatusEl.querySelector(".status-text");
+
+      // Fallback: If data.spotify is empty, look for Spotify in the activities array
+      if (!spotify && user.activities) {
+        const spotifyActivity = user.activities.find(act => act.name === "Spotify");
+        if (spotifyActivity) {
+          spotify = {
+            track: spotifyActivity.details,
+            artist: spotifyActivity.state,
+            track_url: spotifyActivity.assets?.large_text ? `#` : null // URLs are rarely in activities array
+          };
+        }
+      }
 
       if (spotify && spotify.track) {
         const trackName = spotify.track;
