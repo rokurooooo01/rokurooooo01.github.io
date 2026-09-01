@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const spotifyStatusEl = document.getElementById("spotify-status");
 
   async function updateSpotifyStatus() {
-    if (!spotifyStatusEl || DISCORD_ID === "YOUR_DISCORD_ID") return;
+    if (!spotifyStatusEl) return;
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3000);
@@ -31,10 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const spotify = data.spotify;
       const statusText = spotifyStatusEl.querySelector(".status-text");
 
-      if (spotify) {
-        statusText.textContent = `${spotify.track}`;
+      if (spotify && spotify.track) {
+        const trackName = spotify.track;
+        const artistName = spotify.artist;
+        
         if (spotify.track_url) {
-          statusText.innerHTML = `<a href="${spotify.track_url}" target="_blank" style="color: inherit;">${spotify.track}</a>`;
+          statusText.innerHTML = `<a href="${spotify.track_url}" target="_blank" style="color: inherit;">${trackName} by ${artistName}</a>`;
+        } else {
+          statusText.textContent = `${trackName} by ${artistName}`;
         }
       } else {
         statusText.textContent = "Nothing right now";
