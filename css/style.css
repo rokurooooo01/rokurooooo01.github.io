@@ -913,3 +913,13 @@ body {
   to { opacity: 1; transform: translateX(0); }
 }
 
+/* Profile picture in header */
+.profile-pic {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--border-dark);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+
