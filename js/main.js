@@ -28,25 +28,47 @@ document.addEventListener("DOMContentLoaded", () => {
         signal: controller.signal 
       });
       clearTimeout(timeoutId);
-      const data = await response.json();
-      const user = data.data;
+      const json = await response.json();
+      
+      // Debug: Log this to see exactly what's coming back in the browser console
+      console.log("Lanyard Response:", json);
 
-      let spotify = user.spotify;
+      const user = json.data;
+      if (!user) return;
+
       const statusText = spotifyStatusEl.querySelector(".status-text");
+      let track = null;
+      let artist = null;
+      let url = null;
 
-      // Fallback: If data.spotify is empty, look for Spotify in the activities array
-      if (!spotify && user.activities) {
-        const spotifyActivity = user.activities.find(act => act.name === "Spotify");
-        if (spotifyActivity) {
-          spotify = {
-            track: spotifyActivity.details,
-            artist: spotifyActivity.state,
-            track_url: spotifyActivity.assets?.large_text ? `#` : null // URLs are rarely in activities array
-          };
+      // 1. Try the dedicated spotify object
+      if (user.spotify) {
+        track = user.spotify.track;
+        artist = user.spotify.artist;
+        url = user.spotify.track_url;
+      } 
+      // 2. Fallback to activities array (as seen in your screenshot)
+      else if (user.activities) {
+        const spotifyAct = user.activities.find(act => act.name === "Spotify");
+        if (spotifyAct) {
+          track = spotifyAct.details;
+          artist = spotifyAct.state;
         }
       }
 
-      if (spotify && spotify.track) {
+      if (track && artist) {
+        if (url) {
+          statusText.innerHTML = `<a href="${url}" target="_blank" style="color: inherit;">${track} by ${artist}</a>`;
+        } else {
+          statusText.textContent = `${track} by ${artist}`;
+        }
+      } else {
+        statusText.textContent = "Nothing right now";
+      }
+    } catch (error) {
+      console.error("Error fetching Lanyard status:", error);
+    }
+  }
         const trackName = spotify.track;
         const artistName = spotify.artist;
         
