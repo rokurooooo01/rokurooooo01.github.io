@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  if (window.katex) {
+  if (window.katex && typeof renderMathInElement === "function") {
     renderMathInElement(document.body, {
       delimiters: [
         { left: "\\(", right: "\\)", display: false },
@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       throwOnError: false,
     });
+  } else {
+    console.warn("KaTeX renderMathInElement not found. Math may not render.");
   }
 
   console.log("GitHub Pages site is ready.");
