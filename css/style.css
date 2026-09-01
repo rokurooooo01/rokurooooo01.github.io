@@ -923,3 +923,31 @@ body {
   object-fit: cover;
 }
 
+/* 88x31 Buttons */
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.button-88x31 {
+  width: 88px;
+  height: 31px;
+  display: block;
+  image-rendering: pixelated;
+  border: 1px solid var(--border-dark);
+  box-shadow: 1px 1px 0px #000;
+  transition: transform 0.1s;
+}
+
+.button-88x31:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px #000;
+}
+
+.button-88x31:active {
+  transform: translate(1px, 1px);
+  box-shadow: 0px 0px 0px #000;
+}
+
