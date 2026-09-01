@@ -18,8 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
   async function updateSpotifyStatus() {
     if (!spotifyStatusEl || DISCORD_ID === "YOUR_DISCORD_ID") return;
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+
     try {
-      const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
+      const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`, { 
+        signal: controller.signal 
+      });
+      clearTimeout(timeoutId);
       const { data } = await response.json();
 
       const spotify = data.spotify;
