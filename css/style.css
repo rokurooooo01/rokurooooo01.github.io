@@ -71,21 +71,21 @@ body::before {
 main {
   margin-left: 120px;
   width: calc(100% - 120px);
-  padding: 2rem 2rem 2rem 4rem;
+  padding: 2rem 2rem 2.5rem 3.5rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
 .container {
-  width: min(800px, 60vw);
+  width: min(820px, 62vw);
   padding: clamp(1.15rem, 2vw, 1.7rem);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
   background: var(--panel);
   box-shadow: var(--shadow);
   border-radius: var(--radius);
-  max-width: 60vw;
+  max-width: 62vw;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -133,15 +133,16 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.3rem, 4vw, 3.3rem);
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
   margin-bottom: 0;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.06em;
   font-weight: 700;
-  background: var(--accent);
+  background: linear-gradient(180deg, #0d1f8d, #0a0d6b);
   color: white;
-  padding: 4px 8px;
-  border: 2px solid;
+  padding: 6px 10px 8px;
+  border: 3px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 h2 {
@@ -245,6 +246,7 @@ p {
 .page-shell {
   display: grid;
   gap: 1.05rem;
+  width: min(820px, 62vw);
 }
 
 .site-header {
@@ -252,10 +254,10 @@ p {
   flex-direction: column;
   justify-content: flex-start;
   gap: 1rem;
-  border-bottom: 2px solid;
-  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
-  padding-bottom: 1rem;
-  background: var(--panel);
+  border-bottom: 3px solid;
+  border-color: var(--border-darkest);
+  padding: 0.2rem 0 0.9rem;
+  background: rgba(255, 255, 255, 0.06);
   box-sizing: border-box;
   width: 100%;
 }
@@ -296,7 +298,7 @@ a:visited {
 .til-section {
   padding: 1.15rem 1.1rem;
   border: 1px solid var(--border-dark);
-  background: rgba(192, 192, 192, 0.6);
+  background: rgba(192, 192, 192, 0.58);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: var(--radius);
@@ -304,7 +306,9 @@ a:visited {
 }
 
 .hero-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(231, 238, 244, 0.45));
+  background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(225, 228, 232, 0.42));
+  border-left: 3px solid var(--accent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
 }
 
 .grid {
@@ -313,7 +317,7 @@ a:visited {
 }
 
 .two-col {
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: 1.25fr 1fr;
 }
 
 .link-list {
@@ -453,12 +457,12 @@ a:visited {
   justify-content: space-between;
   align-items: center;
   gap: 1.25rem;
-  min-height: 160px;
-  padding: 1.25rem 1.4rem;
-  background: linear-gradient(180deg, #1fb75d 0%, #1aa24d 100%);
+  min-height: 170px;
+  padding: 1.35rem 1.5rem;
+  background: linear-gradient(180deg, #1cc464 0%, #119b43 100%);
   color: white;
   border: none;
-  box-shadow: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
   font-family: "MS Sans Serif", "Tahoma", sans-serif;
 }
 
@@ -517,8 +521,8 @@ a:visited {
 }
 
 .spotify-art {
-  width: 110px;
-  height: 110px;
+  width: 116px;
+  height: 116px;
   border: 3px solid #ffffff;
   box-shadow: 2px 2px 0 #000000;
   background: #1e1e1e;
@@ -663,11 +667,20 @@ body {
 /* 3. Visual Polish for Grid Cards */
 .card {
   transition: transform 0.2s ease;
+  min-height: 200px;
 }
 
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 3px 3px 0px #000;
+}
+
+.card h2,
+.status-widget h2,
+.til-section h2 {
+  border-bottom: 2px solid rgba(0,0,0,0.35);
+  padding-bottom: 0.35rem;
+  margin-bottom: 0.8rem;
 }
 
 /* 4. Custom Scrollbar for that Win95 look */
@@ -693,15 +706,17 @@ body {
 /* Clock and Quote Styling */
 #site-clock {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: opacity 0.3s ease;
   align-self: center;
-  padding: 0.35rem 0.6rem;
+  padding: 0.45rem 0.7rem;
   border: 1px solid var(--border-dark);
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.30);
+  min-width: 170px;
+  text-align: center;
 }
 
 #site-clock:hover {
@@ -711,7 +726,7 @@ body {
 .status-strip {
   padding: 0.7rem 0.9rem;
   border: 1px solid var(--border-dark);
-  background: rgba(255,255,255,0.28);
+  background: rgba(255,255,255,0.22);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
@@ -720,6 +735,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+  align-items: center;
 }
 
 .status-chip {
@@ -731,18 +747,19 @@ body {
   background: rgba(255,255,255,0.18);
   font-size: 0.78rem;
   color: var(--muted);
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.3);
 }
 
 #random-quote {
   margin-bottom: 1rem;
-  padding: 0.7rem 0.9rem 0.7rem 1rem;
-  border-left: 3px solid var(--accent);
+  padding: 0.8rem 1rem 0.8rem 1.1rem;
+  border-left: 4px solid var(--accent);
   font-family: 'Georgia', serif;
   font-style: italic;
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   line-height: 1.5;
   color: var(--muted);
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.12);
   animation: fadeIn 1s ease-in;
 }
 
