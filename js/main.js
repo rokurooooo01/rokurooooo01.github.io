@@ -99,33 +99,83 @@ document.addEventListener("DOMContentLoaded", () => {
       const now = new Date();
       clockEl.textContent = now.toLocaleString('en-US', { 
         hour: 'numeric', 
-        minute: '2-digit', 
-        second: '2-digit', 
+        minute: 'numeric', 
+        second: 'numeric', 
         hour12: true 
-      }) + " | " + now.toLocaleDateString('en-US', { 
-        month: 'short', 
-        day: 'numeric', 
-        year: 'numeric' 
       });
     }
-    updateClock();
     setInterval(updateClock, 1000);
+    updateClock();
   }
 
-  // 2. Random Quote
+  // 2. Random Quote Generator
   const quoteEl = document.getElementById("random-quote");
   if (quoteEl) {
     const quotes = [
-      "a quiet page is still a kind of progress.",
-      "not every thought needs to be loud to matter.",
-      "good things tend to arrive slowly and softly.",
-      "I keep returning to the small details that make a day feel like mine.",
-      "the best notes are the ones you actually keep.",
-      "some mornings are better spent being gentle with yourself.",
-      "a little structure makes room for a little wonder.",
-      "there is comfort in building something slowly, honestly."
+      "Thinking is the hardest work there is",
+      "Numbers are the highest nobility in any society",
+      "The only way to learn mathematics is to do mathematics",
+      "The only way to discover the truth is to do mathematics",
+      "The only way to discover the truth is to do mathematics",
+      "Mathematics is the language of the universe",
+      "The only way to discover the truth is to do mathematics",
+      "The only way to discover the truth is to do mathematics",
+      "Mathematics is the language of the universe",
+      "The only way to discover the truth is to do mathematics",
     ];
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteEl.textContent = `“${randomQuote}”`;
+    quoteEl.textContent = `"${randomQuote}"`;
+  }
+});
+
+// --- Global functions outside DOMContentLoaded ---
+
+function initLoadingScreen() {
+  const loadingScreen = document.getElementById("loading-screen");
+  const fill = document.getElementById("loading-bar-fill");
+  
+  if (!loadingScreen || !fill) return;
+
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 10;
+    if (progress > 100) progress = 100;
+    fill.style.width = `${progress}%`;
+    
+    if (progress === 100) {
+      clearInterval(interval);
+      setTimeout(() => {
+        loadingScreen.style.display = "none";
+      }, 500);
+    }
+  }, 150);
+}
+
+function playClickSound() {
+  const audioCtx = new (window.AudioContext || window.AudioContext)();
+  const oscillator = audioCtx.createOscillator();
+  const gainNode = {
+    // This is a simplified version of the Audio API
+    // In a real app, we'd create a gain node to avoid clipping
+  };
+  
+  oscillator.type = "square";
+  oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+  oscillator.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
+  
+  const gain = audioCtx.createGain();
+  gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+  
+  oscillator.connect(gain);
+  gain.connect(audioCtx.destination);
+  
+  oscillator.start();
+  oscillator.stop(audioCtx.currentTime + 0.1);
+}
+
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".button")) {
+    playClickSound();
   }
 });

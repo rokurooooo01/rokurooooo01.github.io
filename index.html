@@ -22,7 +22,15 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
     <script defer src="js/main.js"></script>
   </head>
-  <body>
+  <body onload="initLoadingScreen()">
+    <div id="loading-screen">
+      <div class="loading-box">
+        <p>System Booting...</p>
+        <div class="loading-bar-container">
+          <div id="loading-bar-fill" class="loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
     <nav class="page-nav" aria-label="Site pages">
       <a class="button" href="index.html">Home</a>
       <a class="button" href="about.html">About</a>
@@ -50,14 +58,24 @@
         </div>
       </section>
 
-      <section class="content hero-card" aria-labelledby="site-intro-heading">
-        <div id="random-quote" aria-live="polite">Loading thought...</div>
-        <p class="eyebrow">what this is</p>
-        <h2 id="site-intro-heading">A place for my thoughts and musings.</h2>
-        <p>
-          as it stands, this is my 'diary'. so yeah welcome.
-        </p>
-      </section>
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">My Thoughts</div>
+          <div class="window-titlebar-controls">
+            <div class="window-btn">_</div>
+            <div class="window-btn">□</div>
+            <div class="window-btn">×</div>
+          </div>
+        </div>
+        <section class="content hero-card" aria-labelledby="site-intro-heading" style="border: none; box-shadow: none; margin: 0;">
+          <div id="random-quote" aria-live="polite">Loading thought...</div>
+          <p class="eyebrow">what this is</p>
+          <h2 id="site-intro-heading">A place for my thoughts and musings.</h2>
+          <p>
+            as it stands, this is my 'diary'. so yeah welcome.
+          </p>
+        </section>
+      </div>
 
       <section class="content spotify-card" aria-labelledby="spotify-heading">
         <div class="spotify-window">
