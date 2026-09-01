@@ -42,6 +42,8 @@ body {
   box-shadow: var(--shadow);
   border-radius: var(--radius);
   max-width: 92vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .topic-page__article {
@@ -190,9 +192,11 @@ p {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
-  align-items: end;
-  border-bottom: 1px solid var(--border);
+  align-items: center;
+  border-bottom: 2px solid;
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
   padding-bottom: 1rem;
+  background: var(--panel);
 }
 
 .eyebrow {
