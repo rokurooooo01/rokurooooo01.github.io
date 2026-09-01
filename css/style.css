@@ -34,7 +34,7 @@ body {
 }
 
 .container {
-  width: min(1200px, 96vw);
+  width: min(1400px, 98vw);
   padding: clamp(1.15rem, 2vw, 1.7rem);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
@@ -47,7 +47,7 @@ body {
 }
 
 .topic-page__article {
-  width: min(1400px, 96vw);
+  width: min(1600px, 98vw);
   background: var(--paper);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
@@ -478,4 +478,59 @@ a:visited {
   .button {
     flex: 1 1 calc(50% - 0.6rem);
   }
+}
+
+/* Retro Interactivity & Aesthetics */
+
+/* 1. The "Clickable" Button Feel */
+.button, .link-list a {
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+.button:hover, .link-list a:hover {
+  background: var(--accent-soft);
+  border-color: var(--border-darkest) var(--border-light) var(--border-light) var(--border-darkest);
+  box-shadow: inset 1px 1px 0px #000;
+  text-decoration: none;
+}
+
+.button:active, .link-list a:active {
+  box-shadow: inset 2px 2px 0px #000;
+  transform: translate(1px, 1px);
+}
+
+/* 2. Retro Cursor (Optional - uses a common retro-style system fallback) */
+body {
+  cursor: url('https://cur.cursors-4u.net/others/cur-12/cur1533.cur'), auto;
+}
+
+/* 3. Visual Polish for Grid Cards */
+.card {
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px #000;
+}
+
+/* 4. Custom Scrollbar for that Win95 look */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--border-light);
+  border: 1px solid var(--border-darkest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--paper);
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-soft);
 }
