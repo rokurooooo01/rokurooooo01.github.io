@@ -69,21 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error fetching Lanyard status:", error);
     }
   }
-        const trackName = spotify.track;
-        const artistName = spotify.artist;
-        
-        if (spotify.track_url) {
-          statusText.innerHTML = `<a href="${spotify.track_url}" target="_blank" style="color: inherit;">${trackName} by ${artistName}</a>`;
-        } else {
-          statusText.textContent = `${trackName} by ${artistName}`;
-        }
-      } else {
-        statusText.textContent = "Nothing right now";
-      }
-    } catch (error) {
-      console.error("Error fetching Lanyard status:", error);
-    }
-  }
 
   // Update immediately and then every 30 seconds
   updateSpotifyStatus();
