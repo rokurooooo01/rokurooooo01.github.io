@@ -86,9 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Update immediately and then every 30 seconds
+  // Update immediately and then every 15 seconds
   updateSpotifyStatus();
-  setInterval(updateSpotifyStatus, 30000);
+  setInterval(updateSpotifyStatus, 15000);
 
   // --- New Decorations Logic ---
 
