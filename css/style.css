@@ -24,12 +24,18 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  grid-template-rows: auto;
   background: var(--bg);
   color: var(--ink);
   line-height: 1.5;
   font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
   position: relative;
+  padding: 2rem;
+  align-content: flex-start;
+  justify-items: center;
+  gap: 0;
 }
 
 body::before {
@@ -51,41 +57,52 @@ body::before {
 
 /* Sidebar Navigation */
 .page-nav {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 135px;
+  position: relative;
+  height: auto;
+  width: 140px;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   padding: 1.2rem 0.85rem;
   background: var(--panel);
-  border-right: 4px solid;
-  border-color: var(--border-dark);
-  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  box-shadow: var(--shadow);
+  z-index: 1;
   overflow-y: auto;
+  flex-shrink: 0;
+  grid-column: 1;
+  grid-row: 1;
+  border-right: 1px solid var(--border-dark);
 }
 
 main {
-  margin-left: 150px;
-  width: calc(100% - 150px);
-  padding: 2rem 2rem 2.6rem 3.2rem;
+  margin-left: 0;
+  width: auto;
+  padding: 1.2rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  flex-grow: 1;
+  grid-column: 2;
+  grid-row: 1;
+  background: var(--panel);
+  border: 2px solid;
+  border-left: 1px solid var(--border-dark);
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  box-shadow: none;
+  border-radius: 0;
+}
 }
 
 .container {
-  width: min(820px, 65vw);
-  padding: clamp(1.2rem, 2vw, 1.8rem);
-  border: 2px solid;
-  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
-  background: var(--panel);
-  box-shadow: var(--shadow);
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
   border-radius: var(--radius);
-  max-width: 65vw;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -246,7 +263,7 @@ p {
 .page-shell {
   display: grid;
   gap: 1.1rem;
-  width: min(820px, 65vw);
+  width: 100%;
 }
 
 .site-header {
