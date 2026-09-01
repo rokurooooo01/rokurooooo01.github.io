@@ -378,6 +378,48 @@ a:visited {
   margin-top: 0.35rem;
 }
 
+/* Spotify Widget Styling */
+.spotify-card {
+  margin-top: 1rem;
+}
+
+.spotify-widget {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #1DB954; /* Spotify Green */
+  color: white;
+  border: 2px solid;
+  border-color: white #000 #000 white;
+  box-shadow: var(--shadow);
+  font-family: "MS Sans Serif", "Tahoma", sans-serif;
+}
+
+.spotify-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.2rem;
+  background: none;
+  padding: 0;
+}
+
+.spotify-info .status-text {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.spotify-info a {
+  color: white;
+  text-decoration: underline;
+}
+
+.spotify-icon {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
 @media (max-width: 640px) {
   body {
     padding: 1rem 0.75rem;
