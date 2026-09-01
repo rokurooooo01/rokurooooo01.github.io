@@ -107,7 +107,8 @@ main {
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
   box-shadow: none;
   border-radius: 0;
-  max-width: 700px;
+  width: 100%;
+  max-width: 1100px;
 }
 
 
