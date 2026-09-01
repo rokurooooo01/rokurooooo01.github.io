@@ -55,11 +55,11 @@ body::before {
   left: 0;
   top: 0;
   height: 100vh;
-  width: 105px;
+  width: 135px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem 0.7rem;
+  gap: 0.6rem;
+  padding: 1.2rem 0.85rem;
   background: var(--panel);
   border-right: 4px solid;
   border-color: var(--border-dark);
@@ -69,23 +69,23 @@ body::before {
 }
 
 main {
-  margin-left: 120px;
-  width: calc(100% - 120px);
-  padding: 2rem 2rem 2.5rem 3.5rem;
+  margin-left: 150px;
+  width: calc(100% - 150px);
+  padding: 2rem 2rem 2.6rem 3.2rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
 .container {
-  width: min(820px, 62vw);
-  padding: clamp(1.15rem, 2vw, 1.7rem);
+  width: min(820px, 65vw);
+  padding: clamp(1.2rem, 2vw, 1.8rem);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
   background: var(--panel);
   box-shadow: var(--shadow);
   border-radius: var(--radius);
-  max-width: 62vw;
+  max-width: 65vw;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -133,13 +133,13 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  font-size: clamp(2.6rem, 4.2vw, 4.2rem);
   margin-bottom: 0;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.05em;
   font-weight: 700;
   background: linear-gradient(180deg, #0d1f8d, #0a0d6b);
   color: white;
-  padding: 6px 10px 8px;
+  padding: 5px 9px 7px;
   border: 3px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
@@ -218,7 +218,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 0.6rem;
+  padding: 0.6rem 0.7rem;
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
   border-radius: 0;
@@ -226,7 +226,7 @@ p {
   color: var(--ink);
   background: var(--paper);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   transition: none;
   width: 100%;
   text-align: center;
@@ -245,8 +245,8 @@ p {
 
 .page-shell {
   display: grid;
-  gap: 1.05rem;
-  width: min(820px, 62vw);
+  gap: 1.1rem;
+  width: min(820px, 65vw);
 }
 
 .site-header {
@@ -456,9 +456,9 @@ a:visited {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1.25rem;
-  min-height: 170px;
-  padding: 1.35rem 1.5rem;
+  gap: 1.1rem;
+  min-height: 160px;
+  padding: 1.15rem 1.3rem;
   background: linear-gradient(180deg, #1cc464 0%, #119b43 100%);
   color: white;
   border: none;
@@ -734,7 +734,7 @@ body {
 .status-strip__inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem;
+  gap: 0.45rem;
   align-items: center;
 }
 
@@ -742,10 +742,10 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.35rem 0.6rem;
+  padding: 0.3rem 0.5rem;
   border: 1px solid var(--border-dark);
   background: rgba(255,255,255,0.18);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--muted);
   box-shadow: inset 1px 1px 0 rgba(255,255,255,0.3);
 }
