@@ -30,7 +30,7 @@
             <p class="eyebrow">Their minds are like sensitive film, capturing every detail with vivid clarity.</p>
             <h1>rokurooooo</h1>
           </div>
-          <div id="site-clock" style="font-family: monospace; font-size: 0.9rem; text-align: right; color: var(--muted);"></div>
+          <div id="site-clock" aria-live="polite"></div>
         </div>
         <nav class="page-nav" aria-label="Site pages">
           <a class="button" href="index.html">Home</a>
@@ -42,10 +42,16 @@
         </nav>
       </header>
 
-      <section class="content hero-card" aria-labelledby="site-intro-heading">
-        <div id="random-quote" style="font-style: italic; font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; border-left: 3px solid var(--accent); padding-left: 1rem;">
-          Loading thought...
+      <section class="content status-strip" aria-label="Quick personal notes">
+        <div class="status-strip__inner">
+          <span class="status-chip"><strong>reading:</strong> quiet things</span>
+          <span class="status-chip"><strong>listening:</strong> the city at night</span>
+          <span class="status-chip"><strong>thinking about:</strong> what to build next</span>
         </div>
+      </section>
+
+      <section class="content hero-card" aria-labelledby="site-intro-heading">
+        <div id="random-quote" aria-live="polite">Loading thought...</div>
         <p class="eyebrow">what this is</p>
         <h2 id="site-intro-heading">A place for my thoughts and musings.</h2>
         <p>

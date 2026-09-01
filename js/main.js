@@ -116,16 +116,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const quoteEl = document.getElementById("random-quote");
   if (quoteEl) {
     const quotes = [
-      "Mathematics is the music of reason.",
-      "Pure mathematics is, in its way, the poetry of logical ideas.",
-      "Nature is written in mathematical language.",
-      "The only way to learn mathematics is to do mathematics.",
-      "Imagination is more important than knowledge.",
-      "The essence of mathematics is not to make simple things complicated, but to make complicated things simple.",
-      "Every great mathematical discovery is a simple idea that was very hard to find.",
-      "Mathematics is a place where you can do and explore things that you can't do in the real world."
+      "a quiet page is still a kind of progress.",
+      "not every thought needs to be loud to matter.",
+      "good things tend to arrive slowly and softly.",
+      "I keep returning to the small details that make a day feel like mine.",
+      "the best notes are the ones you actually keep.",
+      "some mornings are better spent being gentle with yourself.",
+      "a little structure makes room for a little wonder.",
+      "there is comfort in building something slowly, honestly."
     ];
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteEl.textContent = `"${randomQuote}"`;
+    quoteEl.textContent = `“${randomQuote}”`;
   }
 });

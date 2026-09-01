@@ -31,6 +31,24 @@ body {
   color: var(--ink);
   line-height: 1.5;
   font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.02),
+      rgba(0, 0, 0, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  opacity: 0.75;
 }
 
 .container {
@@ -541,17 +559,56 @@ body {
 /* Clock and Quote Styling */
 #site-clock {
   font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  align-self: center;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border-dark);
+  background: rgba(255,255,255,0.25);
 }
 
 #site-clock:hover {
   opacity: 1;
 }
 
+.status-strip {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border-dark);
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.status-strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border-dark);
+  background: rgba(255,255,255,0.18);
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
 #random-quote {
+  margin-bottom: 1rem;
+  padding: 0.7rem 0.9rem 0.7rem 1rem;
+  border-left: 3px solid var(--accent);
   font-family: 'Georgia', serif;
-  line-height: 1.4;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--muted);
+  background: rgba(255,255,255,0.1);
   animation: fadeIn 1s ease-in;
 }
 
@@ -559,3 +616,4 @@ body {
   from { opacity: 0; transform: translateX(-10px); }
   to { opacity: 1; transform: translateX(0); }
 }
+
