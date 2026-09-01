@@ -34,7 +34,7 @@ body {
 }
 
 .container {
-  width: min(860px, 92vw);
+  width: min(1200px, 96vw);
   padding: clamp(1.15rem, 2vw, 1.7rem);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
@@ -47,7 +47,7 @@ body {
 }
 
 .topic-page__article {
-  width: min(1180px, 92vw);
+  width: min(1400px, 96vw);
   background: var(--paper);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
