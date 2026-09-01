@@ -60,20 +60,33 @@
       </section>
 
       <section class="content spotify-card" aria-labelledby="spotify-heading">
-        <div class="spotify-widget">
-          <div class="spotify-layout">
-            <img id="spotify-album-art" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="spotify-art" />
-            <div class="spotify-info">
-              <div class="spotify-title-row">
-                <h2 id="spotify-heading" class="spotify-title">Now Playing</h2>
-                <span class="live-indicator"></span>
-              </div>
-              <div id="spotify-status">
-                <span class="status-text">Loading...</span>
-              </div>
+        <div class="spotify-window">
+          <div class="spotify-titlebar">
+            <div class="spotify-titlebar-label">
+              <span class="titlebar-icon">♪</span>
+              <span id="spotify-heading" class="titlebar-text">now playing</span>
+            </div>
+            <div class="spotify-titlebar-buttons">
+              <button class="titlebar-btn" aria-label="Minimize" style="opacity: 0.5;"></button>
+              <button class="titlebar-btn" aria-label="Maximize" style="opacity: 0.5;"></button>
+              <button class="titlebar-btn titlebar-close" aria-label="Close" style="opacity: 0.5;"></button>
             </div>
           </div>
-          <div class="spotify-icon">🎧</div>
+          <div class="spotify-widget">
+            <div class="spotify-layout">
+              <img id="spotify-album-art" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="spotify-art" />
+              <div class="spotify-info">
+                <div class="spotify-title-row">
+                  <span class="spotify-title">Now Playing</span>
+                  <span class="live-indicator"></span>
+                </div>
+                <div id="spotify-status">
+                  <span class="status-text">Loading...</span>
+                </div>
+              </div>
+            </div>
+            <div class="spotify-icon">🎧</div>
+          </div>
         </div>
       </section>
 
