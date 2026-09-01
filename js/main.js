@@ -41,18 +41,19 @@ document.addEventListener("DOMContentLoaded", () => {
       let artist = null;
       let url = null;
 
-      // 1. Try the dedicated spotify object
+      // 1. Try the dedicated spotify object (if it exists)
       if (user.spotify) {
         track = user.spotify.track;
         artist = user.spotify.artist;
         url = user.spotify.track_url;
       } 
-      // 2. Fallback to activities array (as seen in your screenshot)
-      else if (user.activities) {
+      
+      // 2. Search the activities array for "Spotify" (This is where your data is!)
+      if (!track && user.activities) {
         const spotifyAct = user.activities.find(act => act.name === "Spotify");
         if (spotifyAct) {
-          track = spotifyAct.details;
-          artist = spotifyAct.state;
+          track = spotifyAct.details; // e.g. "Life Goes On"
+          artist = spotifyAct.state;   // e.g. "The Sundays"
         }
       }
 
