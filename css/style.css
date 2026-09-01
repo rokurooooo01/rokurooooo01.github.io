@@ -69,30 +69,30 @@ body::before {
 }
 
 main {
-  margin-left: 105px;
-  width: calc(100% - 105px);
-  padding: 2rem 1rem 2rem 8vw;
+  margin-left: 120px;
+  width: calc(100% - 120px);
+  padding: 2rem 2rem 2rem 4rem;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
 }
 
 .container {
-  width: min(760px, 58vw);
+  width: min(800px, 60vw);
   padding: clamp(1.15rem, 2vw, 1.7rem);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
   background: var(--panel);
   box-shadow: var(--shadow);
   border-radius: var(--radius);
-  max-width: 58vw;
+  max-width: 60vw;
   display: flex;
   flex-direction: column;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .topic-page__article {
-  width: min(800px, 58vw);
+  width: min(840px, 60vw);
   background: var(--paper);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
@@ -101,8 +101,8 @@ main {
   padding: clamp(2rem, 4vw, 3rem) clamp(1.6rem, 4vw, 3.2rem);
   overflow-wrap: break-word;
   overflow-x: hidden;
-  max-width: 58vw;
-  margin: 0;
+  max-width: 60vw;
+  margin: 0 auto;
 }
 
 .topic-page--arithmetic {
