@@ -57,7 +57,14 @@ document.addEventListener("DOMContentLoaded", () => {
           track = spotifyAct.details;
           artist = spotifyAct.state;
           if (spotifyAct.assets && spotifyAct.assets.large_image) {
-             albumArt = spotifyAct.assets.large_image;
+            const imgId = spotifyAct.assets.large_image;
+            // If it's a Spotify ID (starts with 'spotify:'), convert it to a usable URL
+            if (imgId.startsWith('spotify:')) {
+              const id = imgId.split(':')[1];
+              albumArt = `https://i.scdn.co/image/${id}`;
+            } else if (imgId.startsWith('http')) {
+              albumArt = imgId;
+            }
           }
         }
       }
