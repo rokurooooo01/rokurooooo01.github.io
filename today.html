@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Today | rokurooooo01.github.io</title>
+    <meta
+      name="description"
+      content="Daily log of what I did on this day."
+    />
+    <meta property="og:title" content="Today | rokurooooo01.github.io" />
+    <meta
+      property="og:description"
+      content="Daily log of what I did on this day."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rokurooooo01.github.io/today.html" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+    <script defer src="js/main.js"></script>
+  </head>
+  <body onload="initLoadingScreen()">
+    <div id="loading-screen">
+      <div class="loading-box">
+        <p>System Booting...</p>
+        <div class="loading-bar-container">
+          <div id="loading-bar-fill" class="loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="Site pages">
+      <a class="button" href="index.html">Home</a>
+      <a class="button" href="about.html">About</a>
+      <a class="button" href="mathematics.html">Math</a>
+      <a class="button" href="favorites.html">Favorites</a>
+      <a class="button" href="mood-gallery.html">Gallery</a>
+      <a class="button" href="today.html">Today</a>
+    </nav>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <img src="images/profile.svg" alt="Profile picture" class="profile-pic">
+            <div>
+              <p class="eyebrow">Their minds are like sensitive film, capturing every detail with vivid clarity.</p>
+              <h1>rokurooooo</h1>
+            </div>
+          </div>
+          <div id="site-clock" aria-live="polite"></div>
+        </div>
+      </header>
+
+      <section class="content status-strip" aria-label="Quick personal notes">
+        <div class="status-strip__inner">
+          <span class="status-chip"><strong>reading:</strong> quiet things</span>
+          <span class="status-chip"><strong>listening:</strong> the city at night</span>
+          <span class="status-chip"><strong>thinking about:</strong> what to build next</span>
+        </div>
+      </section>
+
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">Today's Log</div>
+          <div class="window-titlebar-controls">
+            <div class="window-btn">_</div>
+            <div class="window-btn">□</div>
+            <div class="window-btn">×</div>
+          </div>
+        </div>
+        <section class="content hero-card" aria-labelledby="today-heading" style="border: none; box-shadow: none; margin: 0;">
+          <h2 id="today-heading">Today: 2026-09-01</h2>
+          <p>
+            <!-- Start of daily entry -->
+            <!-- Edit this section to log your activities for the day -->
+            <ul class="til-list">
+              <li>
+                <span class="til-date">2026-09-01</span>
+                <p>
+                  • Worked on updating the personal website.<br>
+                  • Added a new 'Today' subpage for daily logs.<br>
+                  • Reviewed mathematics notes on limits and continuity.<br>
+                  • Spent some time playing Tokyo Xtreme Racer.<br>
+                  • Listened to ambient music while reading.
+                </p>
+              </li>
+            </ul>
+            <!-- End of daily entry -->
+          </p>
+        </section>
+      </div>
+
+      <section class="content card" aria-labelledby="links-heading">
+        <h2 id="links-heading">Elsewhere</h2>
+        <ul class="link-list">
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="favorites.html">Favorites / References</a></li>
+          <li><a href="mood-gallery.html">Mood Gallery</a></li>
+          <li><a href="mathematics.html">rokuro's math universe</a></li>
+          <li><a href="https://github.com/rokurooooo01">GitHub</a></li>
+          <li><a href="https://x.com/rokurooooo07">X</a></li>
+          <li><a href="https://www.youtube.com/@rokurooooo07">YouTube</a></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
