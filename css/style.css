@@ -126,7 +126,7 @@ main {
 }
 
 .topic-page__article {
-  width: min(840px, 60vw);
+  width: min(1100px, 90vw);
   background: var(--paper);
   border: 2px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
@@ -135,7 +135,7 @@ main {
   padding: clamp(2rem, 4vw, 3rem) clamp(1.6rem, 4vw, 3.2rem);
   overflow-wrap: break-word;
   overflow-x: hidden;
-  max-width: 60vw;
+  max-width: 90vw;
   margin: 0 auto;
 }
 
