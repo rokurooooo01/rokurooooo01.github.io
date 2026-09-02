@@ -108,25 +108,28 @@ document.addEventListener("DOMContentLoaded", () => {
     updateClock();
   }
 
-  // 2. Random Quote Generator
-  const quoteEl = document.getElementById("random-quote");
-  if (quoteEl) {
-    const quotes = [
-      "Thinking is the hardest work there is",
-      "Numbers are the highest nobility in any society",
-      "The only way to learn mathematics is to do mathematics",
-      "The only way to discover the truth is to do mathematics",
-      "The only way to discover the truth is to do mathematics",
-      "Mathematics is the language of the universe",
-      "The only way to discover the truth is to do mathematics",
-      "The only way to discover the truth is to do mathematics",
-      "Mathematics is the language of the universe",
-      "The only way to discover the truth is to do mathematics",
-    ];
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteEl.textContent = `"${randomQuote}"`;
+  // 3. Gallery Image Expansion (Forza-style)
+  const modal = document.getElementById("image-modal");
+  const modalImg = modal ? modal.querySelector("img") : null;
+
+  if (modal && modalImg) {
+    document.querySelectorAll(".photo-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const bg = card.style.backgroundImage;
+        const urlMatch = bg.match(/url\(['"]?(.*?)['"]?\)/);
+        if (urlMatch && urlMatch[1]) {
+          modalImg.src = urlMatch[1];
+          modal.style.display = "flex";
+        }
+      });
+    });
+
+    modal.addEventListener("click", () => {
+      modal.style.display = "none";
+      modalImg.src = ""; // Clear src to avoid flickering on next open
+    });
   }
-});
+}
 
 // --- Global functions outside DOMContentLoaded ---
 
