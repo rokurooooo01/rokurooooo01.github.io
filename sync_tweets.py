@@ -1,52 +1,76 @@
 import os
-import requests
 import json
+import urllib.request
+import urllib.parse
 from datetime import datetime
 
 # Configuration
 BEARER_TOKEN = os.getenv('X_BEARER_TOKEN')
-USER_ID = '1284301732143484929D'  # You will need to replace this with your actual numeric X User ID
+USERNAME = 'rokurooooo07'
 OUTPUT_FILE = 'twitter_posts.json'
+
+def make_request(url, params=None):
+    if params:
+        query_string = urllib.parse.urlencode(params)
+        url = f"{url}?{query_string}"
+    
+    req = urllib.request.Request(url)
+    req.add_header("Authorization", f"Bearer {BEARER_TOKEN}")
+    
+    try:
+        with urllib.request.urlopen(req) as response:
+            if response.status == 200:
+                data = response.read().decode('utf-8')
+                return json.loads(data)
+    except Exception as e:
+        print(f"Request error for {url}: {e}")
+    return None
 
 def get_user_id(username):
     url = f"https://api.twitter.com/2/users/by/username/{username}"
-    headers = {"Authorization": f"Bearer {BEARER_TOKEN}"}
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        return response.json()['data']['id']
-    else:
-        print(f"Error fetching user ID: {response.text}")
-        return None
+    res = make_request(url)
+    if res and 'data' in res:
+        return res['data']['id']
+    return None
 
-def fetch_tweets():
-    # Using User ID to get tweets
-    url = f"https://api.twitter.com/2/users/{USER_ID}/tweets"
+def fetch_tweets(user_id):
+    url = f"https://api.twitter.com/2/users/{user_id}/tweets"
     params = {
         "max_results": 10,
         "tweet.fields": "created_at,public_metrics",
-        "expansions": "author_id"
+        "exclude": "retweets,replies"
     }
-    headers = {"Authorization": f"Bearer {BEARER_TOKEN}"}
-    
-    response = requests.get(url, headers=headers, params=params)
-    if response.status_code == 200:
-        return response.json().get('data', [])
-    else:
-        print(f"Error fetching tweets: {response.text}")
-        return []
+    res = make_request(url, params)
+    if res and 'data' in res:
+        return res['data']
+    return []
 
 def main():
     if not BEARER_TOKEN:
-        print("X_BEARER_TOKEN not found in environment variables")
+        print("X_BEARER_TOKEN not found in environment variables. Skipping sync.")
         return
 
-    print("Fetching tweets...")
-    tweets = fetch_tweets()
+    print(f"Fetching User ID for @{USERNAME}...")
+    user_id = get_user_id(USERNAME)
+    if not user_id:
+        print(f"Could not resolve User ID for @{USERNAME}")
+        return
+
+    print(f"Fetching tweets for User ID {user_id}...")
+    tweets = fetch_tweets(user_id)
     
     if tweets:
+        formatted_tweets = []
+        for tweet in tweets:
+            formatted_tweets.append({
+                "id": tweet.get("id"),
+                "text": tweet.get("text"),
+                "created_at": tweet.get("created_at")
+            })
+        
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-            json.dump(tweets, f, indent=4, ensure_ascii=False)
-        print(f"Successfully saved {len(tweets)} tweets to {OUTPUT_FILE}")
+            json.dump(formatted_tweets, f, indent=4, ensure_ascii=False)
+        print(f"Successfully saved {len(formatted_tweets)} tweets to {OUTPUT_FILE}")
     else:
         print("No tweets found or error occurred.")
 
