@@ -139,6 +139,11 @@ function initLoadingScreen() {
   
   if (!loadingScreen || !fill) return;
 
+  // Fail-safe: Hide loading screen after 5 seconds regardless of progress
+  const failSafeTimeout = setTimeout(() => {
+    loadingScreen.style.display = "none";
+  }, 5000);
+
   let progress = 0;
   const interval = setInterval(() => {
     progress += Math.random() * 10;
@@ -146,6 +151,7 @@ function initLoadingScreen() {
     fill.style.width = `${progress}%`;
     
     if (progress === 100) {
+      clearTimeout(failSafeTimeout);
       clearInterval(interval);
       setTimeout(() => {
         loadingScreen.style.display = "none";
