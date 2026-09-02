@@ -15,12 +15,21 @@
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/main.js"></script>
   </head>
-  <body>
+  <body onload="initLoadingScreen()">
     <!-- Desktop Stickers -->
     <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="Sticker 1" class="button-88x31"></div>
     <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="Sticker 2" class="button-88x31"></div>
     <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="Sticker 3" class="button-88x31"></div>
     <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="Sticker 4" class="button-88x31"></div>
+
+    <div id="loading-screen">
+      <div class="loading-box">
+        <p>System Booting...</p>
+        <div class="loading-bar-container">
+          <div id="loading-bar-fill" class="loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
 
     <nav class="page-nav" aria-label="Site pages">
       <a class="button" href="index.html">Home</a>
@@ -59,7 +68,7 @@
         </section>
       </div>
 
-      <section class="content card" aria-label="Tweet stream">
+      <section class="content card" aria-label="Tweet stream" style="margin-top: 1rem;">
         <div id="tweets-container">
           <p>Loading tweets...</p>
         </div>
@@ -80,7 +89,7 @@
                 <p>No tweets synced yet. You can sync posts by running <code>sync_tweets.py</code>!</p>
                 <p style="margin-top: 1rem;">
                   <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener" class="button">
-                    <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" style="vertical-align: middle; margin-right: 0.5rem;">
+                    <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" style="vertical-align: middle; margin-right: 0.5rem; display: inline-block;">
                     Visit @rokurooooo07 on X
                   </a>
                 </p>
@@ -89,19 +98,43 @@
             return;
           }
 
-          container.innerHTML = tweets.map(tweet => `
-            <div class="card" style="margin-bottom: 1rem; background: var(--bg-surface, #1e1e1e); border: 1px solid var(--border-color, #333); padding: 1rem; border-radius: 6px;">
-              <p style="white-space: pre-wrap; font-size: 1rem; margin-bottom: 0.5rem;">${tweet.text}</p>
-              <small style="opacity: 0.7;">Posted on: ${new Date(tweet.created_at).toLocaleString()}</small>
+          container.innerHTML = tweets.map(tweet => {
+            const dateStr = new Date(tweet.created_at).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+            return `
+              <div class="card" style="margin-bottom: 1rem; background: var(--panel, #c0c0c0); border: 2px solid; border-color: var(--border-light, #fff) var(--border-darkest, #000) var(--border-darkest, #000) var(--border-light, #fff); padding: 1rem; box-shadow: var(--shadow, 2px 2px 0px #000);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; border-bottom: 2px solid var(--border-dark, #808080); padding-bottom: 0.4rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <img src="images/twitter-88x31.gif" alt="X" class="button-88x31" style="width: 44px; height: 16px; border: none; box-shadow: none;">
+                    <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener" style="font-weight: bold; color: var(--accent, #000080);">@rokurooooo07</a>
+                  </div>
+                  <small style="opacity: 0.8; font-family: 'Courier New', monospace; font-size: 0.8rem;">${dateStr}</small>
+                </div>
+                <div style="background: var(--paper, #c0c0c0); border: 1px solid var(--border-dark, #808080); padding: 0.8rem; box-shadow: inset 1px 1px 0 #000;">
+                  <p style="white-space: pre-wrap; font-size: 0.95rem; margin: 0; color: var(--ink, #000);">${tweet.text}</p>
+                </div>
+              </div>
+            `;
+          }).join('') + `
+            <div style="text-align: center; margin-top: 1.5rem;">
+              <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener" class="button" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem;">
+                <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" style="margin: 0;">
+                Follow @rokurooooo07 on X
+              </a>
             </div>
-          `).join('');
+          `;
         } catch (error) {
           container.innerHTML = `
             <div class="status-widget" style="padding: 1rem;">
               <h3 style="margin-bottom: 0.5rem;">Latest Twitter / X Updates</h3>
               <p style="margin-bottom: 1rem;">View posts directly on X or sync tweets locally using <code>sync_tweets.py</code>.</p>
-              <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener" class="button">
-                <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" style="vertical-align: middle; margin-right: 0.5rem;">
+              <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener" class="button" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem;">
+                <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" style="margin: 0;">
                 Follow @rokurooooo07 on X
               </a>
             </div>
