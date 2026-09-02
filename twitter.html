@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tweets - My Website</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Twitter Feed</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="topics.html">Topics</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="tweets-container">Loading tweets...</div>
+    </main>
+
+    <script>
+        async function loadTweets() {
+            try {
+                const response = await fetch('twitter_posts.json');
+                const tweets = await response.json();
+                const container = document.getElementById('tweets-container');
+                
+                if (!tweets || tweets.length === 0) {
+                    container.innerHTML = '<p>No tweets found.</p>';
+                    return;
+                }
+
+                container.innerHTML = tweets.map(tweet => `
+                    <div class="tweet-card" style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-family: sans-serif;">
+                        <p>${tweet.text}</p>
+                        <small>Posted on: ${new Date(tweet.created_at).toLocaleString()}</small>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading tweets:', error);
+                document.getElementById('tweets-container').innerHTML = '<p>Error loading tweets. Please try again later.</p>';
+            }
+        }
+
+        loadTweets();
+    </script>
+</body>
+</html>
