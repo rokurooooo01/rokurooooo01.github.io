@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-theme="win95"] {
   --bg: #008080;
   --paper: #c0c0c0;
   --panel: #c0c0c0;
@@ -10,6 +11,51 @@
   --border-dark: #808080;
   --border-darkest: #000000;
   --shadow: 2px 2px 0px #000;
+  --radius: 0px;
+}
+
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --paper: #1e293b;
+  --panel: #1e293b;
+  --ink: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-soft: #334155;
+  --border-light: #475569;
+  --border-dark: #0f172a;
+  --border-darkest: #000000;
+  --shadow: 2px 2px 0px #000;
+  --radius: 0px;
+}
+
+[data-theme="hotdog"] {
+  --bg: #cc0000;
+  --paper: #ffff00;
+  --panel: #ffff00;
+  --ink: #000000;
+  --muted: #800000;
+  --accent: #000000;
+  --accent-soft: #ffea00;
+  --border-light: #ffffff;
+  --border-dark: #cc0000;
+  --border-darkest: #000000;
+  --shadow: 2px 2px 0px #000;
+  --radius: 0px;
+}
+
+[data-theme="matrix"] {
+  --bg: #050b05;
+  --paper: #0a170a;
+  --panel: #0d1f0d;
+  --ink: #00ff66;
+  --muted: #00b347;
+  --accent: #00ff66;
+  --accent-soft: #143314;
+  --border-light: #00ff66;
+  --border-dark: #005522;
+  --border-darkest: #002200;
+  --shadow: 2px 2px 0px #00ff66;
   --radius: 0px;
 }
 
@@ -32,7 +78,7 @@ body {
   line-height: 1.5;
   font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
   position: relative;
-  padding: 2rem;
+  padding: 2rem 2rem 50px 2rem;
   align-content: flex-start;
   justify-items: center;
   gap: 0;
@@ -278,6 +324,14 @@ p {
   transform: translate(1px, 1px);
 }
 
+.button.active {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--border-darkest) var(--border-light) var(--border-light) var(--border-darkest);
+  box-shadow: inset 1px 1px 0px #000;
+  font-weight: bold;
+}
+
 /* OS Window Frame */
 .window-frame {
   display: flex;
@@ -288,6 +342,27 @@ p {
   background: var(--panel);
   margin-bottom: 1.5rem;
   overflow: hidden;
+  transition: all 0.15s ease;
+}
+
+.window-frame.is-minimized > *:not(.window-titlebar) {
+  display: none !important;
+}
+
+.window-frame.is-maximized {
+  position: fixed !important;
+  inset: 10px 10px 45px 10px !important;
+  z-index: 8500 !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8) !important;
+}
+
+.window-frame.is-closed {
+  display: none !important;
 }
 
 .window-titlebar {
@@ -295,11 +370,12 @@ p {
   justify-content: space-between;
   align-items: center;
   padding: 3px 6px;
-  background: linear-gradient(90deg, #000080, #1084d0);
+  background: linear-gradient(90deg, var(--accent), #1084d0);
   color: white;
   font-family: "MS Sans Serif", sans-serif;
   font-weight: bold;
   font-size: 0.8rem;
+  user-select: none;
 }
 
 .window-titlebar-controls {
@@ -321,6 +397,132 @@ p {
   font-weight: bold;
   cursor: pointer;
   padding: 0;
+  user-select: none;
+}
+
+.window-btn:hover {
+  filter: brightness(1.25);
+  background: var(--accent-soft);
+}
+
+.window-btn:active {
+  border-color: var(--border-darkest) var(--border-light) var(--border-light) var(--border-darkest);
+}
+
+/* Retro Taskbar */
+.retro-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: var(--panel);
+  border-top: 2px solid var(--border-light);
+  box-shadow: 0 -2px 0 var(--border-darkest);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px;
+  font-family: "MS Sans Serif", "Tahoma", sans-serif;
+  font-size: 0.85rem;
+}
+
+.taskbar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  flex: 1;
+}
+
+.taskbar-start-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  padding: 2px 8px;
+  height: 26px;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.taskbar-start-btn:active {
+  border-color: var(--border-darkest) var(--border-light) var(--border-light) var(--border-darkest);
+}
+
+.taskbar-items {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.taskbar-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  height: 26px;
+  background: var(--paper);
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--ink);
+  max-width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.taskbar-item.active {
+  background: var(--accent-soft);
+  border-color: var(--border-darkest) var(--border-light) var(--border-light) var(--border-darkest);
+  font-weight: bold;
+}
+
+.taskbar-tray {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  border: 2px solid;
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  background: var(--panel);
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.retro-select {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "MS Sans Serif", sans-serif;
+  font-size: 0.78rem;
+  border: 1px solid var(--border-darkest);
+  padding: 1px 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.taskbar-tool-btn {
+  background: var(--paper);
+  border: 1px solid var(--border-darkest);
+  font-size: 0.78rem;
+  padding: 2px 6px;
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: bold;
+}
+
+.taskbar-tool-btn:hover {
+  background: var(--accent-soft);
 }
 
 /* Loading Overlay */
