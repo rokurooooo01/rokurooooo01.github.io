@@ -25,14 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("GitHub Pages site is ready.");
   // Random Quote Generator
   const quotes = [
-    \"The only way to do great work is to love what you do.\",
-    \"Mathematics is the music of reason.\",
-    \"Pure mathematics is, in its way, the poetry of logical ideas.\",
-    \"Stay hungry, stay foolish.\",
-    \"The beautiful thing about learning is that nobody can take it away from you.\",
-    \"Imagination is more important than knowledge.\"
+    "The only way to do great work is to love what you do.",
+    "Mathematics is the music of reason.",
+    "Pure mathematics is, in its way, the poetry of logical ideas.",
+    "Stay hungry, stay foolish.",
+    "The beautiful thing about learning is that nobody can take it away from you.",
+    "Imagination is more important than knowledge."
   ];
-  const quoteEl = document.getElementById(\"random-quote\");
+  const quoteEl = document.getElementById("random-quote");
   if (quoteEl) {
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     quoteEl.textContent = randomQuote;
