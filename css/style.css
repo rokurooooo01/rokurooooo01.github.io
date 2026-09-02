@@ -500,6 +500,87 @@ p {
   flex-shrink: 0;
 }
 
+/* Run Dialog Modal */
+.run-dialog {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  visibility: hidden;
+}
+.run-dialog.active { visibility: visible; }
+.run-dialog .dialog-box {
+  background: var(--panel);
+  border: 2px solid var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  padding: 1rem;
+  width: 300px;
+  animation: modalScaleUp 0.15s forwards;
+}
+.run-dialog input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--border-dark);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Start Menu */
+.start-menu {
+  position: absolute;
+  bottom: 36px; /* taskbar height */
+  left: 6px;
+  background: var(--panel);
+  border: 2px solid var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  padding: 0.5rem 0;
+  list-style: none;
+  margin: 0;
+  display: none;
+  z-index: 9500;
+}
+.start-menu.active { display: block; }
+.start-menu li {
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+}
+.start-menu li:hover { background: var(--accent-soft); }
+
+/* Twitter Search */
+.tweet-search {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--border-dark);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+/* Spotify Progress Bar */
+.spotify-progress {
+  height: 4px;
+  background: var(--border-dark);
+  margin-top: 4px;
+  position: relative;
+}
+.spotify-progress .filled {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+}
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  border: 2px solid;
+  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+  background: var(--panel);
+  height: 28px;
+  flex-shrink: 0;
+}
+
 .retro-select {
   background: var(--paper);
   color: var(--ink);

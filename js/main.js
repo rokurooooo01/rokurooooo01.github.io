@@ -82,9 +82,10 @@ function initWindowControlsAndTaskbar() {
     taskbar.className = "retro-taskbar";
     taskbar.innerHTML = `
       <div class="taskbar-left">
-        <button class="taskbar-start-btn" onclick="location.href='index.html'">
+        <button class="taskbar-start-btn">
           <span style="font-weight: 900; color: var(--accent);">🪟</span> Start
         </button>
+        <ul class="start-menu"></ul>
         <div class="taskbar-items"></div>
       </div>
       <div class="taskbar-tray">
@@ -241,6 +242,109 @@ function initDraggableStickers() {
   });
 }
 
+// --- Additional UI features ---
+function initRunDialog() {
+  const runDialog = document.createElement('div');
+  runDialog.className = 'run-dialog';
+  runDialog.innerHTML = `<div class="dialog-box"><input type="text" placeholder="Run…"/></div>`;
+  document.body.appendChild(runDialog);
+  const input = runDialog.querySelector('input');
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      runDialog.classList.add('active');
+      input.value = '';
+      input.focus();
+    }
+    if (e.key === 'Escape') {
+      runDialog.classList.remove('active');
+    }
+  });
+  const pageMap = {};
+  document.querySelectorAll('.page-nav .button').forEach(btn => {
+    const name = btn.textContent.trim().toLowerCase();
+    const href = btn.getAttribute('href');
+    if (href) pageMap[name] = href;
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const q = input.value.trim().toLowerCase();
+      const target = pageMap[q];
+      if (target) {
+        location.href = target;
+      } else {
+        const entry = Object.entries(pageMap).find(([k]) => k.includes(q));
+        if (entry) location.href = entry[1];
+      }
+      runDialog.classList.remove('active');
+    }
+  });
+}
+
+function initStartMenu() {
+  const startBtn = document.querySelector('.taskbar-start-btn');
+  const menu = document.querySelector('.start-menu');
+  if (!startBtn || !menu) return;
+  const links = document.querySelectorAll('.page-nav .button');
+  links.forEach(link => {
+    const li = document.createElement('li');
+    li.textContent = link.textContent.trim();
+    li.addEventListener('click', () => {
+      location.href = link.getAttribute('href');
+    });
+    menu.appendChild(li);
+  });
+  startBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    menu.classList.toggle('active');
+    playClickSound();
+  });
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !startBtn.contains(e.target)) {
+      menu.classList.remove('active');
+    }
+  });
+}
+
+function initTwitterSearch() {
+  const container = document.getElementById('tweets-container');
+  if (!container) return;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'tweet-search';
+  input.placeholder = 'Search tweets…';
+  container.parentNode.insertBefore(input, container);
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    container.querySelectorAll('.card').forEach(card => {
+      const txt = card.textContent.toLowerCase();
+      card.style.display = txt.includes(q) ? '' : 'none';
+    });
+  });
+}
+
+function initSpotifyProgress() {
+  const statusEl = document.getElementById('spotify-status');
+  if (!statusEl) return;
+  let bar = statusEl.parentNode.querySelector('.spotify-progress');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.className = 'spotify-progress';
+    bar.innerHTML = '<div class="filled"></div>';
+    statusEl.parentNode.appendChild(bar);
+  }
+  const updateBar = () => {
+    if (!window.__spotifyTimestamps) return;
+    const now = Date.now() / 1000;
+    const { start, end } = window.__spotifyTimestamps;
+    if (start && end) {
+      const pct = Math.min(100, Math.max(0, ((now - start) / (end - start)) * 100));
+      bar.querySelector('.filled').style.width = pct + '%';
+    }
+  };
+  setInterval(updateBar, 5000);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // KaTeX rendering
   if (window.katex && typeof renderMathInElement === "function") {
@@ -265,6 +369,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Init draggable stickers
   initDraggableStickers();
+  // Initialize additional UI features
+  initRunDialog();
+  initStartMenu();
+  initTwitterSearch();
+  initSpotifyProgress();
 
   // Random Quote Generator
   const quotes = [
