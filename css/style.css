@@ -534,6 +534,14 @@ a:visited {
   align-items: flex-end;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(25, 25, 25, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.photo-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  z-index: 2;
 }
 
 .photo-overlay {
@@ -541,10 +549,17 @@ a:visited {
   padding: 1.5rem;
   color: #ffffff;
   background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   box-sizing: border-box;
+  transition: padding 0.3s ease;
+}
+
+.photo-card:hover .photo-overlay {
+  padding-bottom: 2rem;
 }
 
 .photo-overlay h3,
