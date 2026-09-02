@@ -1,4 +1,15 @@
+// Immediate Fail-Safe: Hide loading screen as soon as script starts
+(function() {
+  setTimeout(() => {
+    const loadingScreen = document.getElementById("loading-screen");
+    if (loadingScreen) {
+      loadingScreen.style.display = "none";
+    }
+  }, 1000);
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
+  // KaTeX rendering
   if (window.katex && typeof renderMathInElement === "function") {
     renderMathInElement(document.body, {
       delimiters: [
@@ -14,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("GitHub Pages site is ready.");
 
   // Lanyard Spotify Integration
-  const DISCORD_ID = "670570026641915914"; // REPLACE THIS WITH YOUR ACTUAL DISCORD ID
+  const DISCORD_ID = "670570026641915914"; 
   const spotifyStatusEl = document.getElementById("spotify-status");
 
   async function updateSpotifyStatus() {
@@ -30,9 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
       clearTimeout(timeoutId);
       const json = await response.json();
       
-      // Debug: Log this to see exactly what's coming back in the browser console
-      console.log("Lanyard Response:", json);
-
       const user = json.data;
       if (!user) return;
 
@@ -43,14 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
       let url = null;
       let albumArt = null;
 
-      // 1. Try the dedicated spotify object
       if (user.spotify) {
         track = user.spotify.track;
         artist = user.spotify.artist;
         url = user.spotify.track_url;
         albumArt = user.spotify.album_art;
       } 
-      // 2. Search the activities array for "Spotify"
       if (!track && user.activities) {
         const spotifyAct = user.activities.find(act => act.name === "Spotify");
         if (spotifyAct) {
@@ -58,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
           artist = spotifyAct.state;
           if (spotifyAct.assets && spotifyAct.assets.large_image) {
             const imgId = spotifyAct.assets.large_image;
-            // If it's a Spotify ID (starts with 'spotify:'), convert it to a usable URL
             if (imgId.startsWith('spotify:')) {
               const id = imgId.split(':')[1];
               albumArt = `https://i.scdn.co/image/${id}`;
@@ -86,13 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Update immediately and then every 15 seconds
   updateSpotifyStatus();
   setInterval(updateSpotifyStatus, 15000);
 
-  // --- New Decorations Logic ---
-
-  // 1. Digital Clock
+  // Digital Clock
   const clockEl = document.getElementById("site-clock");
   if (clockEl) {
     function updateClock() {
@@ -108,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateClock();
   }
 
-  // 3. Gallery Image Expansion (Forza-style)
+  // Gallery Image Expansion
   const modal = document.getElementById("image-modal");
   const modalImg = modal ? modal.querySelector("img") : null;
 
@@ -126,12 +128,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.addEventListener("click", () => {
       modal.style.display = "none";
-      modalImg.src = ""; // Clear src to avoid flickering on next open
+      modalImg.src = ""; 
     });
   }
-}
+});
 
-// --- Global functions outside DOMContentLoaded ---
+// --- Global functions ---
 
 function initLoadingScreen() {
   const loadingScreen = document.getElementById("loading-screen");
@@ -139,7 +141,6 @@ function initLoadingScreen() {
   
   if (!loadingScreen || !fill) return;
 
-  // Fail-safe: Hide loading screen after 5 seconds regardless of progress
   const failSafeTimeout = setTimeout(() => {
     loadingScreen.style.display = "none";
   }, 5000);
@@ -161,22 +162,26 @@ function initLoadingScreen() {
 }
 
 function playClickSound() {
-  const audioCtx = new (window.AudioContext || window.AudioContext)();
-  const oscillator = audioCtx.createOscillator();
-  
-  oscillator.type = "square";
-  oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
-  oscillator.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
-  
-  const gain = audioCtx.createGain();
-  gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
-  
-  oscillator.connect(gain);
-  gain.connect(audioCtx.destination);
-  
-  oscillator.start();
-  oscillator.stop(audioCtx.currentTime + 0.1);
+  try {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
+    
+    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+    
+    oscillator.connect(gain);
+    gain.connect(audioCtx.destination);
+    
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.1);
+  } catch (e) {
+    console.error("Audio context failed", e);
+  }
 }
 
 document.addEventListener("click", (e) => {
