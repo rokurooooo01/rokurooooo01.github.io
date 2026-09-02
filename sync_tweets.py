@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Configuration
 BEARER_TOKEN = os.getenv('X_BEARER_TOKEN')
-USER_ID = 'YOUR_X_USER_ID'  # You will need to replace this with your actual numeric X User ID
+USER_ID = '1284301732143484929D'  # You will need to replace this with your actual numeric X User ID
 OUTPUT_FILE = 'twitter_posts.json'
 
 def get_user_id(username):
