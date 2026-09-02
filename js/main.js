@@ -157,10 +157,6 @@ function initLoadingScreen() {
 function playClickSound() {
   const audioCtx = new (window.AudioContext || window.AudioContext)();
   const oscillator = audioCtx.createOscillator();
-  const gainNode = {
-    // This is a simplified version of the Audio API
-    // In a real app, we'd create a gain node to avoid clipping
-  };
   
   oscillator.type = "square";
   oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
