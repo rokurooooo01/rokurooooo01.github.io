@@ -1,49 +1,115 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Tweets - My Website</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Twitter Feed</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="topics.html">Topics</a>
-        </nav>
-    </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Tweets | rokurooooo01.github.io</title>
+    <meta
+      name="description"
+      content="Twitter/X post feed."
+    />
+    <meta property="og:title" content="My Tweets | rokurooooo01.github.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rokurooooo01.github.io/twitter.html" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body>
+    <!-- Desktop Stickers -->
+    <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="Sticker 1" class="button-88x31"></div>
+    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="Sticker 2" class="button-88x31"></div>
+    <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="Sticker 3" class="button-88x31"></div>
+    <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="Sticker 4" class="button-88x31"></div>
 
-    <main>
-        <div id="tweets-container">Loading tweets...</div>
+    <nav class="page-nav" aria-label="Site pages">
+      <a class="button" href="index.html">Home</a>
+      <a class="button" href="about.html">About</a>
+      <a class="button" href="mathematics.html">Math</a>
+      <a class="button" href="favorites.html">Favorites</a>
+      <a class="button" href="mood-gallery.html">Gallery</a>
+      <a class="button" href="today.html">Today</a>
+      <a class="button" href="twitter.html">Twitter</a>
+    </nav>
+    <main class="container page-shell">
+      <header class="site-header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+            <p class="eyebrow">social feed</p>
+            <h1>My Tweets</h1>
+          </div>
+          <div id="site-clock" aria-live="polite"></div>
+        </div>
+      </header>
+
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">Twitter / X Feed</div>
+          <div class="window-titlebar-controls">
+            <div class="window-btn">_</div>
+            <div class="window-btn">□</div>
+            <div class="window-btn">×</div>
+          </div>
+        </div>
+        <section class="content hero-card" style="border: none; box-shadow: none; margin: 0;">
+          <p class="eyebrow">latest updates</p>
+          <p>
+            Recent posts synced from my Twitter/X account <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener">@rokurooooo07</a>.
+          </p>
+        </section>
+      </div>
+
+      <section class="content card" aria-label="Tweet stream">
+        <div id="tweets-container">
+          <p>Loading tweets...</p>
+        </div>
+      </section>
     </main>
 
     <script>
-        async function loadTweets() {
-            try {
-                const response = await fetch('twitter_posts.json');
-                const tweets = await response.json();
-                const container = document.getElementById('tweets-container');
-                
-                if (!tweets || tweets.length === 0) {
-                    container.innerHTML = '<p>No tweets found.</p>';
-                    return;
-                }
+      async function loadTweets() {
+        const container = document.getElementById('tweets-container');
+        try {
+          const response = await fetch('twitter_posts.json');
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const tweets = await response.json();
+          
+          if (!tweets || tweets.length === 0) {
+            container.innerHTML = `
+              <div class="status-widget">
+                <p>No tweets synced yet. You can sync posts by running <code>sync_tweets.py</code>!</p>
+                <p style="margin-top: 1rem;">
+                  <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener" class="button">
+                    <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" style="vertical-align: middle; margin-right: 0.5rem;">
+                    Visit @rokurooooo07 on X
+                  </a>
+                </p>
+              </div>
+            `;
+            return;
+          }
 
-                container.innerHTML = tweets.map(tweet => `
-                    <div class="tweet-card" style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-family: sans-serif;">
-                        <p>${tweet.text}</p>
-                        <small>Posted on: ${new Date(tweet.created_at).toLocaleString()}</small>
-                    </div>
-                `).join('');
-            } catch (error) {
-                console.error('Error loading tweets:', error);
-                document.getElementById('tweets-container').innerHTML = '<p>Error loading tweets. Please try again later.</p>';
-            }
+          container.innerHTML = tweets.map(tweet => `
+            <div class="card" style="margin-bottom: 1rem; background: var(--bg-surface, #1e1e1e); border: 1px solid var(--border-color, #333); padding: 1rem; border-radius: 6px;">
+              <p style="white-space: pre-wrap; font-size: 1rem; margin-bottom: 0.5rem;">${tweet.text}</p>
+              <small style="opacity: 0.7;">Posted on: ${new Date(tweet.created_at).toLocaleString()}</small>
+            </div>
+          `).join('');
+        } catch (error) {
+          container.innerHTML = `
+            <div class="status-widget" style="padding: 1rem;">
+              <h3 style="margin-bottom: 0.5rem;">Latest Twitter / X Updates</h3>
+              <p style="margin-bottom: 1rem;">View posts directly on X or sync tweets locally using <code>sync_tweets.py</code>.</p>
+              <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener" class="button">
+                <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" style="vertical-align: middle; margin-right: 0.5rem;">
+                Follow @rokurooooo07 on X
+              </a>
+            </div>
+          `;
         }
+      }
 
-        loadTweets();
+      document.addEventListener('DOMContentLoaded', loadTweets);
     </script>
-</body>
+  </body>
 </html>
