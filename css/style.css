@@ -1308,3 +1308,91 @@ body {
 .sticker-bl { bottom: 10%; left: 8%; transform: rotate(4deg); }
 .sticker-br { bottom: 15%; right: 8%; transform: rotate(-2deg); }
 
+/* ─── Last.fm Stats Widget ─────────────────────────────────── */
+.lastfm-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.lastfm-window {
+  border-top: 2px solid var(--border-light);
+  border-left: 2px solid var(--border-light);
+  border-right: 2px solid var(--border-dark);
+  border-bottom: 2px solid var(--border-dark);
+  background: var(--paper);
+}
+
+.lastfm-titlebar {
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.lastfm-titlebar-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lastfm-profile-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  opacity: 0.85;
+  transition: opacity 0.15s;
+}
+.lastfm-profile-link:hover { opacity: 1; }
+
+.lastfm-body {
+  padding: 1rem;
+}
+
+.lastfm-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  text-align: center;
+  margin-bottom: 0.6rem;
+}
+
+.lastfm-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid var(--border-dark);
+  background: var(--panel);
+}
+
+.lastfm-stat-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.lastfm-stat-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lastfm-since {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .lastfm-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

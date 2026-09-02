@@ -470,6 +470,56 @@ document.addEventListener("DOMContentLoaded", () => {
   updateSpotifyStatus();
   setInterval(updateSpotifyStatus, 15000);
 
+  // Last.fm Stats
+  async function loadLastFmStats() {
+    const LASTFM_API_KEY = "7b2a3746acd2278d3b703db77c523127";
+    const LASTFM_USER = "rokurooooo";
+    const base = `https://ws.audioscrobbler.com/2.0/?format=json&api_key=${LASTFM_API_KEY}&user=${LASTFM_USER}`;
+
+    const scrobblesEl = document.getElementById("lfm-scrobbles");
+    const artistsEl   = document.getElementById("lfm-artists");
+    const tracksEl    = document.getElementById("lfm-tracks");
+    const albumsEl    = document.getElementById("lfm-albums");
+    const sinceEl     = document.getElementById("lfm-since");
+
+    if (!scrobblesEl) return; // Not on a page with the widget
+
+    try {
+      const [infoRes, artistsRes, tracksRes, albumsRes] = await Promise.all([
+        fetch(`${base}&method=user.getInfo`),
+        fetch(`${base}&method=user.getTopArtists&period=overall&limit=1`),
+        fetch(`${base}&method=user.getTopTracks&period=overall&limit=1`),
+        fetch(`${base}&method=user.getTopAlbums&period=overall&limit=1`),
+      ]);
+
+      const [info, artists, tracks, albums] = await Promise.all([
+        infoRes.json(), artistsRes.json(), tracksRes.json(), albumsRes.json(),
+      ]);
+
+      const fmt = n => Number(n).toLocaleString();
+
+      if (info.user) {
+        scrobblesEl.textContent = fmt(info.user.playcount);
+        const reg = new Date(info.user.registered["#text"] * 1000);
+        sinceEl.textContent = `scrobbling since ${reg.toLocaleDateString("en-US", { month: "long", year: "numeric" })}`;
+      }
+      if (artists.topartists?.["@attr"]) {
+        artistsEl.textContent = fmt(artists.topartists["@attr"].total);
+      }
+      if (tracks.toptracks?.["@attr"]) {
+        tracksEl.textContent = fmt(tracks.toptracks["@attr"].total);
+      }
+      if (albums.topalbums?.["@attr"]) {
+        albumsEl.textContent = fmt(albums.topalbums["@attr"].total);
+      }
+    } catch (err) {
+      console.error("Last.fm stats error:", err);
+      if (sinceEl) sinceEl.textContent = "couldn't load stats";
+    }
+  }
+
+  loadLastFmStats();
+
   // Digital Clock
   const clockEl = document.getElementById("site-clock");
   if (clockEl) {
