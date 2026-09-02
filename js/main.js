@@ -1,4 +1,3 @@
-// Immediate Fail-Safe: Hide loading screen as soon as script starts
 (function() {
   setTimeout(() => {
     const loadingScreen = document.getElementById("loading-screen");
@@ -7,12 +6,10 @@
     }
   }, 1000);
 
-  // Apply saved theme immediately before render to avoid flash
   const savedTheme = localStorage.getItem("retroTheme") || "win95";
   document.documentElement.setAttribute("data-theme", savedTheme);
 })();
 
-// Global Audio Mute State
 let isMuted = localStorage.getItem("retroSoundMuted") === "true";
 
 function toggleAudioMute() {
@@ -102,20 +99,17 @@ function initWindowControlsAndTaskbar() {
     document.body.appendChild(taskbar);
   }
 
-  // Bind theme selector
   const themeSelect = taskbar.querySelector(".theme-select");
   if (themeSelect) {
     themeSelect.value = localStorage.getItem("retroTheme") || "win95";
     themeSelect.addEventListener("change", (e) => setTheme(e.target.value));
   }
 
-  // Bind sound toggle button
   const soundBtn = taskbar.querySelector(".sound-toggle");
   if (soundBtn) {
     soundBtn.addEventListener("click", () => toggleAudioMute());
   }
 
-  // Bind sticker toggle button
   const stickerBtn = taskbar.querySelector(".sticker-toggle");
   if (stickerBtn) {
     stickerBtn.addEventListener("click", () => {
@@ -126,7 +120,6 @@ function initWindowControlsAndTaskbar() {
 
   updateMuteUI();
 
-  // Setup window frames
   const taskbarItemsContainer = taskbar.querySelector(".taskbar-items");
   const windowFrames = document.querySelectorAll(".window-frame");
 
@@ -242,7 +235,6 @@ function initDraggableStickers() {
   });
 }
 
-// --- Additional UI features ---
 function initRunDialog() {
   const runDialog = document.createElement('div');
   runDialog.className = 'run-dialog';
@@ -346,7 +338,6 @@ function initSpotifyProgress() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // KaTeX rendering
   if (window.katex && typeof renderMathInElement === "function") {
     renderMathInElement(document.body, {
       delimiters: [
@@ -361,21 +352,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log("GitHub Pages site is ready.");
 
-  // Highlight active sidebar link
   highlightActiveNav();
 
-  // Init taskbar and window controls
   initWindowControlsAndTaskbar();
 
-  // Init draggable stickers
   initDraggableStickers();
-  // Initialize additional UI features
   initRunDialog();
   initStartMenu();
   initTwitterSearch();
   initSpotifyProgress();
 
-  // Random Quote Generator
   const quotes = [
     "The only way to do great work is to love what you do.",
     "Mathematics is the music of reason.",
@@ -390,7 +376,6 @@ document.addEventListener("DOMContentLoaded", () => {
     quoteEl.textContent = randomQuote;
   }
 
-  // Lanyard Spotify Integration
   const DISCORD_ID = "670570026641915914"; 
   const spotifyStatusEl = document.getElementById("spotify-status");
 
@@ -424,7 +409,6 @@ document.addEventListener("DOMContentLoaded", () => {
   albumArt = user.spotify.album_art;
   if (user.spotify.timestamps) {
     const ts = user.spotify.timestamps;
-    // Convert ms to seconds
     window.__spotifyTimestamps = {
       start: ts.start / 1000,
       end: ts.end / 1000,
@@ -470,7 +454,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateSpotifyStatus();
   setInterval(updateSpotifyStatus, 15000);
 
-  // Last.fm Stats
   async function loadLastFmStats() {
     const LASTFM_API_KEY = "7b2a3746acd2278d3b703db77c523127";
     const LASTFM_USER = "rokurooooo";
@@ -482,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const albumsEl    = document.getElementById("lfm-albums");
     const sinceEl     = document.getElementById("lfm-since");
 
-    if (!scrobblesEl) return; // Not on a page with the widget
+    if (!scrobblesEl) return; 
 
     try {
       const [infoRes, artistsRes, tracksRes, albumsRes] = await Promise.all([
@@ -520,7 +503,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadLastFmStats();
 
-  // Digital Clock
   const clockEl = document.getElementById("site-clock");
   if (clockEl) {
     function updateClock() {
@@ -536,7 +518,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateClock();
   }
 
-  // Gallery Image Expansion
   const modal = document.getElementById("image-modal");
   const modalImg = modal ? modal.querySelector("img") : null;
 
@@ -559,7 +540,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// --- Global functions ---
 
 function initLoadingScreen() {
   const loadingScreen = document.getElementById("loading-screen");

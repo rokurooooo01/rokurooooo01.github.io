@@ -116,7 +116,6 @@ body::before {
   opacity: 0.75;
 }
 
-/* Sidebar Navigation */
 .page-nav {
   position: relative;
   height: auto;
@@ -332,7 +331,6 @@ p {
   font-weight: bold;
 }
 
-/* OS Window Frame */
 .window-frame {
   display: flex;
   flex-direction: column;
@@ -409,7 +407,6 @@ p {
   border-color: var(--border-darkest) var(--border-light) var(--border-light) var(--border-darkest);
 }
 
-/* Retro Taskbar */
 .retro-taskbar {
   position: fixed;
   bottom: 0;
@@ -500,7 +497,6 @@ p {
   flex-shrink: 0;
 }
 
-/* Run Dialog Modal */
 .run-dialog {
   position: fixed;
   inset: 0;
@@ -527,10 +523,9 @@ p {
   color: var(--ink);
 }
 
-/* Start Menu */
 .start-menu {
   position: absolute;
-  bottom: 36px; /* taskbar height */
+  bottom: 36px; 
   left: 6px;
   background: var(--panel);
   border: 2px solid var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
@@ -547,7 +542,6 @@ p {
 }
 .start-menu li:hover { background: var(--accent-soft); }
 
-/* Twitter Search */
 .tweet-search {
   width: 100%;
   padding: 0.5rem;
@@ -557,7 +551,6 @@ p {
   color: var(--ink);
 }
 
-/* Spotify Progress Bar */
 .spotify-progress {
   height: 4px;
   background: var(--border-dark);
@@ -606,7 +599,6 @@ p {
   background: var(--accent-soft);
 }
 
-/* Loading Overlay */
 #loading-screen {
   position: fixed;
   inset: 0;
@@ -873,7 +865,6 @@ a:visited {
   margin-top: 0.35rem;
 }
 
-/* Spotify Widget Styling */
 .spotify-card {
   margin-top: 1rem;
 }
@@ -957,7 +948,6 @@ a:visited {
   flex-shrink: 0;
 }
 
-/* Spotify Window Frame (Win95 App Style) */
 .spotify-window {
   border: 2px solid;
   border-color: #dfdfdf #808080 #808080 #dfdfdf;
@@ -1066,9 +1056,6 @@ a:visited {
   }
 }
 
-/* Retro Interactivity & Aesthetics */
-
-/* 1. The "Clickable" Button Feel */
 .button, .link-list a {
   transition: all 0.1s ease;
   cursor: pointer;
@@ -1086,12 +1073,10 @@ a:visited {
   transform: translate(1px, 1px);
 }
 
-/* 2. Retro Cursor (Optional - uses a common retro-style system fallback) */
 body {
   cursor: url('https://cur.cursors-4u.net/others/cur-12/cur1533.cur'), auto;
 }
 
-/* 3. Visual Polish for Grid Cards */
 .card {
   transition: transform 0.2s ease;
   min-height: 200px;
@@ -1110,7 +1095,6 @@ body {
   margin-bottom: 0.8rem;
 }
 
-/* 4. Custom Scrollbar for that Win95 look */
 ::-webkit-scrollbar {
   width: 16px;
 }
@@ -1130,7 +1114,6 @@ body {
   background: var(--accent-soft);
 }
 
-/* Clock and Quote Styling */
 #site-clock {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.78rem;
@@ -1222,7 +1205,6 @@ body {
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* Profile picture in header */
 .profile-pic {
   width: 80px;
   height: 80px;
@@ -1232,7 +1214,6 @@ body {
   object-fit: cover;
 }
 
-/* 88x31 Buttons */
 .button-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1263,7 +1244,6 @@ body {
   box-shadow: none;
 }
 
-/* Image Modal (Forza-style Expansion) */
 .image-modal {
   position: fixed;
   inset: 0;
@@ -1308,7 +1288,6 @@ body {
 .sticker-bl { bottom: 10%; left: 8%; transform: rotate(4deg); }
 .sticker-br { bottom: 15%; right: 8%; transform: rotate(-2deg); }
 
-/* ─── Last.fm Stats Widget ─────────────────────────────────── */
 .lastfm-card {
   padding: 0;
   overflow: hidden;
