@@ -418,11 +418,21 @@ document.addEventListener("DOMContentLoaded", () => {
       let albumArt = null;
 
       if (user.spotify) {
-        track = user.spotify.track;
-        artist = user.spotify.artist;
-        url = user.spotify.track_url;
-        albumArt = user.spotify.album_art;
-      } 
+  track = user.spotify.track;
+  artist = user.spotify.artist;
+  url = user.spotify.track_url;
+  albumArt = user.spotify.album_art;
+  if (user.spotify.timestamps) {
+    const ts = user.spotify.timestamps;
+    // Convert ms to seconds
+    window.__spotifyTimestamps = {
+      start: ts.start / 1000,
+      end: ts.end / 1000,
+    };
+  } else {
+    window.__spotifyTimestamps = null;
+  }
+} 
       if (!track && user.activities) {
         const spotifyAct = user.activities.find(act => act.name === "Spotify");
         if (spotifyAct) {
