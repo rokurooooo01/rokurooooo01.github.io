@@ -369,16 +369,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "Stay hungry, stay foolish.",
     "The beautiful thing about learning is that nobody can take it away from you.",
     "Imagination is more important than knowledge.",
-    "The only limit to our realization of tomorrow is our doubts of today.",
-    "Life is what happens when you're busy making other plans.",
-    "The purpose of our lives is to be happy.",
-    "In the middle of difficulty lies opportunity.",
-    "It does not matter how slowly you go as long as you do not stop.",
-    "The only true wisdom is in knowing you know nothing.",
-    "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-    "The best way to predict the future is to invent it.",
-    "You miss 100% of the shots you don’t take."
-  ];
   const quoteEl = document.getElementById("random-quote");
   if (quoteEl) {
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
