@@ -369,6 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "Stay hungry, stay foolish.",
     "The beautiful thing about learning is that nobody can take it away from you.",
     "Imagination is more important than knowledge.",
+  ];
   const quoteEl = document.getElementById("random-quote");
   if (quoteEl) {
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
