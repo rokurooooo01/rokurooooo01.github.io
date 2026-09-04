@@ -1163,12 +1163,9 @@ body {
   gap: 0.6rem;
   align-items: center;
   width: max-content;
-  animation: marquee 30s linear infinite;
   position: relative;
   z-index: 1;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+  will-change: transform;
 }
 
 @keyframes marquee {

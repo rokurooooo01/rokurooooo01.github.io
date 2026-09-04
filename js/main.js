@@ -575,11 +575,36 @@ document.addEventListener("click", (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.getElementById("marquee-track");
-  if (track) {
-    const items = Array.from(track.children);
-    items.forEach(item => {
-      const clone = item.cloneNode(true);
-      track.appendChild(clone);
-    });
+  if (!track) return;
+
+  const items = Array.from(track.children);
+  items.forEach(item => {
+    const clone = item.cloneNode(true);
+    track.appendChild(clone);
+  });
+
+  let currentTranslate = 0;
+  const speed = 0.5; 
+  let isPaused = false;
+
+  // Optional: Pause on hover
+  track.addEventListener("mouseenter", () => isPaused = true);
+  track.addEventListener("mouseleave", () => isPaused = false);
+
+  function step() {
+    if (!isPaused) {
+      currentTranslate -= speed;
+      
+      const halfWidth = track.scrollWidth / 2;
+
+      if (Math.abs(currentTranslate) >= halfWidth) {
+        currentTranslate = 0;
+      }
+
+      track.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    requestAnimationFrame(step);
   }
+
+  requestAnimationFrame(step);
 });
