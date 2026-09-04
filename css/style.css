@@ -78,11 +78,10 @@ body {
   line-height: 1.5;
   font-family: "MS Sans Serif", "Tahoma", "Arial", sans-serif;
   position: relative;
-  padding: 2rem 2rem 50px 2rem;
+  padding: 2rem 2rem 60px 2rem; 
   align-content: flex-start;
   justify-items: center;
   gap: 0;
-  cursor: url("../images/pixel-pointer.png"), auto;
 }
 
 body,
@@ -1457,13 +1456,13 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    height: calc(100vh - 36px); /* Stops right above the 36px taskbar */
+    height: calc(100vh - 36px);
     width: 140px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Keeps the nav items at top and sticker at bottom */
+    justify-content: space-between;
     gap: 0.5rem;
-    padding: 1rem 0.7rem 1.5rem 0.7rem; /* Added extra bottom padding so the sticker clears the edge */
+    padding: 1rem 0.7rem 1rem 0.7rem;
     background: var(--panel);
     border-right: 2px solid;
     border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
