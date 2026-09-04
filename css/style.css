@@ -1457,13 +1457,13 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    height: 100vh;
+    height: calc(100vh - 36px); /* Stops right above the 36px taskbar */
     width: 140px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Pushes top nav items up and bottom items down */
+    justify-content: space-between; /* Keeps the nav items at top and sticker at bottom */
     gap: 0.5rem;
-    padding: 1rem 0.7rem;
+    padding: 1rem 0.7rem 1.5rem 0.7rem; /* Added extra bottom padding so the sticker clears the edge */
     background: var(--panel);
     border-right: 2px solid;
     border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
