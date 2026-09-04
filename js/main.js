@@ -572,3 +572,14 @@ document.addEventListener("click", (e) => {
     playClickSound();
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.getElementById("marquee-track");
+  if (track) {
+    const items = Array.from(track.children);
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      track.appendChild(clone);
+    });
+  }
+});
