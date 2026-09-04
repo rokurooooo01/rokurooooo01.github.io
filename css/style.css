@@ -1163,10 +1163,18 @@ body {
   gap: 0.6rem;
   align-items: center;
   width: max-content;
-  min-width: 100%;
   animation: marquee 28s linear infinite;
   position: relative;
   z-index: 1;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .status-chip {
@@ -1376,9 +1384,6 @@ body {
   }
 }
 
-/* =========================================
-   Visitor Map Widget
-   ========================================= */
 .visitormap-card {
   padding: 0;
   overflow: hidden;
@@ -1443,7 +1448,6 @@ body {
 
 @media (max-width: 768px) {
 
-  /* Switch to single column layout */
   body {
     grid-template-columns: 1fr;
     padding: 1rem;
@@ -1477,7 +1481,6 @@ body {
     display: none;
   }
 
-  /* Reduce font sizes for smaller screens */
   h1 { font-size: clamp(2rem,5vw,3rem); }
   h2 { font-size: clamp(1.2rem,4vw,1.6rem); }
   p, .topic-page__section li, .topic-page__article li { font-size: clamp(0.9rem,4vw,1.3rem); }
