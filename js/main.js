@@ -612,11 +612,12 @@ window.addEventListener("load", () => {
   const track = document.getElementById("sticker-track");
   if (!track) return;
 
-  const items = Array.from(track.children);
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    track.appendChild(clone);
-  });
+  const originalContent = Array.from(track.children);
+  while (track.scrollWidth < window.innerWidth * 3) {
+    originalContent.forEach(item => {
+      track.appendChild(item.cloneNode(true));
+    });
+  }
 
   let currentTranslate = 0;
   const speed = 0.6;
