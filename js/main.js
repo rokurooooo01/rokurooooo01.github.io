@@ -619,7 +619,7 @@ window.addEventListener("load", () => {
   });
 
   let currentTranslate = 0;
-  const speed = 0.6; )
+  const speed = 0.6;
   let isPaused = false;
 
   track.addEventListener("mouseenter", () => isPaused = true);
