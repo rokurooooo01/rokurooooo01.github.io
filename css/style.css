@@ -562,16 +562,7 @@ p {
   width: 0%;
 }
 
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 6px;
-  border: 2px solid;
-  border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
-  background: var(--panel);
-  height: 28px;
-  flex-shrink: 0;
-}
+/* (duplicate .taskbar-tray block without selector removed) */
 
 .retro-select {
   background: var(--paper);
@@ -1484,31 +1475,40 @@ body {
 
   body {
     grid-template-columns: 1fr;
-    padding: 1rem;
+    padding: 0.75rem 0.5rem 60px;
   }
 
+  /* Horizontal scrollable top nav instead of fixed sidebar */
   .page-nav {
-    position: fixed;
-    left: 0;
+    position: sticky;
     top: 0;
-    height: calc(100vh - 36px);
-    width: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 1rem 0.7rem 1rem 0.7rem;
-    background: var(--panel);
-    border-right: 2px solid;
+    left: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    padding: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-right: none;
+    border-bottom: 2px solid;
     border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
-    box-shadow: var(--shadow);
-    z-index: 1000;
-    overflow-y: auto;
   }
 
   .page-nav a.button {
     flex: 0 0 auto;
     width: auto;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  main {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 1rem 0.75rem;
   }
 
   .two-col {
@@ -1519,7 +1519,45 @@ body {
     display: none;
   }
 
-  h1 { font-size: clamp(2rem,5vw,3rem); }
-  h2 { font-size: clamp(1.2rem,4vw,1.6rem); }
-  p, .topic-page__section li, .topic-page__article li { font-size: clamp(0.9rem,4vw,1.3rem); }
+  /* Header stacks vertically on small screens */
+  .site-header > div {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .site-header h1 {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+  }
+
+  h2 { font-size: clamp(1.2rem, 4vw, 1.6rem); }
+  p, .topic-page__section li, .topic-page__article li { font-size: clamp(0.9rem, 4vw, 1.3rem); }
+
+  /* Spotify widget: smaller art and text */
+  .spotify-widget {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .spotify-art {
+    width: 84px;
+    height: 84px;
+  }
+
+  .spotify-info .status-text {
+    font-size: clamp(1.1rem, 5vw, 1.6rem);
+  }
+
+  .hero-card, .status-widget, .card, .til-section {
+    padding: 1rem;
+  }
+
+  /* Last.fm stats: 2x2 grid */
+  .lastfm-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .run-dialog .dialog-box {
+    width: min(300px, 90vw);
+  }
 }
