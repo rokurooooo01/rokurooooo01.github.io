@@ -28,6 +28,7 @@
     <script defer src="js/main.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Desktop Stickers -->
     <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="" aria-hidden="true" class="button-88x31"></div>
     <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31"></div>
@@ -48,7 +49,7 @@
       <img src="" alt="Expanded view">
     </div>
 
-    <main class="container page-shell">
+    <main class="container page-shell" id="main-content">
       <header class="site-header">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
@@ -63,9 +64,9 @@
         <div class="window-titlebar">
           <div class="window-titlebar-label">Photo Gallery</div>
           <div class="window-titlebar-controls">
-            <div class="window-btn">_</div>
-            <div class="window-btn">□</div>
-            <div class="window-btn">×</div>
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
           </div>
         </div>
         <section class="content hero-card" aria-labelledby="gallery-intro-heading" style="border: none; box-shadow: none; margin: 0;">

@@ -33,10 +33,24 @@ function updateMuteUI() {
   });
 }
 
+// Reuse one AudioContext instead of creating one per click.
+let sharedAudioCtx = null;
+
+function getAudioContext() {
+  if (!sharedAudioCtx) {
+    sharedAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  // Chrome suspends contexts created before user gesture; resume on demand.
+  if (sharedAudioCtx.state === "suspended") {
+    sharedAudioCtx.resume();
+  }
+  return sharedAudioCtx;
+}
+
 function playClickSound() {
   if (isMuted) return;
   try {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const audioCtx = getAudioContext();
     const oscillator = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     
@@ -584,73 +598,59 @@ document.addEventListener("click", (e) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const track = document.getElementById("marquee-track");
-  if (!track) return;
+/**
+ * Infinite horizontal marquee.
+ * - Clones content until it fills `minFillWidth` (or 2x its own width).
+ * - Pauses on hover and while the tab is hidden.
+ * - Renders statically when the user prefers reduced motion.
+ */
+function initMarquee(track, speed, minFillWidth) {
+  if (!track || track.dataset.marqueeReady === "true") return;
+  track.dataset.marqueeReady = "true";
 
-  const items = Array.from(track.children);
-  items.forEach(item => {
-    const clone = item.cloneNode(true);
-    track.appendChild(clone);
-  });
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) {
+    document.documentElement.classList.add("marquee-static");
+    return; // leave content as a static row
+  }
+
+  const originalContent = Array.from(track.children);
+  // Fill enough width so the loop is seamless (2x own width at minimum).
+  let guard = 0;
+  while (track.scrollWidth < Math.max(minFillWidth || 0, track.scrollWidth * 2) && guard < 50) {
+    originalContent.forEach(item => track.appendChild(item.cloneNode(true)));
+    guard++;
+  }
 
   let currentTranslate = 0;
-  const speed = 0.5; 
   let isPaused = false;
+  let isHidden = false;
 
-  track.addEventListener("mouseenter", () => isPaused = true);
-  track.addEventListener("mouseleave", () => isPaused = false);
+  track.addEventListener("mouseenter", () => (isPaused = true));
+  track.addEventListener("mouseleave", () => (isPaused = false));
+  document.addEventListener("visibilitychange", () => {
+    isHidden = document.hidden;
+  });
 
   function step() {
-    if (!isPaused) {
+    if (!isPaused && !isHidden) {
       currentTranslate -= speed;
-      
       const halfWidth = track.scrollWidth / 2;
-
       if (Math.abs(currentTranslate) >= halfWidth) {
         currentTranslate = 0;
       }
-
       track.style.transform = `translateX(${currentTranslate}px)`;
     }
     requestAnimationFrame(step);
   }
 
   requestAnimationFrame(step);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initMarquee(document.getElementById("marquee-track"), 0.5, 0);
 });
 
 window.addEventListener("load", () => {
-  const track = document.getElementById("sticker-track");
-  if (!track) return;
-
-  const originalContent = Array.from(track.children);
-  while (track.scrollWidth < window.innerWidth * 3) {
-    originalContent.forEach(item => {
-      track.appendChild(item.cloneNode(true));
-    });
-  }
-
-  let currentTranslate = 0;
-  const speed = 0.6;
-  let isPaused = false;
-
-  track.addEventListener("mouseenter", () => isPaused = true);
-  track.addEventListener("mouseleave", () => isPaused = false);
-
-  function step() {
-    if (!isPaused) {
-      currentTranslate -= speed;
-      
-      const halfWidth = track.scrollWidth / 2;
-
-      if (Math.abs(currentTranslate) >= halfWidth) {
-        currentTranslate = 0;
-      }
-
-      track.style.transform = `translateX(${currentTranslate}px)`;
-    }
-    requestAnimationFrame(step);
-  }
-
-  requestAnimationFrame(step);
+  initMarquee(document.getElementById("sticker-track"), 0.6, window.innerWidth * 3);
 });

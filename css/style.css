@@ -383,6 +383,8 @@ p {
 .window-btn {
   width: 16px;
   height: 14px;
+  font-family: inherit;
+  line-height: 1;
   background: var(--panel);
   border: 1px solid;
   border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
@@ -671,6 +673,56 @@ a:focus-visible {
 
 a:visited {
   color: #4a4f7c;
+}
+
+/* Skip-to-content link (visible only when focused via keyboard) */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 8px;
+  z-index: 10001;
+  padding: 0.6rem 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  box-shadow: var(--shadow);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+/* Keyboard focus outline for interactive window/box controls */
+.window-btn:focus-visible,
+.taskbar-tool-btn:focus-visible,
+.titlebar-btn:focus-visible,
+.taskbar-start-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Honour users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .marquee-static .sticker-strip__inner,
+  .marquee-static .status-strip__inner {
+    transform: none !important;
+  }
 }
 
 .content {

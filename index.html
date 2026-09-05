@@ -24,15 +24,18 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rokurooooo01.github.io/" />
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://api.lanyard.rest" />
+    <link rel="preconnect" href="https://ws.audioscrobbler.com" />
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/main.js"></script>
   </head>
   <body onload="initLoadingScreen()">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Desktop Stickers -->
-    <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="" aria-hidden="true" class="button-88x31"></div>
-    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31"></div>
-    <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="" aria-hidden="true" class="button-88x31"></div>
-    <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
+    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
+    <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
+    <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
 
     <div id="loading-screen">
       <div class="loading-box">
@@ -51,7 +54,7 @@
       <a class="button" href="today.html">Today</a>
       <a class="button" href="twitter.html">Twitter</a>
     </nav>
-    <main class="container page-shell">
+    <main class="container page-shell" id="main-content">
       <header class="site-header">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
@@ -83,17 +86,17 @@
 
       <section class="content sticker-strip" aria-label="Rotating stickers">
         <div class="sticker-strip__inner" id="sticker-track">
-          <img src="images/sticker3.gif" alt="Visual Studio Code" class="button-88x31">
-          <img src="images/sticker4.gif" alt="IPv6" class="button-88x31">
-          <img src="images/sticker5.gif" alt="Gran Turismo" class="button-88x31">
-          <img src="images/sticker6.gif" alt="Need for Speed World" class="button-88x31">
-          <img src="images/sticker7.gif" alt="Sparco" class="button-88x31">
-          <img src="images/sticker8.gif" alt="Gazoo Racing" class="button-88x31">
-          <img src="images/sticker9.gif" alt="LaTeX" class="button-88x31">
-          <img src="images/sticker10.gif" alt="Minecraft" class="button-88x31">
-          <img src="images/sticker11.gif" alt="Nvidia" class="button-88x31">
-          <img src="images/sticker12.gif" alt="Pepsi" class="button-88x31">
-          <img src="images/sticker13.gif" alt="PlayStation" class="button-88x31">
+          <img src="images/sticker3.gif" alt="Visual Studio Code" class="button-88x31" loading="lazy">
+          <img src="images/sticker4.gif" alt="IPv6" class="button-88x31" loading="lazy">
+          <img src="images/sticker5.gif" alt="Gran Turismo" class="button-88x31" loading="lazy">
+          <img src="images/sticker6.gif" alt="Need for Speed World" class="button-88x31" loading="lazy">
+          <img src="images/sticker7.gif" alt="Sparco" class="button-88x31" loading="lazy">
+          <img src="images/sticker8.gif" alt="Gazoo Racing" class="button-88x31" loading="lazy">
+          <img src="images/sticker9.gif" alt="LaTeX" class="button-88x31" loading="lazy">
+          <img src="images/sticker10.gif" alt="Minecraft" class="button-88x31" loading="lazy">
+          <img src="images/sticker11.gif" alt="Nvidia" class="button-88x31" loading="lazy">
+          <img src="images/sticker12.gif" alt="Pepsi" class="button-88x31" loading="lazy">
+          <img src="images/sticker13.gif" alt="PlayStation" class="button-88x31" loading="lazy">
         </div>
       </section>
 
@@ -101,9 +104,9 @@
         <div class="window-titlebar">
           <div class="window-titlebar-label">My Thoughts</div>
           <div class="window-titlebar-controls">
-            <div class="window-btn">_</div>
-            <div class="window-btn">□</div>
-            <div class="window-btn">×</div>
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
           </div>
         </div>
         <section class="content hero-card" aria-labelledby="site-intro-heading" style="border: none; box-shadow: none; margin: 0;">
@@ -118,19 +121,19 @@
 
       <div class="button-grid" style="justify-content: center; margin-bottom: 1rem;">
         <a href="https://github.com/rokurooooo01" target="_blank" rel="noopener">
-          <img src="images/github-88x31.gif" alt="GitHub" class="button-88x31">
+          <img src="images/github-88x31.gif" alt="GitHub" class="button-88x31" loading="lazy">
         </a>
         <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener">
-          <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31">
+          <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" loading="lazy">
         </a>
         <a href="https://www.instagram.com/rokurooooo7" target="_blank" rel="noopener">
-          <img src="images/instagram-88x31.gif" alt="Instagram" class="button-88x31">
+          <img src="images/instagram-88x31.gif" alt="Instagram" class="button-88x31" loading="lazy">
         </a>
         <a href="https://www.last.fm/user/rokurooooo" target="_blank" rel="noopener">
-          <img src="images/lastfm-88x31.gif" alt="Last.fm" class="button-88x31">
+          <img src="images/lastfm-88x31.gif" alt="Last.fm" class="button-88x31" loading="lazy">
         </a>
         <a href="https://www.youtube.com/@rokurooooo07" target="_blank" rel="noopener">
-          <img src="images/youtube-88x31.gif" alt="YouTube" class="button-88x31">
+          <img src="images/youtube-88x31.gif" alt="YouTube" class="button-88x31" loading="lazy">
         </a>
       </div>
 
