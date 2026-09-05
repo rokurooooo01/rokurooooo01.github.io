@@ -1,10 +1,18 @@
 (function() {
-  setTimeout(() => {
+  // Skip the boot animation entirely if it was already shown this session
+  if (document.documentElement.classList.contains("skip-boot")) {
     const loadingScreen = document.getElementById("loading-screen");
     if (loadingScreen) {
       loadingScreen.style.display = "none";
     }
-  }, 1000);
+  } else {
+    setTimeout(() => {
+      const loadingScreen = document.getElementById("loading-screen");
+      if (loadingScreen) {
+        loadingScreen.style.display = "none";
+      }
+    }, 1000);
+  }
 
   const savedTheme = localStorage.getItem("retroTheme") || "win95";
   document.documentElement.setAttribute("data-theme", savedTheme);
@@ -338,6 +346,7 @@ function initSpotifyProgress() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Only math pages load KaTeX; render silently when present.
   if (window.katex && typeof renderMathInElement === "function") {
     renderMathInElement(document.body, {
       delimiters: [
@@ -346,8 +355,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       throwOnError: false,
     });
-  } else {
-    console.warn("KaTeX renderMathInElement not found. Math may not render.");
   }
 
   console.log("GitHub Pages site is ready.");
@@ -542,6 +549,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function initLoadingScreen() {
+  // Boot animation already shown this session — do nothing.
+  if (document.documentElement.classList.contains("skip-boot")) return;
+
   const loadingScreen = document.getElementById("loading-screen");
   const fill = document.getElementById("loading-bar-fill");
   
@@ -551,20 +561,21 @@ function initLoadingScreen() {
     loadingScreen.style.display = "none";
   }, 5000);
 
-  let progress = 0;
-  const interval = setInterval(() => {
-    progress += Math.random() * 10;
-    if (progress > 100) progress = 100;
-    fill.style.width = `${progress}%`;
-    
-    if (progress === 100) {
-      clearTimeout(failSafeTimeout);
-      clearInterval(interval);
-      setTimeout(() => {
-        loadingScreen.style.display = "none";
-      }, 500);
-    }
-  }, 150);
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 10;
+      if (progress > 100) progress = 100;
+      fill.style.width = `${progress}%`;
+      
+      if (progress === 100) {
+        clearTimeout(failSafeTimeout);
+        clearInterval(interval);
+        sessionStorage.setItem("bootSeen", "true");
+        setTimeout(() => {
+          loadingScreen.style.display = "none";
+        }, 500);
+      }
+    }, 150);
 }
 
 document.addEventListener("click", (e) => {

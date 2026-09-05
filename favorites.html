@@ -3,6 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("retroTheme") || "win95");
+        if (sessionStorage.getItem("bootSeen") === "true") {
+          document.documentElement.classList.add("skip-boot");
+        }
+      })();
+    </script>
     <title>My Favourites | rokurooooo</title>
     <meta
       name="description"
@@ -17,15 +25,13 @@
     <meta property="og:url" content="https://rokurooooo01.github.io/favorites.html" />
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
     <script defer src="js/main.js"></script>
   </head>
   <body>
-    <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="Sticker 1" class="button-88x31"></div>
-    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="Sticker 2" class="button-88x31"></div>
-    <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="Sticker 3" class="button-88x31"></div>
-    <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="Sticker 4" class="button-88x31"></div>
+    <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="" aria-hidden="true" class="button-88x31"></div>
 
     <nav class="page-nav" aria-label="Site pages">
       <a class="button" href="index.html">Home</a>

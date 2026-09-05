@@ -3,6 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("retroTheme") || "win95");
+        if (sessionStorage.getItem("bootSeen") === "true") {
+          document.documentElement.classList.add("skip-boot");
+        }
+      })();
+    </script>
     <title>Home | rokurooooo</title>
     <meta
       name="description"
@@ -17,17 +25,14 @@
     <meta property="og:url" content="https://rokurooooo01.github.io/" />
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
     <script defer src="js/main.js"></script>
   </head>
   <body onload="initLoadingScreen()">
     <!-- Desktop Stickers -->
-    <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="Sticker 1" class="button-88x31"></div>
-    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="Sticker 2" class="button-88x31"></div>
-    <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="Sticker 3" class="button-88x31"></div>
-    <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="Sticker 4" class="button-88x31"></div>
+    <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="" aria-hidden="true" class="button-88x31"></div>
 
     <div id="loading-screen">
       <div class="loading-box">
@@ -112,19 +117,19 @@
       </div>
 
       <div class="button-grid" style="justify-content: center; margin-bottom: 1rem;">
-        <a href="https://github.com/rokurooooo01" target="_blank">
+        <a href="https://github.com/rokurooooo01" target="_blank" rel="noopener">
           <img src="images/github-88x31.gif" alt="GitHub" class="button-88x31">
         </a>
-        <a href="https://x.com/rokurooooo07" target="_blank">
+        <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener">
           <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31">
         </a>
-        <a href="https://www.instagram.com/rokurooooo7" target="_blank">
+        <a href="https://www.instagram.com/rokurooooo7" target="_blank" rel="noopener">
           <img src="images/instagram-88x31.gif" alt="Instagram" class="button-88x31">
         </a>
-        <a href="https://www.last.fm/user/rokurooooo" target="_blank">
+        <a href="https://www.last.fm/user/rokurooooo" target="_blank" rel="noopener">
           <img src="images/lastfm-88x31.gif" alt="Last.fm" class="button-88x31">
         </a>
-        <a href="https://www.youtube.com/@rokurooooo07" target="_blank">
+        <a href="https://www.youtube.com/@rokurooooo07" target="_blank" rel="noopener">
           <img src="images/youtube-88x31.gif" alt="YouTube" class="button-88x31">
         </a>
       </div>
@@ -168,7 +173,7 @@
               <span class="titlebar-icon">🎵</span>
               <span id="lastfm-heading" class="titlebar-text">last.fm stats</span>
             </div>
-            <a class="lastfm-profile-link" href="https://www.last.fm/user/rokurooooo" target="_blank" aria-label="View Last.fm profile">↗</a>
+            <a class="lastfm-profile-link" href="https://www.last.fm/user/rokurooooo" target="_blank" rel="noopener" aria-label="View Last.fm profile">↗</a>
           </div>
           <div class="lastfm-body">
             <div class="lastfm-stat-grid" id="lastfm-stats">
