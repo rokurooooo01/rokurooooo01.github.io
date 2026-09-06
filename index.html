@@ -40,10 +40,10 @@
   <body onload="initLoadingScreen()">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <!-- Desktop Stickers -->
-    <div class="sticker sticker-tl"><img src="images/sticker1.gif" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
+    <div class="sticker sticker-tl"><img src="images/sticker1.webp" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
     <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
-    <div class="sticker sticker-bl"><img src="images/sticker3.gif" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
-    <div class="sticker sticker-br"><img src="images/sticker4.gif" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
+    <div class="sticker sticker-bl"><img src="images/sticker3.webp" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
+    <div class="sticker sticker-br"><img src="images/sticker4.webp" alt="" aria-hidden="true" class="button-88x31" loading="lazy"></div>
 
     <div id="loading-screen">
       <div class="loading-box">
@@ -74,7 +74,7 @@
           </div>
           <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem;">
             <div id="site-clock" aria-live="polite"></div>
-            <img src="images/sticker5.gif" alt="Gran Turismo" class="button-88x31" style="width: 176px; height: 62px;">
+            <img src="images/sticker5.webp" alt="Gran Turismo" class="button-88x31" style="width: 176px; height: 62px;">
           </div>
         </div>
       </header>
@@ -94,16 +94,16 @@
 
       <section class="content sticker-strip" aria-label="Rotating stickers">
         <div class="sticker-strip__inner" id="sticker-track">
-          <img src="images/sticker3.gif" alt="Visual Studio Code" class="button-88x31" loading="lazy">
-          <img src="images/sticker4.gif" alt="IPv6" class="button-88x31" loading="lazy">
-          <img src="images/sticker5.gif" alt="Gran Turismo" class="button-88x31" loading="lazy">
-          <img src="images/sticker6.gif" alt="Need for Speed World" class="button-88x31" loading="lazy">
-          <img src="images/sticker7.gif" alt="Sparco" class="button-88x31" loading="lazy">
-          <img src="images/sticker8.gif" alt="Gazoo Racing" class="button-88x31" loading="lazy">
+          <img src="images/sticker3.webp" alt="Visual Studio Code" class="button-88x31" loading="lazy">
+          <img src="images/sticker4.webp" alt="IPv6" class="button-88x31" loading="lazy">
+          <img src="images/sticker5.webp" alt="Gran Turismo" class="button-88x31" loading="lazy">
+          <img src="images/sticker6.webp" alt="Need for Speed World" class="button-88x31" loading="lazy">
+          <img src="images/sticker7.webp" alt="Sparco" class="button-88x31" loading="lazy">
+          <img src="images/sticker8.webp" alt="Gazoo Racing" class="button-88x31" loading="lazy">
           <img src="images/sticker9.gif" alt="LaTeX" class="button-88x31" loading="lazy">
-          <img src="images/sticker10.gif" alt="Minecraft" class="button-88x31" loading="lazy">
+          <img src="images/sticker10.webp" alt="Minecraft" class="button-88x31" loading="lazy">
           <img src="images/sticker11.gif" alt="Nvidia" class="button-88x31" loading="lazy">
-          <img src="images/sticker12.gif" alt="Pepsi" class="button-88x31" loading="lazy">
+          <img src="images/sticker12.webp" alt="Pepsi" class="button-88x31" loading="lazy">
           <img src="images/sticker13.gif" alt="PlayStation" class="button-88x31" loading="lazy">
         </div>
       </section>
@@ -129,19 +129,19 @@
 
       <div class="button-grid" style="justify-content: center; margin-bottom: 1rem;">
         <a href="https://github.com/rokurooooo01" target="_blank" rel="noopener">
-          <img src="images/github-88x31.gif" alt="GitHub" class="button-88x31" loading="lazy">
+          <img src="images/github-88x31.webp" alt="GitHub" class="button-88x31" loading="lazy">
         </a>
         <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener">
           <img src="images/twitter-88x31.gif" alt="Twitter" class="button-88x31" loading="lazy">
         </a>
         <a href="https://www.instagram.com/rokurooooo7" target="_blank" rel="noopener">
-          <img src="images/instagram-88x31.gif" alt="Instagram" class="button-88x31" loading="lazy">
+          <img src="images/instagram-88x31.webp" alt="Instagram" class="button-88x31" loading="lazy">
         </a>
         <a href="https://www.last.fm/user/rokurooooo" target="_blank" rel="noopener">
           <img src="images/lastfm-88x31.gif" alt="Last.fm" class="button-88x31" loading="lazy">
         </a>
         <a href="https://www.youtube.com/@rokurooooo07" target="_blank" rel="noopener">
-          <img src="images/youtube-88x31.gif" alt="YouTube" class="button-88x31" loading="lazy">
+          <img src="images/youtube-88x31.webp" alt="YouTube" class="button-88x31" loading="lazy">
         </a>
       </div>
 
@@ -232,6 +232,39 @@
         </div>
       </section>
 
+      <!-- Discord Presence Widget -->
+      <section class="content discord-card" aria-labelledby="discord-heading">
+        <div class="discord-window">
+          <div class="discord-titlebar">
+            <div class="discord-titlebar-label">
+              <span class="titlebar-icon">💬</span>
+              <span id="discord-heading" class="titlebar-text">discord</span>
+            </div>
+            <span class="discord-dot" id="discord-dot" title="presence" aria-hidden="true"></span>
+          </div>
+          <div class="discord-body">
+            <div class="discord-profile">
+              <img
+                id="discord-avatar"
+                class="discord-avatar"
+                src="images/profile.svg"
+                alt="Discord avatar of rokurooooo"
+                width="72"
+                height="72"
+              />
+              <div class="discord-info">
+                <div class="discord-name-status">
+                  <span class="discord-name" id="discord-name">rokurooooo</span>
+                  <span class="discord-status-label" id="discord-status-label">—</span>
+                </div>
+                <p class="discord-activity" id="discord-activity">checking presence…</p>
+              </div>
+            </div>
+            <p class="discord-note">dm me, i play almost anything 🎮</p>
+          </div>
+        </div>
+      </section>
+
       <section class="content status-widget" aria-labelledby="now-status-heading">
         <h2 id="now-status-heading">Right now</h2>
         <ul class="status-list">
@@ -290,6 +323,7 @@
         </ul>
       </section>
     </main>
+    <script defer src="js/analytics.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

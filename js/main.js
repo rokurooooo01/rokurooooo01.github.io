@@ -475,6 +475,71 @@ document.addEventListener("DOMContentLoaded", () => {
   updateSpotifyStatus();
   setInterval(updateSpotifyStatus, 15000);
 
+  async function updateDiscordPresence() {
+    const discordCard = document.querySelector(".discord-card");
+    if (!discordCard) return;
+
+    const avatarEl = document.getElementById("discord-avatar");
+    const nameEl = document.getElementById("discord-name");
+    const statusLabelEl = document.getElementById("discord-status-label");
+    const activityEl = document.getElementById("discord-activity");
+    const dotEl = document.getElementById("discord-dot");
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+    try {
+      const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`, {
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      if (!response.ok) throw new Error(`Lanyard responded ${response.status}`);
+      const json = await response.json();
+      const data = json.data || {};
+
+      // Avatar comes from Lanyard's free quicklink icons; fall back to the
+      // site's own profile art if the account has no avatar or went offline.
+      if (avatarEl) {
+        avatarEl.onerror = () => {
+          avatarEl.onerror = null;
+          avatarEl.src = "images/profile.svg";
+        };
+        avatarEl.src = `https://api.lanyard.rest/${DISCORD_ID}.png`;
+        avatarEl.alt = `Discord avatar of ${data.discord_user?.username || "rokurooooo"}`;
+      }
+      if (nameEl) nameEl.textContent = data.discord_user?.username || "rokurooooo";
+
+      const status = data.discord_status || "offline";
+      const labels = {
+        online: "online",
+        idle: "idle",
+        dnd: "do not disturb",
+        offline: "offline",
+      };
+      if (statusLabelEl) statusLabelEl.textContent = labels[status] || status;
+      if (dotEl) dotEl.dataset.status = status;
+
+      if (activityEl) {
+        const custom = data.custom_status;
+        if (custom && (custom.text || custom.emoji)) {
+          activityEl.textContent = `${custom.emoji || ""} ${custom.text || ""}`.trim();
+        } else if (Array.isArray(data.activities) && data.activities.length > 0) {
+          const act = data.activities[0];
+          activityEl.textContent = `${act.name || "activity"} — ${act.details || act.state || ""}`.replace(/ — $/, "");
+        } else {
+          activityEl.textContent = "no activity to share";
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching Discord presence:", error);
+      if (activityEl) activityEl.textContent = "couldn't reach presence";
+      if (dotEl) dotEl.dataset.status = "offline";
+    }
+  }
+
+  updateDiscordPresence();
+  setInterval(updateDiscordPresence, 30000);
+
   async function loadLastFmStats() {
     const LASTFM_API_KEY = "7b2a3746acd2278d3b703db77c523127";
     const LASTFM_USER = "rokurooooo";

@@ -1488,6 +1488,138 @@ body {
   margin: 0;
 }
 
+.discord-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.discord-window {
+  border-top: 2px solid var(--border-light);
+  border-left: 2px solid var(--border-light);
+  border-right: 2px solid var(--border-dark);
+  border-bottom: 2px solid var(--border-dark);
+  background: var(--paper);
+}
+
+.discord-titlebar {
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.discord-titlebar-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Status "LED": a tiny indicator light in the titlebar. */
+.discord-dot {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--border-dark);
+  background: var(--muted);
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.discord-dot[data-status="online"] {
+  background: #1cc464;
+  animation: pulse 1.5s infinite;
+}
+
+.discord-dot[data-status="idle"] {
+  background: #ffd95e;
+}
+
+.discord-dot[data-status="dnd"] {
+  background: #f04747;
+}
+
+.discord-dot[data-status="offline"] {
+  background: #6b7280;
+}
+
+.discord-body {
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.discord-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.discord-avatar {
+  width: 72px;
+  height: 72px;
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
+  background: var(--panel);
+  image-rendering: pixelated;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.discord-name-status {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.discord-name {
+  font-weight: 700;
+}
+
+.discord-status-label {
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.discord-activity {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0.35rem 0 0;
+}
+
+.discord-note {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: right;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .discord-avatar {
+    width: 56px;
+    height: 56px;
+  }
+
+  .discord-note {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discord-dot {
+    animation: none;
+  }
+}
+
 .sticker-strip {
   padding: 0.8rem 1rem;
   border: 1px solid var(--border-dark);
