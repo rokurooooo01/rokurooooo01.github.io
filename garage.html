@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("retroTheme") || "win95");
+        if (sessionStorage.getItem("bootSeen") === "true") {
+          document.documentElement.classList.add("skip-boot");
+        }
+      })();
+    </script>
+    <title>Game Garage | rokurooooo</title>
+    <meta
+      name="description"
+      content="A memory-card style log of the games I keep coming back to."
+    />
+    <meta property="og:title" content="Game Garage | rokuro's website" />
+    <meta
+      property="og:description"
+      content="A memory-card style log of the games I keep coming back to."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rokurooooo01.github.io/garage.html" />
+    <link rel="canonical" href="https://rokurooooo01.github.io/garage.html" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://rokurooooo01.github.io/feed.xml" />
+    <meta property="og:site_name" content="rokurooooo" />
+    <meta property="og:image" content="https://rokurooooo01.github.io/images/og-cover.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Game Garage | rokuro's website" />
+    <meta name="twitter:description" content="A memory-card style log of the games I keep coming back to." />
+    <meta name="twitter:image" content="https://rokurooooo01.github.io/images/og-cover.png" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body onload="initLoadingScreen()">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="sticker sticker-tl"><img src="images/sticker5.webp" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-bl"><img src="images/sticker9.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-br"><img src="images/sticker4.webp" alt="" aria-hidden="true" class="button-88x31"></div>
+
+    <div id="loading-screen">
+      <div class="loading-box">
+        <p>System Booting...</p>
+        <div class="loading-bar-container">
+          <div id="loading-bar-fill" class="loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="Site pages">
+      <a class="button" href="index.html">Home</a>
+      <a class="button" href="about.html">About</a>
+      <a class="button" href="mathematics.html">Math</a>
+      <a class="button" href="favorites.html">Favorites</a>
+      <a class="button" href="mood-gallery.html">Gallery</a>
+      <a class="button" href="garage.html">Garage</a>
+      <a class="button" href="today.html">Today</a>
+      <a class="button" href="twitter.html">Twitter</a>
+    </nav>
+    <main class="container page-shell" id="main-content">
+      <header class="site-header">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+            <p class="eyebrow">Their minds are like sensitive film, capturing every detail with vivid clarity.</p>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <img src="images/profile.svg" alt="Profile picture" class="profile-pic">
+              <h1>Game Garage</h1>
+            </div>
+          </div>
+          <div id="site-clock" aria-live="polite"></div>
+        </div>
+      </header>
+
+      <section class="content status-strip" aria-label="Current gaming notes">
+        <div class="status-strip__inner">
+          <span class="status-chip"><strong>current grind:</strong> Tokyo Xtreme Racer</span>
+          <span class="status-chip"><strong>cruising:</strong> Forza Horizon 6</span>
+          <span class="status-chip"><strong>night arcade:</strong> Need for Speed Heat</span>
+          <span class="status-chip"><strong>with the boys:</strong> Roblox</span>
+        </div>
+      </section>
+
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">Game Garage</div>
+          <div class="window-titlebar-controls">
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
+          </div>
+        </div>
+        <section class="content hero-card" aria-labelledby="garage-intro-heading" style="border: none; box-shadow: none; margin: 0;">
+          <p class="eyebrow">load save data</p>
+          <h2 id="garage-intro-heading">Not a sim rig. Just a well-worn memory card.</h2>
+          <p>
+            No racing wheel, no telemetry lap times — this is the arcade cabinet part of my brain.
+            The games I actually come back to, saved like the good old PlayStation memory card days.
+          </p>
+        </section>
+      </div>
+      <section class="content" aria-label="Memory card saves">
+        <div class="memcard" role="list">
+          <div class="memcard-label">
+            <span>Memory Card — Slot 01</span>
+            <span>4 blocks free / 15</span>
+          </div>
+
+          <div class="save-slot" role="listitem">
+            <span class="slot-num">01</span>
+            <div class="slot-info">
+              <span class="slot-title">Tokyo Xtreme Racer</span>
+              <span class="slot-meta">Shuto Expressway · since 2022</span>
+            </div>
+            <span class="slot-status rot">R·O·T</span>
+          </div>
+
+          <div class="save-slot" role="listitem">
+            <span class="slot-num">02</span>
+            <div class="slot-info">
+              <span class="slot-title">Forza Horizon 6</span>
+              <span class="slot-meta">Mexico · weekly playlist grinder</span>
+            </div>
+            <span class="slot-status heart">♥</span>
+          </div>
+
+          <div class="save-slot" role="listitem">
+            <span class="slot-num">03</span>
+            <div class="slot-info">
+              <span class="slot-title">Need for Speed Heat</span>
+              <span class="slot-meta">Palm City · night races only</span>
+            </div>
+            <span class="slot-status heart">♥</span>
+          </div>
+
+          <div class="save-slot" role="listitem">
+            <span class="slot-num">04</span>
+            <div class="slot-info">
+              <span class="slot-title">Roblox</span>
+              <span class="slot-meta">with the boys · no comment</span>
+            </div>
+            <span class="slot-status rot">R·O·T</span>
+          </div>
+
+          <div class="save-slot slot-empty" role="listitem">
+            <span class="slot-num">05</span>
+            <div class="slot-info">
+              <span class="slot-title slot-title-empty">— empty slot —</span>
+              <span class="slot-meta">waiting for the next obsession</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">notes.txt</div>
+          <div class="window-titlebar-controls">
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
+          </div>
+        </div>
+        <section class="content" style="border: none; box-shadow: none; margin: 0;">
+          <p>
+            This isn't a sim-rig page. No lap times, no telemetry, no wheel setups — I don't
+            actually sim-race. This is the <em>arcade cabinet</em> corner: the games I keep
+            loading up because the vibe is right. Tokyo Xtreme Racer is the forever game,
+            Forza Horizon is the weekly playlist grind, NFS Heat is for late nights, and
+            Roblox is what we play when nobody wants to be serious. Saved like a PS1 memory
+            card because that's the energy.
+          </p>
+        </section>
+      </div>
+    </main>
+    <script defer src="js/analytics.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
