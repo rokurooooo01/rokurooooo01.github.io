@@ -1753,6 +1753,7 @@ body {
 
 #giscus-container {
   padding: 1rem;
+  min-height: 300px;
 }
 
 #giscus-container:empty {
