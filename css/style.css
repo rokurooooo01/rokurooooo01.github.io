@@ -1743,16 +1743,14 @@ body {
 .giscus-card {
   padding: 0;
   overflow: hidden;
-}
-
-.giscus-loader {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  background: var(--paper);
 }
 
 #giscus-container {
-  padding: 1rem;
+  padding: 0.75rem;
   min-height: 300px;
 }
 

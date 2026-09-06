@@ -90,9 +90,19 @@
       </div>
 
       <!-- Giscus comment widget -->
-      <section class="content card giscus-card" aria-label="Guestbook comments">
-        <div id="giscus-container"></div>
-      </section>
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">Guestbook.exe</div>
+          <div class="window-titlebar-controls">
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
+          </div>
+        </div>
+        <section class="content giscus-card" aria-label="Guestbook comments">
+          <div id="giscus-container"></div>
+        </section>
+      </div>
     </main>
 
     <script src="https://giscus.app/client.js"
