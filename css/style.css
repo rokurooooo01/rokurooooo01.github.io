@@ -907,9 +907,7 @@ a:visited {
   margin-top: 0.35rem;
 }
 
-.spotify-card {
-  margin-top: 1rem;
-}
+/* .spotify-card spacing is handled by .widgets-grid */
 
 .spotify-widget {
   position: relative;
@@ -1489,9 +1487,40 @@ body {
 
 .widgets-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem;
-  align-items: start;
+}
+
+/* Make all four widget windows equal height within their grid cell */
+.widgets-grid > .content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.widgets-grid > .content > .spotify-window,
+.widgets-grid > .content > .lastfm-window,
+.widgets-grid > .content > .visitormap-window,
+.widgets-grid > .content > .discord-window {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.widgets-grid .spotify-widget,
+.widgets-grid .lastfm-body,
+.widgets-grid .visitormap-body,
+.widgets-grid .discord-body {
+  flex: 1;
+}
+
+.widgets-grid .lastfm-body {
+  justify-content: center;
+}
+
+.widgets-grid .visitormap-embed {
+  flex: 1;
 }
 
 .discord-card {
@@ -1699,6 +1728,10 @@ body {
     grid-column: 1;
     grid-row: 2;
     padding: 1rem 0.75rem;
+  }
+
+  .widgets-grid {
+    grid-template-columns: 1fr;
   }
 
   .two-col {
