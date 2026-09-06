@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rokurooooo</title>
+    <link>https://rokurooooo01.github.io/</link>
+    <description>rokuro's website — math notes, daily log & site updates.</description>
+    <language>en</language>
+    <lastBuildDate>Sun, 06 Sep 2026 12:36:45 +0000</lastBuildDate>
+    <atom:link href="https://rokurooooo01.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>post: i integrated twitter live feed on my webpage, idk if it works, this is a test :)</title>
+      <link>https://x.com/rokurooooo07/status/1830000000000000001</link>
+      <guid isPermaLink="false">https://x.com/rokurooooo07/status/1830000000000000001#Wed, 02 Sep 2026 12:27:00 +0000</guid>
+      <pubDate>Wed, 02 Sep 2026 12:27:00 +0000</pubDate>
+      <description>i integrated twitter live feed on my webpage, idk if it works, this is a test :)</description>
+    </item>
+    <item>
+      <title>Site overhaul &amp; visitor map</title>
+      <link>https://rokurooooo01.github.io/index.html</link>
+      <guid isPermaLink="false">https://rokurooooo01.github.io/index.html#Wed, 02 Sep 2026 00:00:00 +0000</guid>
+      <pubDate>Wed, 02 Sep 2026 00:00:00 +0000</pubDate>
+      <description>Updating a large chunk of the homepage: added a visitor map, made the site mobile-friendly, and expanded the Foundational Mathematics question list.</description>
+    </item>
+    <item>
+      <title>Quiet day</title>
+      <link>https://rokurooooo01.github.io/today.html</link>
+      <guid isPermaLink="false">https://rokurooooo01.github.io/today.html#Sun, 30 Aug 2026 00:00:00 +0000</guid>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Nothing really extraordinary happened, which is normal and fine.</description>
+    </item>
+    <item>
+      <title>post: regardless of our political and race background, we should be happy and grateful</title>
+      <link>https://x.com/rokurooooo07/status/1830000000000000003</link>
+      <guid isPermaLink="false">https://x.com/rokurooooo07/status/1830000000000000003#Mon, 31 Aug 2026 10:05:00 +0000</guid>
+      <pubDate>Mon, 31 Aug 2026 10:05:00 +0000</pubDate>
+      <description>regardless of our political and race background, we should be happy and grateful malaysia does not involved in any major conflicts unlike other countries, and if anything, it&#x27;s our duty to protect it.
+
+happy merdeka day.</description>
+    </item>
+    <item>
+      <title>post: today marks the 69th anniversary of malaysia&#x27;s independence, a sign of the natio</title>
+      <link>https://x.com/rokurooooo07/status/1830000000000000002</link>
+      <guid isPermaLink="false">https://x.com/rokurooooo07/status/1830000000000000002#Mon, 31 Aug 2026 10:00:00 +0000</guid>
+      <pubDate>Mon, 31 Aug 2026 10:00:00 +0000</pubDate>
+      <description>today marks the 69th anniversary of malaysia&#x27;s independence, a sign of the nation&#x27;s sovereignity, a freedom of governing our own land, our own people and our own power.
+
+our independence should not be ruined with things that could pollute it, because it&#x27;s not that easy to gain it</description>
+    </item>
+    <item>
+      <title>Malaysia Merdeka 69</title>
+      <link>https://rokurooooo01.github.io/today.html</link>
+      <guid isPermaLink="false">https://rokurooooo01.github.io/today.html#Mon, 31 Aug 2026 00:00:00 +0000</guid>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
+      <description>Today&#x27;s the 69th anniversary of Malaysia&#x27;s independence. Proud to be Malaysian.</description>
+    </item>
+  </channel>
+</rss>
