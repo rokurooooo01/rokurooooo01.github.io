@@ -18,6 +18,82 @@
   document.documentElement.setAttribute("data-theme", savedTheme);
 })();
 
+/* ---------- Client-side API cache (stale-while-revalidate) ----------
+ * A static site hits third-party APIs (Lanyard, Last.fm) on every page
+ * view. This keeps those calls from hammering rate limits and lets repeat
+ * visits paint instant-data from localStorage while revalidating in the
+ * background.
+ *
+ * Semantics:
+ *   fresh   (now - ts < ttlMs)    -> return cache, no network.
+ *   stale   (now - ts < staleMs)  -> return cache, re-fetch in background.
+ *   expired (now - ts >= staleMs) -> fetch now.
+ *   Network failure falls back to any cached copy; otherwise it throws.
+ */
+const rokuroCache = {
+  get(key) {
+    try {
+      const raw = localStorage.getItem("rokuro:api:" + key);
+      return raw ? JSON.parse(raw) : null;
+    } catch (err) {
+      return null;
+    }
+  },
+  set(key, val) {
+    try {
+      localStorage.setItem("rokuro:api:" + key, JSON.stringify(val));
+    } catch (err) {
+      /* storage can be unavailable (private mode / quota) — cache is a bonus */
+    }
+  },
+};
+
+const rokuroInflight = Object.create(null);
+
+function rokuroRefresh(url, key) {
+  if (rokuroInflight[key]) return rokuroInflight[key];
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8000);
+
+  const pending = fetch(url, { signal: controller.signal })
+    .then((res) => {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then((data) => {
+      rokuroCache.set(key, { ts: Date.now(), data });
+      return data;
+    })
+    .finally(() => {
+      clearTimeout(timeoutId);
+      delete rokuroInflight[key];
+    });
+
+  rokuroInflight[key] = pending;
+  return pending;
+}
+
+function rokuroFetchJSON(url, key, ttlMs, staleMs) {
+  const cached = rokuroCache.get(key);
+  const now = Date.now();
+
+  if (cached) {
+    if (now - cached.ts < ttlMs) {
+      return Promise.resolve(cached.data); // fresh, no network
+    }
+    if (now - cached.ts < staleMs) {
+      rokuroRefresh(url, key); // stale-while-revalidate
+      return Promise.resolve(cached.data);
+    }
+  }
+
+  return rokuroRefresh(url, key).catch((err) => {
+    if (cached) return cached.data; // network failed -> degrade to cache
+    throw err;
+  });
+}
+
 let isMuted = localStorage.getItem("retroSoundMuted") === "true";
 
 function toggleAudioMute() {
@@ -405,22 +481,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const DISCORD_ID = "670570026641915914"; 
   const spotifyStatusEl = document.getElementById("spotify-status");
 
+  // Shared by the Now Playing + Discord widgets: Lanyard is fetched just
+  // once per cache cycle (and single-flight), not once per widget.
+  function getLanyardPresence() {
+    const url = `https://api.lanyard.rest/v1/users/${DISCORD_ID}`;
+    return rokuroFetchJSON(url, "lanyard", 10 * 1000, 60 * 60 * 1000)
+      .then((json) => (json && json.data) || null);
+  }
+
   async function updateSpotifyStatus() {
     if (!spotifyStatusEl) return;
-
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
 
     const statusText = spotifyStatusEl.querySelector(".status-text");
 
     try {
-      const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`, { 
-        signal: controller.signal 
-      });
-      clearTimeout(timeoutId);
-      const json = await response.json();
-      
-      const user = json.data;
+      const user = await getLanyardPresence();
       if (!user) {
         if (statusText) statusText.textContent = "no presence data";
         clearSkeletons(spotifyStatusEl);
@@ -498,17 +573,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const activityEl = document.getElementById("discord-activity");
     const dotEl = document.getElementById("discord-dot");
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
-
     try {
-      const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`, {
-        signal: controller.signal,
-      });
-      clearTimeout(timeoutId);
-      if (!response.ok) throw new Error(`Lanyard responded ${response.status}`);
-      const json = await response.json();
-      const data = json.data || {};
+      const data = (await getLanyardPresence()) || {};
 
       // Avatar comes from Lanyard's free quicklink icons; fall back to the
       // site's own profile art if the account has no avatar or went offline.
@@ -567,15 +633,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!scrobblesEl) return; 
 
     try {
-      const [infoRes, artistsRes, tracksRes, albumsRes] = await Promise.all([
-        fetch(`${base}&method=user.getInfo`),
-        fetch(`${base}&method=user.getTopArtists&period=overall&limit=1`),
-        fetch(`${base}&method=user.getTopTracks&period=overall&limit=1`),
-        fetch(`${base}&method=user.getTopAlbums&period=overall&limit=1`),
-      ]);
+      // Scrobble totals barely change hour-to-hour, so cache them for 10
+      // minutes and keep up to a day of history as an offline fallback.
+      const ttl = 10 * 60 * 1000;
+      const stale = 24 * 60 * 60 * 1000;
 
       const [info, artists, tracks, albums] = await Promise.all([
-        infoRes.json(), artistsRes.json(), tracksRes.json(), albumsRes.json(),
+        rokuroFetchJSON(`${base}&method=user.getInfo`, "lastfm:getInfo", ttl, stale),
+        rokuroFetchJSON(`${base}&method=user.getTopArtists&period=overall&limit=1`, "lastfm:topArtists", ttl, stale),
+        rokuroFetchJSON(`${base}&method=user.getTopTracks&period=overall&limit=1`, "lastfm:topTracks", ttl, stale),
+        rokuroFetchJSON(`${base}&method=user.getTopAlbums&period=overall&limit=1`, "lastfm:topAlbums", ttl, stale),
       ]);
 
       const fmt = n => Number(n).toLocaleString();
