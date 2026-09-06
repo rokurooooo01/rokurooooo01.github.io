@@ -91,63 +91,24 @@
 
       <!-- Giscus comment widget -->
       <section class="content card giscus-card" aria-label="Guestbook comments">
-        <div id="giscus-loader" class="giscus-loader">
-          <span class="skeleton" style="width: 60%; height: 1.2rem; margin-bottom: 0.5rem;"></span>
-          <span class="skeleton" style="width: 40%; height: 1rem; margin-bottom: 0.5rem;"></span>
-          <span class="skeleton" style="width: 80%; height: 1rem;"></span>
-        </div>
         <div id="giscus-container"></div>
       </section>
     </main>
 
-    <script>
-      // Giscus configuration
-      // TODO: Replace CATEGORY_ID with your Guestbook category ID from https://giscus.app
-      const GISCUS_CONFIG = {
-        repo: "rokurooooo01/rokurooooo01.github.io",
-        repoId: "R_kgDOUFjsNw",
-        category: "Guestbook",
-        categoryId: "DIC_kwDOUFjsN84DFAe9",
-        mapping: "pathname",
-        reactionsEnabled: "1",
-        emitMetadata: "0",
-        inputPosition: "top",
-        theme: "preferred_color_scheme",
-        lang: "en"
-      };
-
-      function loadGiscus() {
-        const container = document.getElementById("giscus-container");
-        const loader = document.getElementById("giscus-loader");
-        if (!container || !container.dataset.giscusLoaded) {
-          const script = document.createElement("script");
-          script.src = "https://giscus.app/client.js";
-          script.setAttribute("data-repo", GISCUS_CONFIG.repo);
-          script.setAttribute("data-repo-id", GISCUS_CONFIG.repoId);
-          script.setAttribute("data-category", GISCUS_CONFIG.category);
-          script.setAttribute("data-category-id", GISCUS_CONFIG.categoryId);
-          script.setAttribute("data-mapping", GISCUS_CONFIG.mapping);
-          script.setAttribute("data-reactions-enabled", GISCUS_CONFIG.reactionsEnabled);
-          script.setAttribute("data-emit-metadata", GISCUS_CONFIG.emitMetadata);
-          script.setAttribute("data-input-position", GISCUS_CONFIG.inputPosition);
-          script.setAttribute("data-theme", GISCUS_CONFIG.theme);
-          script.setAttribute("data-lang", GISCUS_CONFIG.lang);
-          script.crossOrigin = "anonymous";
-          script.async = true;
-          script.onload = function() {
-            if (loader) loader.style.display = "none";
-            container.dataset.giscusLoaded = "true";
-          };
-          document.head.appendChild(script);
-        }
-      }
-
-      // Load Giscus when the page is ready
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", loadGiscus);
-      } else {
-        loadGiscus();
-      }
+    <script src="https://giscus.app/client.js"
+            data-repo="rokurooooo01/rokurooooo01.github.io"
+            data-repo-id="R_kgDOUFjsNw"
+            data-category="Guestbook"
+            data-category-id="DIC_kwDOUFjsN84DFAe9"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="top"
+            data-theme="preferred_color_scheme"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
     </script>
     <script defer src="js/analytics.js"></script>
   </body>
