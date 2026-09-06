@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("retroTheme") || "win95");
+        if (sessionStorage.getItem("bootSeen") === "true") {
+          document.documentElement.classList.add("skip-boot");
+        }
+      })();
+    </script>
+    <title>Guestbook | rokurooooo</title>
+    <meta name="description" content="Leave a note on my guestbook. Say hi, drop a link, or just tell me what you're working on." />
+    <meta property="og:title" content="Guestbook | rokuro's website" />
+    <meta property="og:description" content="Leave a note on my guestbook. Say hi, drop a link, or just tell me what you're working on." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rokurooooo01.github.io/guestbook.html" />
+    <link rel="canonical" href="https://rokurooooo01.github.io/guestbook.html" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://rokurooooo01.github.io/feed.xml" />
+    <meta property="og:site_name" content="rokurooooo" />
+    <meta property="og:image" content="https://rokurooooo01.github.io/images/og-cover.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Guestbook | rokuro's website" />
+    <meta name="twitter:description" content="Leave a note on my guestbook. Say hi, drop a link, or just tell me what you're working on." />
+    <meta name="twitter:image" content="https://rokurooooo01.github.io/images/og-cover.png" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body onload="initLoadingScreen()">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="sticker sticker-tl"><img src="images/sticker5.webp" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-bl"><img src="images/sticker9.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-br"><img src="images/sticker4.webp" alt="" aria-hidden="true" class="button-88x31"></div>
+
+    <div id="loading-screen">
+      <div class="loading-box">
+        <p>System Booting...</p>
+        <div class="loading-bar-container">
+          <div id="loading-bar-fill" class="loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="Site pages">
+      <a class="button" href="index.html">Home</a>
+      <a class="button" href="about.html">About</a>
+      <a class="button" href="mathematics.html">Math</a>
+      <a class="button" href="favorites.html">Favorites</a>
+      <a class="button" href="mood-gallery.html">Gallery</a>
+      <a class="button" href="garage.html">Garage</a>
+      <a class="button" href="friends.html">Friends</a>
+      <a class="button" href="guestbook.html">Guestbook</a>
+      <a class="button" href="today.html">Today</a>
+      <a class="button" href="twitter.html">Twitter</a>
+    </nav>
+    <main class="container page-shell" id="main-content">
+      <header class="site-header">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+            <p class="eyebrow">sign my guestbook</p>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <img src="images/profile.svg" alt="Profile picture" class="profile-pic">
+              <h1>Guestbook</h1>
+            </div>
+          </div>
+          <div id="site-clock" aria-live="polite"></div>
+        </div>
+      </header>
+
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">Guestbook</div>
+          <div class="window-titlebar-controls">
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
+          </div>
+        </div>
+        <section class="content hero-card" aria-labelledby="guestbook-intro-heading" style="border: none; box-shadow: none; margin: 0;">
+          <p class="eyebrow">leave a note</p>
+          <h2 id="guestbook-intro-heading">Say hi, drop a link, or just tell me what you're working on.</h2>
+          <p>
+            This guestbook is powered by GitHub Discussions — so you'll need a GitHub account
+            to sign. Your comment becomes a discussion thread on my repo, and I'll get a
+            notification. No spam, no anonymous trolls.
+        </section>
+      </div>
+
+      <!-- Giscus comment widget -->
+      <section class="content card giscus-card" aria-label="Guestbook comments">
+        <div id="giscus-loader" class="giscus-loader">
+          <span class="skeleton" style="width: 60%; height: 1.2rem; margin-bottom: 0.5rem;"></span>
+          <span class="skeleton" style="width: 40%; height: 1rem; margin-bottom: 0.5rem;"></span>
+          <span class="skeleton" style="width: 80%; height: 1rem;"></span>
+        </div>
+        <div id="giscus-container"></div>
+      </section>
+    </main>
+
+    <script>
+      // Giscus configuration
+      // TODO: Replace CATEGORY_ID with your Guestbook category ID from https://giscus.app
+      const GISCUS_CONFIG = {
+        repo: "rokurooooo01/rokurooooo01.github.io",
+        repoId: "MDEwOlJlcG9zaXRvcnkxMzQ4MDA0OTE5", // your repo ID
+        category: "Guestbook",
+        categoryId: "DOC_ITHEQKxCATEGORY_ID", // <-- paste your category ID here
+        mapping: "pathname",
+        reactionsEnabled: "1",
+        emitMetadata: "0",
+        inputPosition: "top",
+        theme: "preferred_color_scheme",
+        lang: "en"
+      };
+
+      function loadGiscus() {
+        const container = document.getElementById("giscus-container");
+        const loader = document.getElementById("giscus-loader");
+        if (!container || !container.dataset.giscusLoaded) {
+          const script = document.createElement("script");
+          script.src = "https://giscus.app/client.js";
+          script.setAttribute("data-repo", GISCUS_CONFIG.repo);
+          script.setAttribute("data-repo-id", GISCUS_CONFIG.repoId);
+          script.setAttribute("data-category", GISCUS_CONFIG.category);
+          script.setAttribute("data-category-id", GISCUS_CONFIG.categoryId);
+          script.setAttribute("data-mapping", GISCUS_CONFIG.mapping);
+          script.setAttribute("data-reactions-enabled", GISCUS_CONFIG.reactionsEnabled);
+          script.setAttribute("data-emit-metadata", GISCUS_CONFIG.emitMetadata);
+          script.setAttribute("data-input-position", GISCUS_CONFIG.inputPosition);
+          script.setAttribute("data-theme", GISCUS_CONFIG.theme);
+          script.setAttribute("data-lang", GISCUS_CONFIG.lang);
+          script.crossOrigin = "anonymous";
+          script.async = true;
+          script.onload = function() {
+            if (loader) loader.style.display = "none";
+            container.dataset.giscusLoaded = "true";
+          };
+          document.head.appendChild(script);
+        }
+      }
+
+      // Load Giscus when the page is ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadGiscus);
+      } else {
+        loadGiscus();
+      }
+    </script>
+    <script defer src="js/analytics.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </body>
+</html>

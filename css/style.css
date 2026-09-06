@@ -1740,6 +1740,25 @@ body {
   margin: 0;
 }
 
+.giscus-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.giscus-loader {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#giscus-container {
+  padding: 1rem;
+}
+
+#giscus-container:empty {
+  display: none;
+}
+
 .webring-nav {
   display: flex;
   gap: 0.5rem;
