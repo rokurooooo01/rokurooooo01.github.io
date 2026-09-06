@@ -1523,6 +1523,61 @@ body {
   flex: 1;
 }
 
+/* Skeleton loaders — shown while live data (Last.fm, Lanyard, Spotify) loads */
+.skeleton {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  background: var(--muted);
+  opacity: 0.55;
+  border-radius: 0;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: skeleton-sweep 1.3s ease-in-out infinite;
+}
+
+@keyframes skeleton-sweep {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-status {
+  width: min(280px, 75%);
+  height: 1.05em;
+}
+
+.skeleton-num {
+  width: 2.6rem;
+  height: 0.95em;
+}
+
+.skeleton-since {
+  width: 8.5rem;
+  height: 0.7em;
+}
+
+.skeleton-activity {
+  width: 12rem;
+  height: 0.8em;
+}
+
+/* On the green Spotify panel, use a light skeleton instead of the dark one */
+.spotify-widget .skeleton {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.spotify-widget .skeleton::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+}
+
 .discord-card {
   padding: 0;
   overflow: hidden;

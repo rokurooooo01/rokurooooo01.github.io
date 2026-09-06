@@ -359,6 +359,11 @@ function initSpotifyProgress() {
   setInterval(updateBar, 5000);
 }
 
+function clearSkeletons(root) {
+  if (!root) return;
+  root.querySelectorAll(".skeleton").forEach(el => el.remove());
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Only math pages load KaTeX; render silently when present.
   if (window.katex && typeof renderMathInElement === "function") {
@@ -406,6 +411,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3000);
 
+    const statusText = spotifyStatusEl.querySelector(".status-text");
+
     try {
       const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`, { 
         signal: controller.signal 
@@ -414,9 +421,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const json = await response.json();
       
       const user = json.data;
-      if (!user) return;
+      if (!user) {
+        if (statusText) statusText.textContent = "no presence data";
+        clearSkeletons(spotifyStatusEl);
+        return;
+      }
 
-      const statusText = spotifyStatusEl.querySelector(".status-text");
       const albumArtEl = document.getElementById("spotify-album-art");
       let track = null;
       let artist = null;
@@ -467,8 +477,11 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         statusText.textContent = "Nothing right now";
       }
+      clearSkeletons(spotifyStatusEl);
     } catch (error) {
       console.error("Error fetching Lanyard status:", error);
+      if (statusText) statusText.textContent = "couldn't reach now playing";
+      clearSkeletons(spotifyStatusEl);
     }
   }
 
@@ -584,6 +597,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (err) {
       console.error("Last.fm stats error:", err);
       if (sinceEl) sinceEl.textContent = "couldn't load stats";
+    } finally {
+      clearSkeletons(document.querySelector(".lastfm-body"));
     }
   }
 
