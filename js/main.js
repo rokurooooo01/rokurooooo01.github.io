@@ -708,6 +708,48 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/* Visitor counter — uses countapi.xyz (free, no auth) for a global count,
+   with a localStorage fallback so the counter always shows something. */
+(function initVisitorCounter() {
+  const counterEl = document.getElementById("visitor-counter");
+  if (!counterEl) return;
+
+  const digits = counterEl.querySelectorAll(".counter-digit");
+  const KEY = "rokuro-visitor-count";
+  const NS = "rokurooooo01-github-io";
+  const HIT_URL = `https://api.countapi.xyz/hit/${NS}/visitors`;
+
+  function pad(n, len) {
+    return String(n).padStart(len, "0");
+  }
+
+  function render(count) {
+    const str = pad(count, digits.length);
+    digits.forEach((d, i) => { d.textContent = str[i] || "0"; });
+  }
+
+  // Show cached value immediately so the counter never sits at 00000000.
+  const cached = localStorage.getItem(KEY);
+  if (cached) render(Number(cached));
+
+  // Increment the global counter and update the display.
+  rokuroFetchJSON(HIT_URL, null, 0, 0)
+    .then((data) => {
+      const count = data?.value ?? null;
+      if (count != null) {
+        localStorage.setItem(KEY, String(count));
+        render(count);
+      }
+    })
+    .catch(() => {
+      // Offline / API down: fall back to a localStorage visit counter
+      // so the counter still ticks up on this device.
+      const local = Number(localStorage.getItem(KEY) || "0") + 1;
+      localStorage.setItem(KEY, String(local));
+      render(local);
+    });
+})();
+
 
 function initLoadingScreen() {
   // Boot animation already shown this session — do nothing.

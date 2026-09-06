@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("retroTheme") || "win95");
+        if (sessionStorage.getItem("bootSeen") === "true") {
+          document.documentElement.classList.add("skip-boot");
+        }
+      })();
+    </script>
+    <title>Friends | rokurooooo</title>
+    <meta name="description" content="A curated list of personal sites, portfolios, and corners of the internet worth visiting." />
+    <meta property="og:title" content="Friends | rokuro's website" />
+    <meta property="og:description" content="A curated list of personal sites, portfolios, and corners of the internet worth visiting." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rokurooooo01.github.io/friends.html" />
+    <link rel="canonical" href="https://rokurooooo01.github.io/friends.html" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://rokurooooo01.github.io/feed.xml" />
+    <meta property="og:site_name" content="rokurooooo" />
+    <meta property="og:image" content="https://rokurooooo01.github.io/images/og-cover.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Friends | rokuro's website" />
+    <meta name="twitter:description" content="A curated list of personal sites, portfolios, and corners of the internet worth visiting." />
+    <meta name="twitter:image" content="https://rokurooooo01.github.io/images/og-cover.png" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/main.js"></script>
+  </head>
+  <body onload="initLoadingScreen()">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="sticker sticker-tl"><img src="images/sticker5.webp" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-tr"><img src="images/sticker2.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-bl"><img src="images/sticker9.gif" alt="" aria-hidden="true" class="button-88x31"></div>
+    <div class="sticker sticker-br"><img src="images/sticker4.webp" alt="" aria-hidden="true" class="button-88x31"></div>
+
+    <div id="loading-screen">
+      <div class="loading-box">
+        <p>System Booting...</p>
+        <div class="loading-bar-container">
+          <div id="loading-bar-fill" class="loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+    <nav class="page-nav" aria-label="Site pages">
+      <a class="button" href="index.html">Home</a>
+      <a class="button" href="about.html">About</a>
+      <a class="button" href="mathematics.html">Math</a>
+      <a class="button" href="favorites.html">Favorites</a>
+      <a class="button" href="mood-gallery.html">Gallery</a>
+      <a class="button" href="garage.html">Garage</a>
+      <a class="button" href="friends.html">Friends</a>
+      <a class="button" href="today.html">Today</a>
+      <a class="button" href="twitter.html">Twitter</a>
+    </nav>
+    <main class="container page-shell" id="main-content">
+      <header class="site-header">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+            <p class="eyebrow">small collection</p>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <img src="images/profile.svg" alt="Profile picture" class="profile-pic">
+              <h1>Friends</h1>
+            </div>
+          </div>
+          <div id="site-clock" aria-live="polite"></div>
+        </div>
+      </header>
+
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">Friends</div>
+          <div class="window-titlebar-controls">
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
+          </div>
+        </div>
+        <section class="content hero-card" aria-labelledby="friends-intro-heading" style="border: none; box-shadow: none; margin: 0;">
+          <p class="eyebrow">corner of the internet</p>
+          <h2 id="friends-intro-heading">Personal sites worth visiting.</h2>
+          <p>
+            These are the corners of the internet I keep coming back to — personal sites,
+            portfolios, and little worlds people built themselves. If you have a site and
+            want to be on this page, just say so.
+          </p>
+        </section>
+      </div>
+
+      <section class="content card" aria-labelledby="friends-heading">
+        <h2 id="friends-heading">people i think you should visit</h2>
+        <div class="reference-grid">
+          <a href="https://www.mxrza.xyz" target="_blank" rel="noopener noreferrer" class="reference-item reference-link">
+            <h3>mxrza</h3>
+            <p>the inspiration for half the things on this site. retro desktop vibes, Lain energy, and a changelog that actually ships.</p>
+            <span class="reference-url">mxrza.xyz →</span>
+          </a>
+          <a href="https://xkcd.com" target="_blank" rel="noopener noreferrer" class="reference-item reference-link">
+            <h3>xkcd</h3>
+            <p>romance, sarcasm, math, and language. the webcomic that makes you feel smart and confused at the same time.</p>
+            <span class="reference-url">xkcd.com →</span>
+          </a>
+          <a href="https://waitbutwhy.com" target="_blank" rel="noopener noreferrer" class="reference-item reference-link">
+            <h3>Wait But Why</h3>
+            <p>long-form posts that actually earn their length. tim urban breaks down everything from AI to procrastination with stick figures.</p>
+            <span class="reference-url">waitbutwhy.com →</span>
+          </a>
+          <a href="https://cieor.jp" target="_blank" rel="noopener noreferrer" class="reference-item reference-link">
+            <h3>cieor</h3>
+            <p>beautiful japanese personal site with a focus on design and the indie web.</p>
+            <span class="reference-url">cieor.jp →</span>
+          </a>
+          <a href="https://neocities.org" target="_blank" rel="noopener noreferrer" class="reference-item reference-link">
+            <h3>Neocities</h3>
+            <p>the modern geocities. host your own static site and join the indie web movement.</p>
+            <span class="reference-url">neocities.org →</span>
+          </a>
+          <a href="https://cloudflare.com" target="_blank" rel="noopener noreferrer" class="reference-item reference-link">
+            <h3>Cloudflare</h3>
+            <p>free CDN, DNS, and workers. the backbone of half the indie web including this site.</p>
+            <span class="reference-url">cloudflare.com →</span>
+          </a>
+        </div>
+      </section>
+
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">webring.html</div>
+          <div class="window-titlebar-controls">
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
+          </div>
+        </div>
+        <section class="content" style="border: none; box-shadow: none; margin: 0;">
+          <p>
+            This site is part of the <strong>Y2K Web Ring</strong> — a collection of personal
+            sites from the indie web. Click through to explore the neighborhood.
+          </p>
+          <div class="webring-nav">
+            <a href="https://www.mxrza.xyz" target="_blank" rel="noopener noreferrer" class="button">← previous</a>
+            <a href="https://y2k.neocities.org" target="_blank" rel="noopener noreferrer" class="button">ring index</a>
+            <a href="https://www.mxrza.xyz" target="_blank" rel="noopener noreferrer" class="button">next →</a>
+          </div>
+        </section>
+      </div>
+
+      <section class="content card" aria-labelledby="add-heading">
+        <h2 id="add-heading">want to be listed?</h2>
+        <p>
+          If you have a personal site and want to trade links, reach out on
+          <a href="https://x.com/rokurooooo07" target="_blank" rel="noopener noreferrer">X</a>
+          or drop a message wherever you can find me. Always happy to meet more people building
+          their own corners of the internet.
+        </p>
+      </section>
+    </main>
+    <script defer src="js/analytics.js"></script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </body>
+</html>
