@@ -10,8 +10,8 @@
 (function () {
   "use strict";
 
-  var UMAMI_SCRIPT_URL = ""; // e.g. "https://umami-sigma-jet.vercel.app/script.js"
-  var UMAMI_SITE_ID = "";    // e.g. "0d90bc84-b021-43d1-8f19-c976e12021b2"
+  var UMAMI_SCRIPT_URL = "https://cloud.umami.is/script.js";
+  var UMAMI_SITE_ID = "d0b49634-0613-44be-8a0e-350f4a9b2832";
 
   if (!UMAMI_SCRIPT_URL || !UMAMI_SITE_ID) return;
 
