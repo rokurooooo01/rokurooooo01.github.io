@@ -843,3 +843,41 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("load", () => {
   initMarquee(document.getElementById("sticker-track"), 0.6, window.innerWidth * 3);
 });
+
+// Changelog deep links — copy link to a specific update
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".til-copy");
+  if (!btn) return;
+  const target = btn.dataset.target;
+  if (!target) return;
+  const url = `${window.location.origin}${window.location.pathname}#${target}`;
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = "copied!";
+    btn.classList.add("copied");
+    setTimeout(() => {
+      btn.textContent = "link";
+      btn.classList.remove("copied");
+    }, 1500);
+  }).catch(() => {
+    btn.textContent = "failed";
+    setTimeout(() => {
+      btn.textContent = "link";
+    }, 1500);
+  });
+});
+
+// Scroll to changelog entry on page load if URL has a hash
+window.addEventListener("load", () => {
+  const hash = window.location.hash.slice(1);
+  if (!hash) return;
+  const el = document.getElementById(hash);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.style.transition = "background 0.3s ease";
+    const oldBg = el.style.backgroundColor;
+    el.style.backgroundColor = "rgba(0, 128, 128, 0.15)";
+    setTimeout(() => {
+      el.style.backgroundColor = oldBg;
+    }, 2000);
+  }
+});
