@@ -50,7 +50,6 @@
       <a class="button" href="mathematics.html">Math</a>
       <a class="button" href="favorites.html">Favorites</a>
       <a class="button" href="mood-gallery.html">Gallery</a>
-      <a class="button" href="library.html">Library</a>
       <a class="button" href="garage.html">Garage</a>
       <a class="button" href="friends.html">Friends</a>
       <a class="button" href="guestbook.html">Guestbook</a>
@@ -87,25 +86,81 @@
         </section>
       </div>
 
-      <section class="content grid two-col" aria-label="Mathematics topic links">
-        <article class="card">
-          <h2>Core topics</h2>
-          <ul class="link-list">
-            <li><a href="arithmetic.html">Arithmetic</a></li>
-            <li><a href="number-system.html">Number System</a></li>
-            <li><a href="limits-and-continuity.html">Limits and Continuity</a></li>
-            <li><a href="differential-equations.html">Differential Equations</a></li>
-          </ul>
-        </article>
+      <section class="content" aria-labelledby="library-heading">
+        <h2 id="library-heading" class="visually-hidden">Library collection</h2>
+        <div class="library-grid">
+          <a href="arithmetic.html" class="library-card">
+            <div class="library-cover library-cover--arithmetic">
+              <span class="library-cover__symbol">+, −, ×, ÷</span>
+              <span class="library-cover__badge">complete</span>
+            </div>
+            <div class="library-card__body">
+              <h3>Arithmetic</h3>
+              <p>The language of calculation — operations, properties, and the rules that make them consistent.</p>
+              <span class="library-card__link">open →</span>
+            </div>
+          </a>
 
-        <article class="card">
-          <h2>Study direction</h2>
-          <ul class="link-list">
-            <li>Build intuition before formulas</li>
-            <li>Connect concepts across topics</li>
-            <li>Turn notes into understanding, not just summaries</li>
-          </ul>
-        </article>
+          <a href="number-system.html" class="library-card">
+            <div class="library-cover library-cover--number">
+              <span class="library-cover__symbol">ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ</span>
+              <span class="library-cover__badge">complete</span>
+            </div>
+            <div class="library-card__body">
+              <h3>Number System</h3>
+              <p>From natural numbers to reals — how each set builds on the last and why it matters.</p>
+              <span class="library-card__link">open →</span>
+            </div>
+          </a>
+
+          <a href="limits-and-continuity.html" class="library-card">
+            <div class="library-cover library-cover--limits">
+              <span class="library-cover__symbol">lim x→a</span>
+              <span class="library-cover__badge">complete</span>
+            </div>
+            <div class="library-card__body">
+              <h3>Limits and Continuity</h3>
+              <p>The bridge between algebra and calculus — what it means for a function to behave nicely.</p>
+              <span class="library-card__link">open →</span>
+            </div>
+          </a>
+
+          <a href="differential-equations.html" class="library-card">
+            <div class="library-cover library-cover--diff">
+              <span class="library-cover__symbol">dy/dx</span>
+              <span class="library-cover__badge">complete</span>
+            </div>
+            <div class="library-card__body">
+              <h3>Differential Equations</h3>
+              <p>Equations that describe change — the language of physics, growth, and motion.</p>
+              <span class="library-card__link">open →</span>
+            </div>
+          </a>
+
+          <a href="why-mathematics.html" class="library-card">
+            <div class="library-cover library-cover--why">
+              <span class="library-cover__symbol">?</span>
+              <span class="library-cover__badge">essay</span>
+            </div>
+            <div class="library-card__body">
+              <h3>Why Mathematics</h3>
+              <p>A personal reflection on why mathematics is worth studying in the first place.</p>
+              <span class="library-card__link">open →</span>
+            </div>
+          </a>
+
+          <a href="topics.html" class="library-card">
+            <div class="library-cover library-cover--hub">
+              <span class="library-cover__symbol">∑ ∞</span>
+              <span class="library-cover__badge">topics</span>
+            </div>
+            <div class="library-card__body">
+              <h3>Topics I Like</h3>
+              <p>The areas that keep pulling me back in — algebra, geometry, problem-solving, and more.</p>
+              <span class="library-card__link">open →</span>
+            </div>
+          </a>
+        </div>
       </section>
     </main>
     <script defer src="js/analytics.js"></script>
