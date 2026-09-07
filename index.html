@@ -223,11 +223,15 @@
             </div>
           </div>
           <div class="visitormap-body">
-            <div class="visitormap-embed">
-              <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=SPCucsdbipOhYt8LaBcRGYSivEtnT7wyLF9ECUuJOBw&cl=ffffff"></script>
+            <div class="visitormap-embed" id="visitormap-embed">
+              <div class="visitormap-loading">
+                <span class="visitormap-loading__spinner"></span>
+                <span>loading map…</span>
+              </div>
+              <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?d=SPCucsdbipOhYt8LaBcRGYSivEtnT7wyLF9ECUuJOBw&cl=ffffff" onerror="document.getElementById('visitormap-embed').classList.add('visitormap-failed')"></script>
               <noscript>
                 <a href="https://mapmyvisitors.com/web/SPCucsdbipOhYt8LaBcRGYSivEtnT7wyLF9ECUuJOBw" title="Visitor Map">
-                  <img src="https://mapmyvisitors.com/map.png?d=SPCucsdbipOhYt8LaBcRGYSivEtnT7wyLF9ECUuJOBw&cl=ffffff" alt="Visitor Map" / loading="lazy">
+                  <img src="https://mapmyvisitors.com/map.png?d=SPCucsdbipOhYt8LaBcRGYSivEtnT7wyLF9ECUuJOBw&cl=ffffff" alt="Visitor Map" loading="lazy">
                 </a>
               </noscript>
             </div>
