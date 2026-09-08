@@ -224,79 +224,34 @@
                   <span class="visitormap-loading__spinner"></span>
                   <span>loading map…</span>
                 </div>
-                <script>
-                  (function() {
-                    var embed = document.getElementById('visitormap-embed');
-                    var mapRendered = false;
-
-                    // Move iframe into a constrained container
-                    function constrainMap() {
-                      var iframe = embed.querySelector('iframe');
-                      if (iframe) {
-                        // Force dimensions with !important
-                        iframe.style.cssText = 'height: 220px !important; max-height: 220px !important; width: 100% !important; border: none !important;';
-                        iframe.removeAttribute('height');
-                        iframe.removeAttribute('style');
-                        iframe.style.cssText = 'height: 220px !important; max-height: 220px !important; width: 100% !important; border: none !important;';
-                      }
-                    }
-
-                    // Check if map has rendered (iframe or img added by the external script)
-                    function checkMapRendered() {
-                      if (mapRendered) return;
-                      var iframe = embed.querySelector('iframe');
-                      var img = embed.querySelector('img:not(.visitormap-loading__spinner)');
-                      if (iframe || img) {
-                        mapRendered = true;
-                        embed.classList.add('visitormap-loaded');
-                        constrainMap();
-                        // Keep constraining in case the script resets it
-                        setInterval(constrainMap, 500);
-                      }
-                    }
-
-                    // Timeout: if map doesn't load within 8 seconds, show error
-                    var timeoutId = setTimeout(function() {
-                      if (!mapRendered) {
-                        embed.classList.add('visitormap-failed');
-                      }
-                    }, 8000);
-
-                    // Poll for map rendering (check every 500ms for first 10 seconds)
-                    var pollCount = 0;
-                    var pollId = setInterval(function() {
-                      pollCount++;
-                      checkMapRendered();
-                      if (mapRendered || pollCount > 20) {
-                        clearInterval(pollId);
-                        clearTimeout(timeoutId);
-                      }
-                    }, 500);
-
-                    // Handle script load success
-                    var script = document.createElement('script');
-                    script.id = 'mapmyvisitors';
-                    script.src = '//mapmyvisitors.com/map.js?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a';
-                    script.onload = function() {
-                      // Give the script a moment to render
-                      setTimeout(checkMapRendered, 1000);
-                    };
-                    script.onerror = function() {
-                      clearTimeout(timeoutId);
-                      clearInterval(pollId);
-                      embed.classList.add('visitormap-failed');
-                    };
-                    document.head.appendChild(script);
-                  })();
-                </script>
+                <iframe
+                  id="mapmyvisitors-iframe"
+                  src="https://mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0"
+                  width="100%"
+                  height="220"
+                  frameborder="0"
+                  scrolling="no"
+                  style="border: none; width: 100%; height: 220px; max-height: 220px;"
+                  title="Visitor Map"
+                  onload="document.getElementById('visitormap-embed').classList.add('visitormap-loaded')">
+                </iframe>
                 <noscript>
-                  <a href="//mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0" title="Visitor Map">
-                    <img src="//mapmyvisitors.com/map.png?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a" alt="Visitor Map" loading="lazy">
+                  <a href="https://mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0" title="Visitor Map">
+                    <img src="https://mapmyvisitors.com/map.png?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a" alt="Visitor Map" loading="lazy">
                   </a>
                 </noscript>
               </div>
             </div>
             <p class="visitormap-note">where are you from? 🗺️</p>
+            <script>
+              // Fallback: hide loading spinner after 8 seconds even if iframe doesn't fire onload
+              setTimeout(function() {
+                var embed = document.getElementById('visitormap-embed');
+                if (!embed.classList.contains('visitormap-loaded')) {
+                  embed.classList.add('visitormap-failed');
+                }
+              }, 8000);
+            </script>
           </div>
         </div>
       </section>
