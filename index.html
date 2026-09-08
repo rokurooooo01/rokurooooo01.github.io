@@ -223,7 +223,56 @@
                 <span class="visitormap-loading__spinner"></span>
                 <span>loading map…</span>
               </div>
-              <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a" onerror="document.getElementById('visitormap-embed').classList.add('visitormap-failed')"></script>
+              <script>
+                (function() {
+                  var embed = document.getElementById('visitormap-embed');
+                  var mapRendered = false;
+
+                  // Check if map has rendered (iframe or img added by the external script)
+                  function checkMapRendered() {
+                    if (mapRendered) return;
+                    var iframe = embed.querySelector('iframe');
+                    var img = embed.querySelector('img:not(.visitormap-loading__spinner)');
+                    if (iframe || img) {
+                      mapRendered = true;
+                      embed.classList.add('visitormap-loaded');
+                    }
+                  }
+
+                  // Timeout: if map doesn't load within 8 seconds, show error
+                  var timeoutId = setTimeout(function() {
+                    if (!mapRendered) {
+                      embed.classList.add('visitormap-failed');
+                    }
+                  }, 8000);
+
+                  // Poll for map rendering (check every 500ms for first 10 seconds)
+                  var pollCount = 0;
+                  var pollId = setInterval(function() {
+                    pollCount++;
+                    checkMapRendered();
+                    if (mapRendered || pollCount > 20) {
+                      clearInterval(pollId);
+                      clearTimeout(timeoutId);
+                    }
+                  }, 500);
+
+                  // Handle script load success
+                  var script = document.createElement('script');
+                  script.id = 'mapmyvisitors';
+                  script.src = '//mapmyvisitors.com/map.js?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a';
+                  script.onload = function() {
+                    // Give the script a moment to render
+                    setTimeout(checkMapRendered, 1000);
+                  };
+                  script.onerror = function() {
+                    clearTimeout(timeoutId);
+                    clearInterval(pollId);
+                    embed.classList.add('visitormap-failed');
+                  };
+                  document.head.appendChild(script);
+                })();
+              </script>
               <noscript>
                 <a href="//mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0" title="Visitor Map">
                   <img src="//mapmyvisitors.com/map.png?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a" alt="Visitor Map" loading="lazy">

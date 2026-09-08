@@ -1620,8 +1620,15 @@ body {
   width: 100%;
 }
 
-.visitormap-embed:not(.visitormap-failed) .visitormap-loading {
+/* Hide loading spinner when map is loaded or failed */
+.visitormap-embed.visitormap-loaded .visitormap-loading,
+.visitormap-embed.visitormap-failed .visitormap-loading {
   display: none;
+}
+
+/* Show loading spinner only when map is still loading */
+.visitormap-embed:not(.visitormap-loaded):not(.visitormap-failed) .visitormap-loading {
+  display: flex;
 }
 
 @media (prefers-reduced-motion: reduce) {
