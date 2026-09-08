@@ -1564,18 +1564,35 @@ body {
   gap: 0.4rem;
 }
 
+/* Visitor map container */
+.visitormap-wrapper {
+  width: 100%;
+  max-height: 220px;
+  height: 220px;
+  overflow: hidden !important;
+  position: relative;
+  border: 1px inset var(--border-dark);
+  background: var(--panel);
+  clip-path: inset(0);
+}
+
 .visitormap-embed {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 180px;
-  max-height: 220px;
-  height: 220px;
-  overflow: hidden;
-  background: var(--panel);
-  border: 1px inset var(--border-dark);
+  background: transparent;
+  border: none;
   position: relative;
+}
+
+/* Ensure iframe stays within wrapper */
+.visitormap-wrapper iframe {
+  position: relative !important;
+  max-height: 220px !important;
+  height: 220px !important;
+  overflow: hidden !important;
 }
 
 .visitormap-embed img,

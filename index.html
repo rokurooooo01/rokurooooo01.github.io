@@ -218,82 +218,83 @@
             </div>
           </div>
           <div class="visitormap-body">
-            <div class="visitormap-embed" id="visitormap-embed">
-              <div class="visitormap-loading">
-                <span class="visitormap-loading__spinner"></span>
-                <span>loading map…</span>
-              </div>
-              <script>
-                (function() {
-                  var embed = document.getElementById('visitormap-embed');
-                  var mapRendered = false;
+            <div class="visitormap-wrapper">
+              <div class="visitormap-embed" id="visitormap-embed">
+                <div class="visitormap-loading">
+                  <span class="visitormap-loading__spinner"></span>
+                  <span>loading map…</span>
+                </div>
+                <script>
+                  (function() {
+                    var embed = document.getElementById('visitormap-embed');
+                    var mapRendered = false;
 
-                  // Force iframe to fit within our container
-                  function constrainMap() {
-                    var iframe = embed.querySelector('iframe');
-                    if (iframe) {
-                      iframe.style.setProperty('height', '220px', 'important');
-                      iframe.style.setProperty('max-height', '220px', 'important');
-                      iframe.style.setProperty('width', '100%', 'important');
-                      iframe.style.setProperty('border', 'none', 'important');
-                      // Also override the height attribute if present
-                      iframe.removeAttribute('height');
+                    // Move iframe into a constrained container
+                    function constrainMap() {
+                      var iframe = embed.querySelector('iframe');
+                      if (iframe) {
+                        // Force dimensions with !important
+                        iframe.style.cssText = 'height: 220px !important; max-height: 220px !important; width: 100% !important; border: none !important;';
+                        iframe.removeAttribute('height');
+                        iframe.removeAttribute('style');
+                        iframe.style.cssText = 'height: 220px !important; max-height: 220px !important; width: 100% !important; border: none !important;';
+                      }
                     }
-                  }
 
-                  // Check if map has rendered (iframe or img added by the external script)
-                  function checkMapRendered() {
-                    if (mapRendered) return;
-                    var iframe = embed.querySelector('iframe');
-                    var img = embed.querySelector('img:not(.visitormap-loading__spinner)');
-                    if (iframe || img) {
-                      mapRendered = true;
-                      embed.classList.add('visitormap-loaded');
-                      constrainMap();
-                      // Keep constraining in case the script resets it
-                      setInterval(constrainMap, 1000);
+                    // Check if map has rendered (iframe or img added by the external script)
+                    function checkMapRendered() {
+                      if (mapRendered) return;
+                      var iframe = embed.querySelector('iframe');
+                      var img = embed.querySelector('img:not(.visitormap-loading__spinner)');
+                      if (iframe || img) {
+                        mapRendered = true;
+                        embed.classList.add('visitormap-loaded');
+                        constrainMap();
+                        // Keep constraining in case the script resets it
+                        setInterval(constrainMap, 500);
+                      }
                     }
-                  }
 
-                  // Timeout: if map doesn't load within 8 seconds, show error
-                  var timeoutId = setTimeout(function() {
-                    if (!mapRendered) {
-                      embed.classList.add('visitormap-failed');
-                    }
-                  }, 8000);
+                    // Timeout: if map doesn't load within 8 seconds, show error
+                    var timeoutId = setTimeout(function() {
+                      if (!mapRendered) {
+                        embed.classList.add('visitormap-failed');
+                      }
+                    }, 8000);
 
-                  // Poll for map rendering (check every 500ms for first 10 seconds)
-                  var pollCount = 0;
-                  var pollId = setInterval(function() {
-                    pollCount++;
-                    checkMapRendered();
-                    if (mapRendered || pollCount > 20) {
-                      clearInterval(pollId);
+                    // Poll for map rendering (check every 500ms for first 10 seconds)
+                    var pollCount = 0;
+                    var pollId = setInterval(function() {
+                      pollCount++;
+                      checkMapRendered();
+                      if (mapRendered || pollCount > 20) {
+                        clearInterval(pollId);
+                        clearTimeout(timeoutId);
+                      }
+                    }, 500);
+
+                    // Handle script load success
+                    var script = document.createElement('script');
+                    script.id = 'mapmyvisitors';
+                    script.src = '//mapmyvisitors.com/map.js?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a';
+                    script.onload = function() {
+                      // Give the script a moment to render
+                      setTimeout(checkMapRendered, 1000);
+                    };
+                    script.onerror = function() {
                       clearTimeout(timeoutId);
-                    }
-                  }, 500);
-
-                  // Handle script load success
-                  var script = document.createElement('script');
-                  script.id = 'mapmyvisitors';
-                  script.src = '//mapmyvisitors.com/map.js?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a';
-                  script.onload = function() {
-                    // Give the script a moment to render
-                    setTimeout(checkMapRendered, 1000);
-                  };
-                  script.onerror = function() {
-                    clearTimeout(timeoutId);
-                    clearInterval(pollId);
-                    embed.classList.add('visitormap-failed');
-                  };
-                  document.head.appendChild(script);
-                })();
-              </script>
-              <noscript>
-                <a href="//mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0" title="Visitor Map">
-                  <img src="//mapmyvisitors.com/map.png?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a" alt="Visitor Map" loading="lazy">
-                </a>
-              </noscript>
+                      clearInterval(pollId);
+                      embed.classList.add('visitormap-failed');
+                    };
+                    document.head.appendChild(script);
+                  })();
+                </script>
+                <noscript>
+                  <a href="//mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0" title="Visitor Map">
+                    <img src="//mapmyvisitors.com/map.png?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a" alt="Visitor Map" loading="lazy">
+                  </a>
+                </noscript>
+              </div>
             </div>
             <p class="visitormap-note">where are you from? 🗺️</p>
           </div>
