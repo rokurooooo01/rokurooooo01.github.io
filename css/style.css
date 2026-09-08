@@ -1579,6 +1579,8 @@ body {
   display: block;
   max-width: 100%;
   height: auto;
+  max-height: 250px;
+  object-fit: contain;
 }
 
 @keyframes visitormap-spin {
@@ -1618,6 +1620,12 @@ body {
 .visitormap-embed:not(.visitormap-failed) > a {
   display: block;
   width: 100%;
+  max-height: 250px;
+}
+
+.visitormap-embed iframe {
+  border: none;
+  max-height: 250px;
 }
 
 /* Hide loading spinner when map is loaded or failed */
