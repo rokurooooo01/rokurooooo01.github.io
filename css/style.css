@@ -1569,11 +1569,10 @@ body {
   width: 100%;
   max-height: 220px;
   height: 220px;
-  overflow: hidden !important;
+  overflow: hidden;
   position: relative;
   border: 1px inset var(--border-dark);
   background: var(--panel);
-  clip-path: inset(0);
 }
 
 .visitormap-embed {
@@ -1584,23 +1583,13 @@ body {
   min-height: 180px;
   background: transparent;
   border: none;
-  position: relative;
 }
 
-/* Ensure iframe stays within wrapper */
-.visitormap-wrapper iframe {
-  position: relative !important;
-  max-height: 220px !important;
-  height: 220px !important;
-  overflow: hidden !important;
-}
-
-.visitormap-embed img,
-.visitormap-embed > a img {
+.visitormap-embed img {
   display: block;
   max-width: 100%;
   height: auto;
-  max-height: 250px;
+  max-height: 220px;
   object-fit: contain;
 }
 
@@ -1635,20 +1624,6 @@ body {
   font-size: 0.7rem;
   color: var(--muted, #888);
   margin-top: 0.3rem;
-}
-
-.visitormap-embed:not(.visitormap-failed) iframe,
-.visitormap-embed:not(.visitormap-failed) > a {
-  display: block;
-  width: 100%;
-  max-height: 250px;
-}
-
-.visitormap-embed iframe {
-  border: none !important;
-  width: 100% !important;
-  height: 220px !important;
-  max-height: 220px !important;
 }
 
 /* Hide loading spinner when map is loaded or failed */

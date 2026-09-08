@@ -224,27 +224,19 @@
                   <span class="visitormap-loading__spinner"></span>
                   <span>loading map…</span>
                 </div>
-                <iframe
-                  id="mapmyvisitors-iframe"
-                  src="https://mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0"
-                  width="100%"
-                  height="220"
-                  frameborder="0"
-                  scrolling="no"
-                  style="border: none; width: 100%; height: 220px; max-height: 220px;"
-                  title="Visitor Map"
-                  onload="document.getElementById('visitormap-embed').classList.add('visitormap-loaded')">
-                </iframe>
-                <noscript>
-                  <a href="https://mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0" title="Visitor Map">
-                    <img src="https://mapmyvisitors.com/map.png?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a" alt="Visitor Map" loading="lazy">
-                  </a>
-                </noscript>
+                <a href="https://mapmyvisitors.com/web/IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0" title="Visitor Map" target="_blank" rel="noopener">
+                  <img
+                    src="https://mapmyvisitors.com/map.png?d=IOu4J8SKWG6Jn2QUWgZWebShz2JrLIXzENkbkSSL--0&cl=ffffff&w=a"
+                    alt="Visitor Map"
+                    style="display: block; width: 100%; height: auto; max-height: 220px; object-fit: contain;"
+                    onload="document.getElementById('visitormap-embed').classList.add('visitormap-loaded')"
+                    onerror="document.getElementById('visitormap-embed').classList.add('visitormap-failed')">
+                </a>
               </div>
             </div>
             <p class="visitormap-note">where are you from? 🗺️</p>
             <script>
-              // Fallback: hide loading spinner after 8 seconds even if iframe doesn't fire onload
+              // Fallback: show error after 8 seconds if image doesn't load
               setTimeout(function() {
                 var embed = document.getElementById('visitormap-embed');
                 if (!embed.classList.contains('visitormap-loaded')) {
