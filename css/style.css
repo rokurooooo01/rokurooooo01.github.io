@@ -1568,10 +1568,14 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 180px;
+  max-height: 220px;
+  height: 220px;
   overflow: hidden;
   background: var(--panel);
   border: 1px inset var(--border-dark);
+  position: relative;
 }
 
 .visitormap-embed img,
@@ -1624,8 +1628,10 @@ body {
 }
 
 .visitormap-embed iframe {
-  border: none;
-  max-height: 250px;
+  border: none !important;
+  width: 100% !important;
+  height: 220px !important;
+  max-height: 220px !important;
 }
 
 /* Hide loading spinner when map is loaded or failed */
