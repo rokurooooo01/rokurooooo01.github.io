@@ -228,6 +228,19 @@
                   var embed = document.getElementById('visitormap-embed');
                   var mapRendered = false;
 
+                  // Force iframe to fit within our container
+                  function constrainMap() {
+                    var iframe = embed.querySelector('iframe');
+                    if (iframe) {
+                      iframe.style.setProperty('height', '220px', 'important');
+                      iframe.style.setProperty('max-height', '220px', 'important');
+                      iframe.style.setProperty('width', '100%', 'important');
+                      iframe.style.setProperty('border', 'none', 'important');
+                      // Also override the height attribute if present
+                      iframe.removeAttribute('height');
+                    }
+                  }
+
                   // Check if map has rendered (iframe or img added by the external script)
                   function checkMapRendered() {
                     if (mapRendered) return;
@@ -236,6 +249,9 @@
                     if (iframe || img) {
                       mapRendered = true;
                       embed.classList.add('visitormap-loaded');
+                      constrainMap();
+                      // Keep constraining in case the script resets it
+                      setInterval(constrainMap, 1000);
                     }
                   }
 
