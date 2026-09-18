@@ -7,11 +7,25 @@
 <meta name="description" content="Print edition of Foundational Mathematics v0.1.0 - all chapters on one page. Save as PDF from your browser." />
 <link rel="canonical" href="https://rokurooooo01.github.io/foundational-mathematics-print.html" />
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/print.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="js/main.js"></script>
+<script defer src="js/print-book.js"></script>
 </head>
 <body class="print-book">
 <a class="skip-link" href="#main-content">Skip to content</a>
+<div class="print-progress no-print" aria-hidden="true"><span data-print-progress></span></div>
+<div class="print-toolbar no-print" role="navigation" aria-label="Print edition tools">
+<a class="button" href="foundational-mathematics.html">Book hub</a>
+<a class="button" href="assets/foundational-mathematics.pdf" download>PDF</a>
+<button type="button" class="button" data-print-now>Print / Save PDF</button>
+<a class="button" href="#contents" data-print-toc>Contents</a>
+<span class="print-toolbar__pos" data-print-pos></span>
+</div>
 <nav class="page-nav no-print" aria-label="Site pages">
 <a class="button" href="index.html">Home</a>
 <a class="button" href="mathematics.html">Math</a>
@@ -25,8 +39,9 @@
 <p class="meta">by rokurooooo - 2026-09-20 - CC BY-SA 4.0 - free to share and remix</p>
 <p class="no-print meta">Press Ctrl+P and choose Save as PDF for a clean offline copy.</p>
 </header>
-<nav class="book-toc" aria-label="Contents">
+<nav class="book-toc" id="contents" aria-label="Contents">
 <h2>Contents</h2>
+<h3>Chapter synopses</h3>
 <ol>
 <li><a href="#ch1">Chapter 1 - The Real Number System</a></li>
 <li><a href="#ch2">Chapter 2 - Functions</a></li>
@@ -47,6 +62,9 @@
 <li><a href="#ch17">Chapter 17 - Graph Theory</a></li>
 <li><a href="#ch18">Chapter 18 - Logic and Proof</a></li>
 <li><a href="#ch19">Chapter 19 (bonus) - Computing with R</a></li>
+</ol>
+<h3>Web previews (full text)</h3>
+<ol>
 <li><a href="#previews">Web previews (read now)</a></li>
 <li><a href="#arithmetic">Web preview - Arithmetic (Ch 1 material)</a></li>
 <li><a href="#number-system">Web preview - Number System (Ch 1 + Ch 10 material)</a></li>
@@ -55,25 +73,25 @@
 <li><a href="#afterword">Afterword - Why Mathematics?</a></li>
 </ol>
 </nav>
-<section class="book-chapter" id="ch1"><h2 class="chapter-title">Chapter 1 - The Real Number System</h2><p>Rational and irrational numbers, set and interval notation, indices, surds, and logarithms. Establishes the notation and algebraic vocabulary used throughout the book.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch2"><h2 class="chapter-title">Chapter 2 - Functions</h2><p>Domains and ranges, common families of functions, transformations, composite and piecewise functions, and inverse functions. Algebraic rules and their graphical representations.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch3"><h2 class="chapter-title">Chapter 3 - Polynomials</h2><p>Arithmetic operations, division, factorisation, the remainder and factor theorems, and partial fractions - needed again in integral calculus.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch4"><h2 class="chapter-title">Chapter 4 - Inequalities</h2><p>Inequalities involving quadratic, cubic, rational, and absolute-value expressions.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch5"><h2 class="chapter-title">Chapter 5 - Matrices</h2><p>Operations, determinants, inverses, and systems of simultaneous linear equations. Foundations of linear algebra for graphics and machine learning.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch6"><h2 class="chapter-title">Chapter 6 - Trigonometry</h2><p>Angle measurement, the basic functions, graphs, identities, equations, and inverse functions.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch7"><h2 class="chapter-title">Chapter 7 - Linear Law</h2><p>Transforming non-linear relationships into straight-line form: scatter plots, lines of best fit, gradients and intercepts in models.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch8"><h2 class="chapter-title">Chapter 8 - Circles and Conic Sections</h2><p>Parabolas, ellipses, hyperbolas, and their parametric equations.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch9"><h2 class="chapter-title">Chapter 9 - Probability and Statistics</h2><p>Permutations and combinations; the binomial, normal, Poisson, and exponential distributions.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch10"><h2 class="chapter-title">Chapter 10 - Complex Numbers</h2><p>Algebraic, polar, exponential, and geometric forms, with De Moivre's theorem and Euler's formula. Numbers as points with geometric structure.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch11"><h2 class="chapter-title">Chapter 11 - Hyperbolic Functions</h2><p>Identities, graphs, and inverse functions, compared with the circular functions of Chapter 6.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch12"><h2 class="chapter-title">Chapter 12 - Differential Calculus</h2><p>Limits and first principles, the standard rules of differentiation, rates of change and optimisation.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch13"><h2 class="chapter-title">Chapter 13 - Integral Calculus</h2><p>Integration as the inverse of differentiation: methods, definite integrals, accumulated quantities and areas.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch14"><h2 class="chapter-title">Chapter 14 - Differential Equations</h2><p>First-order equations and models of growth, decay, mixing, and continuous change.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch15"><h2 class="chapter-title">Chapter 15 - Sequences and Series</h2><p>Convergence, binomial and power series, Taylor and Maclaurin expansions.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch16"><h2 class="chapter-title">Chapter 16 - Vectors</h2><p>Two and three dimensions: operations, products, relative motion, vector-valued differentiation and integration.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch17"><h2 class="chapter-title">Chapter 17 - Graph Theory</h2><p>Vertices and edges, paths, cycles, trees, planar graphs, colouring, shortest paths, spanning trees. Discrete maths for CS and networks.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch18"><h2 class="chapter-title">Chapter 18 - Logic and Proof</h2><p>Propositions, truth tables, implications, quantifiers, valid arguments, fallacies, and elementary proof methods.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
-<section class="book-chapter" id="ch19"><h2 class="chapter-title">Chapter 19 (bonus) - Computing with R</h2><p>Vectors, data frames, importing and visualising data, probability distributions, one-sample tests, matrix calculations. Applies Chapters 5 and 9 computationally.</p><p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p></section>
+<section class="book-chapter" id="ch1"><h2 class="chapter-title">Chapter 1 - The Real Number System</h2><p>Rational and irrational numbers, set and interval notation, indices, surds, and logarithms. Establishes the notation and algebraic vocabulary used throughout the book.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch2"><h2 class="chapter-title">Chapter 2 - Functions</h2><p>Domains and ranges, common families of functions, transformations, composite and piecewise functions, and inverse functions. Algebraic rules and their graphical representations.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch3"><h2 class="chapter-title">Chapter 3 - Polynomials</h2><p>Arithmetic operations, division, factorisation, the remainder and factor theorems, and partial fractions - needed again in integral calculus.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch4"><h2 class="chapter-title">Chapter 4 - Inequalities</h2><p>Inequalities involving quadratic, cubic, rational, and absolute-value expressions.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch5"><h2 class="chapter-title">Chapter 5 - Matrices</h2><p>Operations, determinants, inverses, and systems of simultaneous linear equations. Foundations of linear algebra for graphics and machine learning.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch6"><h2 class="chapter-title">Chapter 6 - Trigonometry</h2><p>Angle measurement, the basic functions, graphs, identities, equations, and inverse functions.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch7"><h2 class="chapter-title">Chapter 7 - Linear Law</h2><p>Transforming non-linear relationships into straight-line form: scatter plots, lines of best fit, gradients and intercepts in models.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch8"><h2 class="chapter-title">Chapter 8 - Circles and Conic Sections</h2><p>Parabolas, ellipses, hyperbolas, and their parametric equations.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch9"><h2 class="chapter-title">Chapter 9 - Probability and Statistics</h2><p>Permutations and combinations; the binomial, normal, Poisson, and exponential distributions.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch10"><h2 class="chapter-title">Chapter 10 - Complex Numbers</h2><p>Algebraic, polar, exponential, and geometric forms, with De Moivre's theorem and Euler's formula. Numbers as points with geometric structure.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch11"><h2 class="chapter-title">Chapter 11 - Hyperbolic Functions</h2><p>Identities, graphs, and inverse functions, compared with the circular functions of Chapter 6.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch12"><h2 class="chapter-title">Chapter 12 - Differential Calculus</h2><p>Limits and first principles, the standard rules of differentiation, rates of change and optimisation.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch13"><h2 class="chapter-title">Chapter 13 - Integral Calculus</h2><p>Integration as the inverse of differentiation: methods, definite integrals, accumulated quantities and areas.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch14"><h2 class="chapter-title">Chapter 14 - Differential Equations</h2><p>First-order equations and models of growth, decay, mixing, and continuous change.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch15"><h2 class="chapter-title">Chapter 15 - Sequences and Series</h2><p>Convergence, binomial and power series, Taylor and Maclaurin expansions.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch16"><h2 class="chapter-title">Chapter 16 - Vectors</h2><p>Two and three dimensions: operations, products, relative motion, vector-valued differentiation and integration.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch17"><h2 class="chapter-title">Chapter 17 - Graph Theory</h2><p>Vertices and edges, paths, cycles, trees, planar graphs, colouring, shortest paths, spanning trees. Discrete maths for CS and networks.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch18"><h2 class="chapter-title">Chapter 18 - Logic and Proof</h2><p>Propositions, truth tables, implications, quantifiers, valid arguments, fallacies, and elementary proof methods.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
+<section class="book-chapter" id="ch19"><h2 class="chapter-title">Chapter 19 (bonus) - Computing with R</h2><p>Vectors, data frames, importing and visualising data, probability distributions, one-sample tests, matrix calculations. Applies Chapters 5 and 9 computationally.</p><p><em>Full text in the First Edition PDF (see Book hub).</em></p></section>
 <section class="book-chapter" id="previews"><h2 class="chapter-title">Web previews (read now)</h2><p>Four chapters are already readable on this site. The complete First Edition ships 20 Sept 2026.</p></section>
 <section class="book-chapter" id="arithmetic"><h2 class="chapter-title">Web preview - Arithmetic (Ch 1 material)</h2><article class="topic-page__article topic-page--arithmetic">
         <p class="eyebrow">fundamental ideas</p>
@@ -108,10 +126,10 @@
             A few familiar examples are:
           </p>
           <ul class="inline-list">
-            <li> 7 + 5 = 12 </li>
-            <li> 9 - 4 = 5 </li>
-            <li> 3 \times 6 = 18 </li>
-            <li> 20 \div 4 = 5 </li>
+            <li>\( 7 + 5 = 12 \)</li>
+            <li>\( 9 - 4 = 5 \)</li>
+            <li>\( 3 \times 6 = 18 \)</li>
+            <li>\( 20 \div 4 = 5 \)</li>
           </ul>
           <p>
             Notice that each statement gives us a different kind of relationship: combining,
@@ -129,7 +147,7 @@
           <ul>
             <li><strong>Prime Factorization:</strong> Every integer greater than 1 is either a prime 
             number or can be represented as a unique product of prime numbers. 
-            For example,  60 = 2^2 \times 3 \times 5 .</li>
+            For example, \( 60 = 2^2 \times 3 \times 5 \).</li>
             <li><strong>GCD and LCM:</strong> The Greatest Common Divisor (GCD) is the largest 
             positive integer that divides each of the integers. The Least Common Multiple (LCM) 
             is the smallest positive integer that is divisible by both.</li>
@@ -143,7 +161,7 @@
             upon reaching a certain value, called the <strong>modulus</strong>.
           </p>
           <p>
-            For example, in modulo 12 (like a clock),  10 + 5 \equiv 3 \pmod{12} . 
+            For example, in modulo 12 (like a clock), \( 10 + 5 \equiv 3 \pmod{12} \). 
             This system is the cornerstone of modern cryptography and computer science.
           </p>
         </section>
@@ -245,33 +263,33 @@
             Mathematics organizes numbers into sets, where each set typically expands upon 
             the previous one. This hierarchy is represented as:
             <br />
-             \mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C} 
+            \( \mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C} \)
           </p>
         </section>
 
         <section class="topic-page__section">
-          <h3>Natural Numbers  \mathbb{N} </h3>
+          <h3>Natural Numbers \( \mathbb{N} \)</h3>
           <p>
-            The natural numbers are the counting numbers:  \{1, 2, 3, 4, \dots\} . 
+            The natural numbers are the counting numbers: \( \{1, 2, 3, 4, \dots\} \). 
             They are the simplest numbers and are used for counting discrete objects.
           </p>
         </section>
 
         <section class="topic-page__section">
-          <h3>Integers  \mathbb{Z} </h3>
+          <h3>Integers \( \mathbb{Z} \)</h3>
           <p>
             Integers include positive natural numbers, their negatives, and zero: 
-             \{\dots, -2, -1, 0, 1, 2, \dots\} . They allow for the representation of 
+            \( \{\dots, -2, -1, 0, 1, 2, \dots\} \). They allow for the representation of 
             direction and magnitude (e.g., debt or temperature).
           </p>
         </section>
 
         <section class="topic-page__section">
-          <h3>Rational Numbers  \mathbb{Q} </h3>
+          <h3>Rational Numbers \( \mathbb{Q} \)</h3>
           <p>
-            Rational numbers can be expressed as a fraction  \frac{p}{q}  where  p, q \in \mathbb{Z}  
-            and  q \neq 0 . Examples include  \frac{1}{2} ,  -\frac{5}{7} , and  0.75  
-            (which is  \frac{3}{4} ).
+            Rational numbers can be expressed as a fraction \( \frac{p}{q} \) where \( p, q \in \mathbb{Z} \) 
+            and \( q \neq 0 \). Examples include \( \frac{1}{2} \), \( -\frac{5}{7} \), and \( 0.75 \) 
+            (which is \( \frac{3}{4} \)).
           </p>
         </section>
 
@@ -280,12 +298,12 @@
           <p>
             Irrational numbers cannot be expressed as a fraction of two integers. Their 
             decimal expansions are non-repeating and infinite. 
-            Famous examples include  \sqrt{2}  and  \pi \approx 3.14159 .
+            Famous examples include \( \sqrt{2} \) and \( \pi \approx 3.14159 \).
           </p>
         </section>
 
         <section class="topic-page__section">
-          <h3>Real Numbers  \mathbb{R} </h3>
+          <h3>Real Numbers \( \mathbb{R} \)</h3>
           <p>
             Real numbers are the union of rational and irrational numbers. They correspond 
             to every single point on a continuous number line.
@@ -293,11 +311,11 @@
         </section>
 
         <section class="topic-page__section">
-          <h3>Complex Numbers  \mathbb{C} </h3>
+          <h3>Complex Numbers \( \mathbb{C} \)</h3>
           <p>
-            Complex numbers extend the real numbers by introducing the imaginary unit  i , 
-            defined by the property  i^2 = -1 . A complex number is written in the 
-            form  a + bi , where  a  and  b  are real numbers.
+            Complex numbers extend the real numbers by introducing the imaginary unit \( i \), 
+            defined by the property \( i^2 = -1 \). A complex number is written in the 
+            form \( a + bi \), where \( a \) and \( b \) are real numbers.
           </p>
         </section>
 
@@ -327,9 +345,9 @@
         <section class="topic-page__section">
           <h3>Example</h3>
           <p>
-            Consider the function  f(x) = \frac{x^2 - 1}{x - 1} . For  x \neq 1 , this simplifies to
-             x + 1 . As  x \to 1 , the function approaches  2 , even though the original
-            expression is undefined at  x = 1 .
+            Consider the function \( f(x) = \frac{x^2 - 1}{x - 1} \). For \( x \neq 1 \), this simplifies to
+            \( x + 1 \). As \( x \to 1 \), the function approaches \( 2 \), even though the original
+            expression is undefined at \( x = 1 \).
           </p>
         </section>
 
@@ -408,7 +426,21 @@
           </p>
         </section>
       </article></section>
-<section class="book-chapter" id="afterword"><h2 class="chapter-title">Afterword - Why Mathematics?</h2><p>(missing content)</p></section>
+<section class="book-chapter" id="afterword"><h2 class="chapter-title">Afterword - Why Mathematics?</h2><article><section class="content hero-card" aria-labelledby="why-math-heading">
+        <p class="eyebrow">personal reflection</p>
+        <h2 id="why-math-heading">Because mathematics is one of the few subjects that forces you to be precise, patient, and honest.</h2>
+        <p>
+          During my teenage years, I was not in a good place academically. The pandemic had disrupted my habits,
+          and I spent too much time drifting without building the basics I needed. By the time I reached Form 4,
+          I was far behind in mathematics and STEM subjects, and it showed. I failed Additional Mathematics and
+          barely scraped through ordinary mathematics.
+        </p>
+        <p>
+          But that was also the moment I realized something important: mathematics was not just a school subject.
+          It was a way of thinking. It taught me that discipline matters, that patterns are clues, and that understanding
+          is built slowly. That realization changed the direction of how I study and how I think.
+        </p>
+      </section></article></section>
 <section class="book-colophon">
 <h2>Colophon</h2>
 <p>Foundational Mathematics v0.1.0 (2026-09-20) by rokurooooo. Source chapters live at rokurooooo01.github.io. License CC BY-SA 4.0. Generated from the same HTML chapters - web and print never drift apart.</p>

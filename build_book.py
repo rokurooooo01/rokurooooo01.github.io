@@ -82,28 +82,37 @@ def extract_article(path):
     text = path.read_text(encoding="utf-8")
     start = text.find("<article")
     end = text.find("</article>")
-    if start == -1 or end == -1:
-        return "<p>(missing content)</p>"
-    chunk = text[start:end + len("</article>")]
-    chunk = chunk.replace("\\(", "").replace("\\)", "")
-    chunk = chunk.replace("\\[", "").replace("\\]", "")
+    if start != -1 and end != -1:
+        chunk = text[start:end + len("</article>")]
+    else:
+        # Fallback for pages with no <article> (e.g. why-mathematics.html
+        # keeps its essay in a <section class="content hero-card">).
+        import re
+        m = re.search(
+            r'<section class="content hero-card".*?</section>',
+            text, flags=re.S)
+        if m:
+            chunk = "<article>" + m.group(0) + "</article>"
+        else:
+            return "<p>(missing content)</p>"
     return chunk
 
 
 def build_print_html():
     parts = []
-    toc = []
+    toc_syn = []
+    toc_prev = []
     for i, (label, desc) in enumerate(SYNOPSES, 1):
         anchor = "ch" + str(i)
-        toc.append('<li><a href="#' + anchor + '">' + label + "</a></li>")
+        toc_syn.append('<li><a href="#' + anchor + '">' + label + "</a></li>")
         parts.append(
             '<section class="book-chapter" id="' + anchor + '">'
             '<h2 class="chapter-title">' + label + "</h2>"
             "<p>" + desc + "</p>"
-            "<p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p>"
+            "<p><em>Full text in the First Edition PDF (see Book hub).</em></p>"
             + "</section>"
         )
-    toc.append('<li><a href="#previews">Web previews (read now)</a></li>')
+    toc_prev.append('<li><a href="#previews">Web previews (read now)</a></li>')
     parts.append(
         '<section class="book-chapter" id="previews">'
         '<h2 class="chapter-title">Web previews (read now)</h2>'
@@ -113,7 +122,7 @@ def build_print_html():
     )
     for fname, label in CHAPTERS:
         anchor = fname.replace(".html", "")
-        toc.append('<li><a href="#' + anchor + '">' + label + "</a></li>")
+        toc_prev.append('<li><a href="#' + anchor + '">' + label + "</a></li>")
         body = extract_article(ROOT / fname)
         parts.append(
             '<section class="book-chapter" id="' + anchor + '">'
@@ -122,13 +131,13 @@ def build_print_html():
         )
     fname, label = AFTERWORD
     anchor = "afterword"
-    toc.append('<li><a href="#' + anchor + '">' + label + "</a></li>")
+    toc_prev.append('<li><a href="#' + anchor + '">' + label + "</a></li>")
     parts.append(
         '<section class="book-chapter" id="' + anchor + '">'
         '<h2 class="chapter-title">' + label + "</h2>"
         + extract_article(ROOT / fname) + "</section>"
     )
-    return "\n".join(toc), "\n".join(parts)
+    return "\n".join(toc_syn), "\n".join(toc_prev), "\n".join(parts)
 
 
 PRINT_TEMPLATE = """<!doctype html>
@@ -140,11 +149,25 @@ PRINT_TEMPLATE = """<!doctype html>
 <meta name="description" content="Print edition of __TITLE__ v__VERSION__ - all chapters on one page. Save as PDF from your browser." />
 <link rel="canonical" href="https://rokurooooo01.github.io/foundational-mathematics-print.html" />
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/print.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="js/main.js"></script>
+<script defer src="js/print-book.js"></script>
 </head>
 <body class="print-book">
 <a class="skip-link" href="#main-content">Skip to content</a>
+<div class="print-progress no-print" aria-hidden="true"><span data-print-progress></span></div>
+<div class="print-toolbar no-print" role="navigation" aria-label="Print edition tools">
+<a class="button" href="foundational-mathematics.html">Book hub</a>
+<a class="button" href="assets/foundational-mathematics.pdf" download>PDF</a>
+<button type="button" class="button" data-print-now>Print / Save PDF</button>
+<a class="button" href="#contents" data-print-toc>Contents</a>
+<span class="print-toolbar__pos" data-print-pos></span>
+</div>
 <nav class="page-nav no-print" aria-label="Site pages">
 <a class="button" href="index.html">Home</a>
 <a class="button" href="mathematics.html">Math</a>
@@ -158,10 +181,15 @@ PRINT_TEMPLATE = """<!doctype html>
 <p class="meta">by __AUTHOR__ - __DATE__ - CC BY-SA 4.0 - free to share and remix</p>
 <p class="no-print meta">Press Ctrl+P and choose Save as PDF for a clean offline copy.</p>
 </header>
-<nav class="book-toc" aria-label="Contents">
+<nav class="book-toc" id="contents" aria-label="Contents">
 <h2>Contents</h2>
+<h3>Chapter synopses</h3>
 <ol>
-__TOC__
+__TOC_SYNOPSES__
+</ol>
+<h3>Web previews (full text)</h3>
+<ol>
+__TOC_PREVIEWS__
 </ol>
 </nav>
 __BODY__
@@ -193,7 +221,7 @@ def html_to_text(fragment):
     return "\n".join(out).strip()
 
 
-def build_pdf(toc_html, body_html):
+def build_pdf(toc_syn_html, toc_prev_html, body_html):
     try:
         from fpdf import FPDF
     except ImportError:
@@ -224,7 +252,7 @@ def build_pdf(toc_html, body_html):
     pdf.cell(w=0, h=8, text="Contents", new_x="LMARGIN", new_y="NEXT")
     pdf.ln(2)
     pdf.set_font("Helvetica", "", 11)
-    labels = re.findall(r"<a[^>]*>(.*?)</a>", toc_html)
+    labels = re.findall(r"<a[^>]*>(.*?)</a>", toc_syn_html + toc_prev_html)
     for i, lab in enumerate(labels, 1):
         pdf.multi_cell(w=0, h=7, text=str(i) + ". " + htmlmod.unescape(lab),
                        new_x="LMARGIN", new_y="NEXT")
@@ -253,17 +281,18 @@ def build_pdf(toc_html, body_html):
 
 
 def main():
-    toc, body = build_print_html()
+    toc_syn, toc_prev, body = build_print_html()
     page = PRINT_TEMPLATE
     page = page.replace("__TITLE__", TITLE)
     page = page.replace("__VERSION__", VERSION)
     page = page.replace("__AUTHOR__", AUTHOR)
     page = page.replace("__DATE__", DATE)
-    page = page.replace("__TOC__", toc)
+    page = page.replace("__TOC_SYNOPSES__", toc_syn)
+    page = page.replace("__TOC_PREVIEWS__", toc_prev)
     page = page.replace("__BODY__", body)
     (ROOT / "foundational-mathematics-print.html").write_text(page, encoding="utf-8")
     print("Wrote foundational-mathematics-print.html")
-    build_pdf(toc, body)
+    build_pdf(toc_syn, toc_prev, body)
 
 
 if __name__ == "__main__":

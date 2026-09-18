@@ -154,6 +154,18 @@
     orphans: 3;
     widows: 3;
   }
+  .print-book .topic-page__article p,
+  .print-book .topic-page__section p,
+  .print-book .topic-page__section li,
+  .print-book .topic-page__article li {
+    color: #111 !important;
+  }
+  .print-book .katex {
+    color: #111;
+  }
+  .print-book .katex-display {
+    page-break-inside: avoid;
+  }
   .print-book a {
     color: #111;
     text-decoration: none;
@@ -170,5 +182,69 @@
   }
   .print-book main {
     padding: 1rem;
+    padding-top: 5.5rem;
+  }
+}
+
+/* Screen-only reader chrome: progress bar + sticky toolbar. */
+.print-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.12);
+  z-index: 1200;
+}
+.print-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #000080;
+}
+.print-toolbar {
+  position: fixed;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(820px, calc(100vw - 1rem));
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background: var(--panel);
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  box-shadow: var(--shadow);
+  padding: 0.45rem 0.55rem;
+  z-index: 1100;
+}
+.print-toolbar .button {
+  width: auto;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.82rem;
+}
+.print-toolbar__pos {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.book-chapter {
+  scroll-margin-top: 5.5rem;
+}
+.book-chapter.flash .chapter-title {
+  animation: chapter-flash 1.6s ease;
+}
+@keyframes chapter-flash {
+  0% { background: rgba(0, 128, 128, 0.35); }
+  100% { background: transparent; }
+}
+@media (max-width: 560px) {
+  .print-toolbar {
+    flex-wrap: wrap;
+  }
+  .print-toolbar__pos {
+    width: 100%;
+    text-align: right;
   }
 }
