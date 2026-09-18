@@ -64,7 +64,7 @@
 <div class="countdown-cell"><span class="countdown-num" data-countdown-mins>–</span><span class="countdown-unit">mins</span></div>
 <div class="countdown-cell"><span class="countdown-num" data-countdown-secs>–</span><span class="countdown-unit">secs</span></div>
 </div>
-<p class="countdown-note">20 Sept 2026, 00:00 (Malaysia time). After that this box flips to “Released” by itself — no update needed.</p>
+<p class="countdown-note">20 Sept 2026, 00:00 (GMT +8)</p>
 </div>
 <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1rem;">
 <a class="button" href="#contents" style="width:auto;padding-left:1.2rem;padding-right:1.2rem;">Start reading</a>
@@ -76,14 +76,14 @@
 <section class="content card" aria-labelledby="contents">
 <h2 id="contents">Contents</h2>
 <ol class="link-list" style="line-height:2;">
-<li><a href="#ch1"><strong>Chapter 1 - The Real Number System</strong></a></li>
+<li><a href="#ch1"><strong>Chapter 1 - Number System</strong></a></li>
 <li><a href="#ch2"><strong>Chapter 2 - Functions</strong></a></li>
 <li><a href="#ch3"><strong>Chapter 3 - Polynomials</strong></a></li>
 <li><a href="#ch4"><strong>Chapter 4 - Inequalities</strong></a></li>
 <li><a href="#ch5"><strong>Chapter 5 - Matrices</strong></a></li>
 <li><a href="#ch6"><strong>Chapter 6 - Trigonometry</strong></a></li>
-<li><a href="#ch7"><strong>Chapter 7 - Linear Law</strong></a></li>
-<li><a href="#ch8"><strong>Chapter 8 - Circles and Conic Sections</strong></a></li>
+<li><a href="#ch7"><strong>Chapter 7 - Linearisation and Linear Law</strong></a></li>
+<li><a href="#ch8"><strong>Chapter 8 - Coordinate Geometry and Conic Sections</strong></a></li>
 <li><a href="#ch9"><strong>Chapter 9 - Probability and Statistics</strong></a></li>
 <li><a href="#ch10"><strong>Chapter 10 - Complex Numbers</strong></a></li>
 <li><a href="#ch11"><strong>Chapter 11 - Hyperbolic Functions</strong></a></li>
@@ -92,15 +92,15 @@
 <li><a href="#ch14"><strong>Chapter 14 - Differential Equations</strong></a></li>
 <li><a href="#ch15"><strong>Chapter 15 - Sequences and Series</strong></a></li>
 <li><a href="#ch16"><strong>Chapter 16 - Vectors</strong></a></li>
-<li><a href="#ch17"><strong>Chapter 17 - Graph Theory</strong></a></li>
-<li><a href="#ch18"><strong>Chapter 18 - Logic and Proof</strong></a></li>
+<li><a href="#ch17"><strong>Chapter 17 - Introduction to Graph Theory</strong></a></li>
+<li><a href="#ch18"><strong>Chapter 18 - Introduction to Logical Reasoning</strong></a></li>
 <li><a href="#ch19"><strong>Chapter 19 (bonus) - Computing with R</strong></a></li>
 </ol>
-<p>Synopses for every chapter are listed below. Web previews available now: <a href="arithmetic.html">Arithmetic</a> · <a href="number-system.html">Number System</a> · <a href="limits-and-continuity.html">Limits and Continuity</a> · <a href="differential-equations.html">Differential Equations</a> · <a href="why-mathematics.html">Why Mathematics?</a></p>
+<p>Bonus webnotes: <a href="arithmetic.html">Arithmetic</a> · <a href="number-system.html">Number System</a> · <a href="limits-and-continuity.html">Limits and Continuity</a> · <a href="differential-equations.html">Differential Equations</a> · <a href="why-mathematics.html">Why Mathematics?</a></p>
 </section>
 <section class="content" aria-labelledby="library-heading">
-<h2 id="library-heading">Web preview — read now</h2>
-<p>Four chapters are already live on this site. The complete 19-chapter First Edition ships in the print edition and PDF below.</p>
+<h2 id="library-heading">Bonus webnotes</h2>
+<p>For now, these serves as bonus webnotes, probably gonna change it to align it with the book.</p>
 <div class="library-grid">
 <a href="arithmetic.html" class="library-card"><div class="library-cover library-cover--arithmetic"><span class="library-cover__symbol">Ch. 1</span><span class="library-cover__badge">complete</span></div><div class="library-card__body"><h3>Arithmetic</h3><p>Operations, properties, primes, modular arithmetic.</p><span class="library-card__link">open</span></div></a>
 <a href="number-system.html" class="library-card"><div class="library-cover library-cover--number"><span class="library-cover__symbol">Ch. 2</span><span class="library-cover__badge">complete</span></div><div class="library-card__body"><h3>Number System</h3><p>Naturals to complex numbers and why each step matters.</p><span class="library-card__link">open</span></div></a>
@@ -130,7 +130,7 @@
 <li id="ch5"><strong>Chapter 5 — Matrices.</strong> Operations, determinants, inverses, and systems of simultaneous linear equations — foundations of linear algebra for graphics and machine learning.</li>
 <li id="ch6"><strong>Chapter 6 — Trigonometry.</strong> Angle measure, the basic functions, graphs, identities, equations, and inverses.</li>
 <li id="ch7"><strong>Chapter 7 — Linear Law.</strong> Turning non-linear relationships into straight-line form: scatter plots, best fit, gradients and intercepts in models.</li>
-<li id="ch8"><strong>Chapter 8 — Circles and Conic Sections.</strong> Parabolas, ellipses, hyperbolas, and parametric equations.</li>
+<li id="ch8"><strong>Chapter 8 — Coordinate Geometry and Conic Sections.</strong> Parabolas, ellipses, hyperbolas, and parametric equations.</li>
 <li id="ch9"><strong>Chapter 9 — Probability and Statistics.</strong> Permutations and combinations; the binomial, normal, Poisson, and exponential distributions.</li>
 <li id="ch10"><strong>Chapter 10 — Complex Numbers.</strong> Algebraic, polar, exponential, and geometric forms, with De Moivre's theorem and Euler's formula — numbers as points with geometric structure.</li>
 <li id="ch11"><strong>Chapter 11 — Hyperbolic Functions.</strong> Identities, graphs, and inverses, alongside comparisons with the circular functions of Chapter 6.</li>
@@ -144,11 +144,10 @@
 <li id="ch14"><strong>Chapter 14 — Differential Equations.</strong> First-order equations and models of growth, decay, mixing, and continuous change.</li>
 <li id="ch15"><strong>Chapter 15 — Sequences and Series.</strong> Convergence, binomial and power series, Taylor and Maclaurin expansions.</li>
 <li id="ch16"><strong>Chapter 16 — Vectors.</strong> Two and three dimensions: operations, products, relative motion, vector-valued differentiation and integration.</li>
-<li id="ch17"><strong>Chapter 17 — Graph Theory.</strong> Vertices and edges, paths, cycles, trees, planar graphs, colouring, shortest paths, spanning trees — discrete maths for CS and networks.</li>
-<li id="ch18"><strong>Chapter 18 — Logic and Proof.</strong> Propositions, truth tables, implications, quantifiers, valid arguments, fallacies, and elementary proof methods.</li>
+<li id="ch17"><strong>Chapter 17 — Introduction to Graph Theory.</strong> Vertices and edges, paths, cycles, trees, planar graphs, colouring, shortest paths, spanning trees — discrete maths for CS and networks.</li>
+<li id="ch18"><strong>Chapter 18 — Introduction to Logical Reasoning.</strong> Propositions, truth tables, implications, quantifiers, valid arguments, fallacies, and elementary proof methods.</li>
 <li id="ch19"><strong>Chapter 19 (bonus) — Computing with R.</strong> Vectors, data frames, importing and visualising data, probability distributions, one-sample tests, and matrix calculations — applying Chapters 5 and 9 computationally.</li>
 </ol>
-<p>Afterword: <a href="why-mathematics.html">Why Mathematics?</a> — a personal reflection on why this book exists.</p>
 </section>
 <section class="content card" aria-labelledby="cite">
 <h2 id="cite">Cite and reuse</h2>
