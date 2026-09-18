@@ -16,10 +16,63 @@ AUTHOR = "rokurooooo"
 TITLE = "Foundational Mathematics"
 
 CHAPTERS = [
-    ("arithmetic.html", "Chapter 1 - Arithmetic"),
-    ("number-system.html", "Chapter 2 - Number System"),
-    ("limits-and-continuity.html", "Chapter 3 - Limits and Continuity"),
-    ("differential-equations.html", "Chapter 4 - Differential Equations"),
+    ("arithmetic.html", "Web preview - Arithmetic (Ch 1 material)"),
+    ("number-system.html", "Web preview - Number System (Ch 1 + Ch 10 material)"),
+    ("limits-and-continuity.html", "Web preview - Limits and Continuity (Ch 12 material)"),
+    ("differential-equations.html", "Web preview - Differential Equations (Ch 14 material)"),
+]
+
+SYNOPSES = [
+    ("Chapter 1 - The Real Number System",
+     "Rational and irrational numbers, set and interval notation, indices, surds, and logarithms. "
+     "Establishes the notation and algebraic vocabulary used throughout the book."),
+    ("Chapter 2 - Functions",
+     "Domains and ranges, common families of functions, transformations, composite and piecewise "
+     "functions, and inverse functions. Algebraic rules and their graphical representations."),
+    ("Chapter 3 - Polynomials",
+     "Arithmetic operations, division, factorisation, the remainder and factor theorems, and partial "
+     "fractions - needed again in integral calculus."),
+    ("Chapter 4 - Inequalities",
+     "Inequalities involving quadratic, cubic, rational, and absolute-value expressions."),
+    ("Chapter 5 - Matrices",
+     "Operations, determinants, inverses, and systems of simultaneous linear equations. "
+     "Foundations of linear algebra for graphics and machine learning."),
+    ("Chapter 6 - Trigonometry",
+     "Angle measurement, the basic functions, graphs, identities, equations, and inverse functions."),
+    ("Chapter 7 - Linear Law",
+     "Transforming non-linear relationships into straight-line form: scatter plots, lines of best "
+     "fit, gradients and intercepts in models."),
+    ("Chapter 8 - Circles and Conic Sections",
+     "Parabolas, ellipses, hyperbolas, and their parametric equations."),
+    ("Chapter 9 - Probability and Statistics",
+     "Permutations and combinations; the binomial, normal, Poisson, and exponential distributions."),
+    ("Chapter 10 - Complex Numbers",
+     "Algebraic, polar, exponential, and geometric forms, with De Moivre's theorem and Euler's "
+     "formula. Numbers as points with geometric structure."),
+    ("Chapter 11 - Hyperbolic Functions",
+     "Identities, graphs, and inverse functions, compared with the circular functions of Chapter 6."),
+    ("Chapter 12 - Differential Calculus",
+     "Limits and first principles, the standard rules of differentiation, rates of change and "
+     "optimisation."),
+    ("Chapter 13 - Integral Calculus",
+     "Integration as the inverse of differentiation: methods, definite integrals, accumulated "
+     "quantities and areas."),
+    ("Chapter 14 - Differential Equations",
+     "First-order equations and models of growth, decay, mixing, and continuous change."),
+    ("Chapter 15 - Sequences and Series",
+     "Convergence, binomial and power series, Taylor and Maclaurin expansions."),
+    ("Chapter 16 - Vectors",
+     "Two and three dimensions: operations, products, relative motion, vector-valued "
+     "differentiation and integration."),
+    ("Chapter 17 - Graph Theory",
+     "Vertices and edges, paths, cycles, trees, planar graphs, colouring, shortest paths, "
+     "spanning trees. Discrete maths for CS and networks."),
+    ("Chapter 18 - Logic and Proof",
+     "Propositions, truth tables, implications, quantifiers, valid arguments, fallacies, and "
+     "elementary proof methods."),
+    ("Chapter 19 (bonus) - Computing with R",
+     "Vectors, data frames, importing and visualising data, probability distributions, "
+     "one-sample tests, matrix calculations. Applies Chapters 5 and 9 computationally."),
 ]
 
 AFTERWORD = ("why-mathematics.html", "Afterword - Why Mathematics?")
@@ -40,6 +93,24 @@ def extract_article(path):
 def build_print_html():
     parts = []
     toc = []
+    for i, (label, desc) in enumerate(SYNOPSES, 1):
+        anchor = "ch" + str(i)
+        toc.append('<li><a href="#' + anchor + '">' + label + "</a></li>")
+        parts.append(
+            '<section class="book-chapter" id="' + anchor + '">'
+            '<h2 class="chapter-title">' + label + "</h2>"
+            "<p>" + desc + "</p>"
+            "<p><em>Full text ships in the First Edition, 20 Sept 2026.</em></p>"
+            + "</section>"
+        )
+    toc.append('<li><a href="#previews">Web previews (read now)</a></li>')
+    parts.append(
+        '<section class="book-chapter" id="previews">'
+        '<h2 class="chapter-title">Web previews (read now)</h2>'
+        "<p>Four chapters are already readable on this site. "
+        "The complete First Edition ships 20 Sept 2026.</p>"
+        + "</section>"
+    )
     for fname, label in CHAPTERS:
         anchor = fname.replace(".html", "")
         toc.append('<li><a href="#' + anchor + '">' + label + "</a></li>")
@@ -83,7 +154,7 @@ PRINT_TEMPLATE = """<!doctype html>
 <header class="book-cover">
 <p class="eyebrow">rokurooooo presents</p>
 <h1>__TITLE__</h1>
-<p class="subtitle">From counting to change - v__VERSION__</p>
+<p class="subtitle">First Edition - v__VERSION__ - 20 Sept 2026</p>
 <p class="meta">by __AUTHOR__ - __DATE__ - CC BY-SA 4.0 - free to share and remix</p>
 <p class="no-print meta">Press Ctrl+P and choose Save as PDF for a clean offline copy.</p>
 </header>
@@ -140,7 +211,7 @@ def build_pdf(toc_html, body_html):
     pdf.multi_cell(w=0, h=12, text=TITLE, align="C",
                    new_x="LMARGIN", new_y="NEXT")
     pdf.set_font("Helvetica", "", 13)
-    pdf.multi_cell(w=0, h=8, text="From counting to change", align="C",
+    pdf.multi_cell(w=0, h=8, text="First Edition - 20 Sept 2026", align="C",
                    new_x="LMARGIN", new_y="NEXT")
     pdf.ln(4)
     pdf.set_font("Helvetica", "", 11)
