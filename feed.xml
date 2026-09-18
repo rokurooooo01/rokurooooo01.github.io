@@ -5,7 +5,7 @@
     <link>https://rokurooooo01.github.io/</link>
     <description>rokuro's website — math notes, daily log & site updates.</description>
     <language>en</language>
-    <lastBuildDate>Fri, 18 Sep 2026 02:33:02 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 02:35:46 +0000</lastBuildDate>
     <atom:link href="https://rokurooooo01.github.io/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>post: i integrated twitter live feed on my webpage, idk if it works, this is a test :)</title>
@@ -27,6 +27,13 @@
       <guid isPermaLink="false">https://rokurooooo01.github.io/today.html#Sun, 30 Aug 2026 00:00:00 +0000</guid>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       <description>Nothing really extraordinary happened, which is normal and fine.</description>
+    </item>
+    <item>
+      <title>Foundational Mathematics v0.1.0 — countdown to 20 Sept</title>
+      <link>https://rokurooooo01.github.io/foundational-mathematics.html</link>
+      <guid isPermaLink="false">https://rokurooooo01.github.io/foundational-mathematics.html#Sat, 19 Sep 2026 16:00:00 +0000</guid>
+      <pubDate>Sat, 19 Sep 2026 16:00:00 +0000</pubDate>
+      <description>Foundational Mathematics v0.1.0 drops 20 Sept 2026 (MYT): arithmetic, number systems, limits &amp; continuity, differential equations. Follow the countdown, preview chapters, or grab the PDF on release day (CC BY-SA 4.0).</description>
     </item>
     <item>
       <title>post: regardless of our political and race background, we should be happy and grateful</title>
@@ -52,13 +59,6 @@ our independence should not be ruined with things that could pollute it, because
       <guid isPermaLink="false">https://rokurooooo01.github.io/today.html#Mon, 31 Aug 2026 00:00:00 +0000</guid>
       <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
       <description>Today&#x27;s the 69th anniversary of Malaysia&#x27;s independence. Proud to be Malaysian.</description>
-    </item>
-    <item>
-      <title>Foundational Mathematics v0.1.0 — my open textbook is out</title>
-      <link>https://rokurooooo01.github.io/foundational-mathematics.html</link>
-      <guid isPermaLink="false">https://rokurooooo01.github.io/foundational-mathematics.html#Fri, 18 Sep 2026 00:00:00 +0000</guid>
-      <pubDate>Fri, 18 Sep 2026 00:00:00 +0000</pubDate>
-      <description>Released Foundational Mathematics v0.1.0: arithmetic, number systems, limits &amp; continuity, differential equations. Read on the web, use the print edition, or download the PDF (CC BY-SA 4.0).</description>
     </item>
   </channel>
 </rss>

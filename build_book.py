@@ -11,7 +11,7 @@ import html as htmlmod
 
 ROOT = Path(__file__).resolve().parent
 VERSION = "0.1.0"
-DATE = "2026-09-18"
+DATE = "2026-09-20"
 AUTHOR = "rokurooooo"
 TITLE = "Foundational Mathematics"
 

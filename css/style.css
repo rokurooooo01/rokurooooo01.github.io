@@ -2301,3 +2301,54 @@ body {
     width: min(300px, 90vw);
   }
 }
+/* Foundational Mathematics — release countdown (retro window style) */
+.countdown {
+  margin-top: 1rem;
+  border: 2px solid;
+  border-color: var(--border-light) var(--border-darkest) var(--border-darkest) var(--border-light);
+  background: var(--accent-soft);
+  box-shadow: var(--shadow);
+  padding: 0.9rem 1rem;
+}
+.countdown-label {
+  margin: 0 0 0.6rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.countdown-cell {
+  background: var(--panel);
+  border: 2px solid;
+  border-color: var(--border-darkest) var(--border-light) var(--border-light) var(--border-darkest);
+  text-align: center;
+  padding: 0.5rem 0.25rem;
+}
+.countdown-num {
+  display: block;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.countdown-unit {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.countdown-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.85rem;
+}
+.countdown.is-live {
+  background: #dff0d8;
+}
+@media (max-width: 480px) {
+  .countdown-grid { grid-template-columns: repeat(4, 1fr); gap: 0.35rem; }
+}
