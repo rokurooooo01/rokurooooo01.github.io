@@ -880,53 +880,10 @@ window.addEventListener("load", () => {
   }
 });
 
-// Foundational Mathematics — release countdown.
-// Any element with [data-countdown][data-release="ISO date"] ticks every
-// second and flips to a "Released" state on its own after the date passes.
-// No-JS fallback: the dashes stay, label still reads "Releases in…".
+// (Release countdown retired 2026-09-20: both volumes are out.
+// Kept as a no-op guard so any cached page with [data-countdown] markup
+// fails silently instead of throwing.)
 (function initReleaseCountdowns() {
-  const boxes = document.querySelectorAll("[data-countdown]");
-  if (!boxes.length) return;
-
-  const pad = (n) => String(n).padStart(2, "0");
-
-  function render(box) {
-    const target = new Date(box.getAttribute("data-release"));
-    if (Number.isNaN(target.getTime())) return;
-    const label = box.querySelector("[data-countdown-label]");
-    const dEl = box.querySelector("[data-countdown-days]");
-    const hEl = box.querySelector("[data-countdown-hours]");
-    const mEl = box.querySelector("[data-countdown-mins]");
-    const sEl = box.querySelector("[data-countdown-secs]");
-    const diff = target.getTime() - Date.now();
-
-    if (diff <= 0) {
-      box.classList.add("is-live");
-      if (label) label.textContent = "Released — v0.1.0 is out now!";
-      if (dEl) dEl.textContent = "00";
-      if (hEl) hEl.textContent = "00";
-      if (mEl) mEl.textContent = "00";
-      if (sEl) sEl.textContent = "00";
-      return false; // stop ticking this box
-    }
-
-    const total = Math.floor(diff / 1000);
-    const d = Math.floor(total / 86400);
-    const h = Math.floor((total % 86400) / 3600);
-    const m = Math.floor((total % 3600) / 60);
-    const s = total % 60;
-    if (dEl) dEl.textContent = pad(d);
-    if (hEl) hEl.textContent = pad(h);
-    if (mEl) mEl.textContent = pad(m);
-    if (sEl) sEl.textContent = pad(s);
-    if (label) label.textContent = d === 1 ? "Releases in 1 day…" : `Releases in ${d} days…`;
-    return true;
-  }
-
-  boxes.forEach((box) => {
-    if (render(box) === false) return;
-    const id = setInterval(() => {
-      if (render(box) === false) clearInterval(id);
-    }, 1000);
-  });
+  if (!document.querySelector("[data-countdown]")) return;
 })();
+
