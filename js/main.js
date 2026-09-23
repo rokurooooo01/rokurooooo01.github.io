@@ -14,8 +14,11 @@
     }, 1000);
   }
 
-  const savedTheme = localStorage.getItem("retroTheme") || "win95";
-  document.documentElement.setAttribute("data-theme", savedTheme);
+  const savedTheme = localStorage.getItem("retroTheme") || "washi";
+  // Migrate legacy saved themes that no longer exist as defaults
+  const knownThemes = ["washi", "yoru", "matsuri", "win95", "dark", "hotdog", "matrix"];
+  const theme = knownThemes.includes(savedTheme) ? savedTheme : "washi";
+  document.documentElement.setAttribute("data-theme", theme);
 })();
 
 /* ---------- Client-side API cache (stale-while-revalidate) ----------
@@ -185,10 +188,13 @@ function initWindowControlsAndTaskbar() {
       </div>
       <div class="taskbar-tray">
         <select class="retro-select theme-select" aria-label="Select Theme" title="Switch Theme">
-          <option value="win95">Win95 Teal</option>
-          <option value="dark">Midnight Dark</option>
-          <option value="hotdog">Hotdog Stand</option>
-          <option value="matrix">Matrix CRT</option>
+          <option value="washi">昼 Day · Washi</option>
+          <option value="yoru">夜 Night · Yoru</option>
+          <option value="matsuri">祭 Matsuri</option>
+          <option value="win95">Win95 Teal (legacy)</option>
+          <option value="dark">Midnight Dark (legacy)</option>
+          <option value="hotdog">Hotdog Stand (legacy)</option>
+          <option value="matrix">Matrix CRT (legacy)</option>
         </select>
         <button class="taskbar-tool-btn sound-toggle" aria-label="Toggle Sound" title="Mute/Unmute Sound">🔊</button>
         <button class="taskbar-tool-btn sticker-toggle" title="Toggle Desktop Stickers">🏷️</button>
@@ -199,7 +205,7 @@ function initWindowControlsAndTaskbar() {
 
   const themeSelect = taskbar.querySelector(".theme-select");
   if (themeSelect) {
-    themeSelect.value = localStorage.getItem("retroTheme") || "win95";
+    themeSelect.value = localStorage.getItem("retroTheme") || "washi";
     themeSelect.addEventListener("change", (e) => setTheme(e.target.value));
   }
 
