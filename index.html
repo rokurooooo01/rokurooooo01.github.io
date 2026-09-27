@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-season="aki">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
       (function () {
-        document.documentElement.setAttribute("data-theme", localStorage.getItem("retroTheme") || "win95");
+        var t = localStorage.getItem("retroTheme") || "washi";
+        var known = ["washi", "yoru", "matsuri", "win95", "dark", "hotdog", "matrix"];
+        document.documentElement.setAttribute("data-theme", known.indexOf(t) >= 0 ? t : "washi");
         if (sessionStorage.getItem("bootSeen") === "true") {
           document.documentElement.classList.add("skip-boot");
         }
@@ -37,12 +39,12 @@
     <link rel="stylesheet" href="css/style.css" />
     <script defer src="js/main.js"></script>
   </head>
-  <body onload="initLoadingScreen()">
+  <body onload="initLoadingScreen()" class="jp">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <div id="loading-screen">
       <div class="loading-box">
-        <p>System Booting...</p>
+        <p>いらっしゃいませ! ようこそ ( ´ ▽ ` )ﾉ</p>
         <div class="loading-bar-container">
           <div id="loading-bar-fill" class="loading-bar-fill"></div>
         </div>
@@ -59,17 +61,75 @@
       <a class="button" href="today.html">Today</a>
     </nav>
     <main class="container page-shell" id="main-content">
+      <!-- JP masthead: logo + bilingual tabs + breadcrumb -->
+      <div class="jp-season-bar" role="note">🍁 秋のもみじ祭り開催中! <span class="new-gif">NEW!</span> Foundational Mathematics 公開中</div>
+      <header class="jp-masthead">
+        <div class="jp-masthead__top">
+          <div class="jp-hanko" aria-hidden="true">ろ</div>
+          <div class="jp-brand">
+            <p class="eyebrow" style="margin:0;">ろくろおのホームページ · personal site</p>
+            <div class="jp-site-title"><ruby>六轆<rt>ろくろお</rt></ruby> rokurooooo</div>
+            <div class="jp-sub">数学 · 本 · 日記 · since 2026</div>
+          </div>
+          <div class="jp-masthead__meta">
+            <div id="site-clock" aria-live="polite"></div>
+            <div class="jp-last-updated">最終更新: 2026-09-23</div>
+          </div>
+        </div>
+        <nav class="jp-nav" aria-label="Japanese site pages">
+          <a href="index.html" aria-current="page">ホーム<small>HOME</small></a>
+          <a href="about.html">自己紹介<small>ABOUT</small></a>
+          <a href="mathematics.html">数学<small>MATH</small></a>
+          <a href="favorites.html">お気に入り<small>FAVES</small></a>
+          <a href="mood-gallery.html">画廊<small>GALLERY</small></a>
+          <a href="garage.html">車庫<small>GARAGE</small></a>
+          <a href="friends.html">友達<small>FRIENDS</small></a>
+          <a href="today.html">今日<small>TODAY</small></a>
+        </nav>
+        <div class="jp-breadcrumb"><a href="index.html">ホーム</a> &gt; トップページ · <span id="jp-today"></span></div>
+      </header>
+      <div class="jp-layout">
+      <aside class="jp-side jp-side--left" aria-label="Left menu">
+        <div class="jp-spine" aria-hidden="true">ろくろおのホームページ</div>
+        <section class="jp-box" aria-labelledby="jp-profile-h">
+          <h2 class="jp-box__title" id="jp-profile-h">プロフィール</h2>
+          <div class="jp-box__body" style="text-align:center;">
+            <img src="images/profile.svg" alt="Profile picture" class="profile-pic" loading="lazy" style="margin:0 auto;">
+            <p style="margin:.5rem 0 0;"><strong>rokurooooo</strong><br>UiTM student · math enjoyer</p>
+            <p style="margin:.3rem 0 0; font-size:.75rem;">ごゆっくりどうぞ ( ´ ▽ ` )ﾉ</p>
+          </div>
+        </section>
+        <section class="jp-box" aria-labelledby="jp-menu-h">
+          <h2 class="jp-box__title" id="jp-menu-h">目次</h2>
+          <div class="jp-box__body">
+            <ul class="link-list" style="margin:0;">
+              <li><a href="mathematics.html">数学 Math</a></li>
+              <li><a href="foundational-mathematics.html">本 Book</a></li>
+              <li><a href="today.html">日記 Today</a></li>
+              <li><a href="garage.html">車庫 Garage</a></li>
+              <li><a href="friends.html">相互リンク Friends</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="jp-box" aria-labelledby="jp-ouen-h">
+          <h2 class="jp-box__title" id="jp-ouen-h">応援</h2>
+          <div class="jp-box__body" style="text-align:center;">
+            <button type="button" class="til-copy" id="jp-clap" aria-label="Clap for this site">👏 拍手! <span id="jp-clap-count">0</span></button>
+            <p style="font-size:.72rem; margin:.4rem 0 0;">押してくれてありがとう!</p>
+          </div>
+        </section>
+      </aside>
+      <div class="jp-main">
       <header class="site-header">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
-            <p class="eyebrow">Their minds are like sensitive film, capturing every detail with vivid clarity.</p>
+            <p class="eyebrow">いらっしゃいませ · sensitive film, vivid clarity</p>
             <div style="display: flex; align-items: center; gap: 1rem;">
               <img src="images/profile.svg" alt="Profile picture" class="profile-pic" loading="lazy">
               <h1>rokurooooo</h1>
             </div>
           </div>
           <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem;">
-            <div id="site-clock" aria-live="polite"></div>
             <img src="images/sticker5.webp" alt="Gran Turismo" class="button-88x31" style="width: 176px; height: 62px;" loading="lazy">
           </div>
         </div>
@@ -322,20 +382,23 @@
       </section>
 
       <section class="content til-section" aria-labelledby="til-heading">
-        <h2 id="til-heading">What happened?</h2>
-        <ul class="til-list">
+        <h2 id="til-heading">更新履歴 · What happened?</h2>
+        <ul class="til-list jp-koushin">
           <li id="update-2026-09-23">
-            <span class="til-date">2026-09-23</span>
+            <span class="til-date jp-date">2026-09-23</span>
+            <span class="jp-tag">日記</span> <span class="jp-new">NEW!</span>
             <p>Officially a UiTM student.</p>
             <button type="button" class="til-copy" data-target="update-2026-09-02" aria-label="Copy link to this update">link</button>
           </li>
           <li id="update-2026-09-18">
-            <span class="til-date">2026-09-18</span>
+            <span class="til-date jp-date">2026-09-18</span>
+            <span class="jp-tag">本</span>
             <p>Updating this website to supports direct PDF downloading for Foundational Mathematics</p>
             <button type="button" class="til-copy" data-target="update-2026-08-31" aria-label="Copy link to this update">link</button>
           </li>
           <li id="update-2026-09-07">
-            <span class="til-date">2026-09-07</span>
+            <span class="til-date jp-date">2026-09-07</span>
+            <span class="jp-tag">お知らせ</span>
             <p>Finalizing major improvements onto this website. Expect more small add-ons in the future, and probably some UI overhaul.</p>
             <button type="button" class="til-copy" data-target="update-2026-08-30" aria-label="Copy link to this update">link</button>
           </li>
@@ -369,6 +432,48 @@
           <img src="images/youtube-88x31.webp" alt="YouTube" class="button-88x31" loading="lazy">
         </a>
       </div>
+      </div><!-- /.jp-main -->
+      <aside class="jp-side jp-side--right" aria-label="Updates and links">
+        <section class="jp-box" aria-labelledby="jp-koushin-h">
+          <h2 class="jp-box__title" id="jp-koushin-h">更新履歴</h2>
+          <div class="jp-box__body">
+            <ul class="jp-koushin">
+              <li><span class="jp-date">2026-09-23</span><span class="jp-tag">日記</span><span class="jp-new">NEW!</span><span>UiTM student!</span></li>
+              <li><span class="jp-date">2026-09-20</span><span class="jp-tag">本</span><span>Foundational Mathematics 公開</span></li>
+              <li><span class="jp-date">2026-09-18</span><span class="jp-tag">本</span><span>PDF直DL対応</span></li>
+            </ul>
+            <p style="font-size:.72rem; margin:.5rem 0 0;"><a href="#til-heading">過去ログ →</a></p>
+          </div>
+        </section>
+        <section class="jp-box" aria-labelledby="jp-counter-h">
+          <h2 class="jp-box__title" id="jp-counter-h">カウンタ</h2>
+          <div class="jp-box__body" style="text-align:center;">
+            <div style="font-family:var(--font-jp-pixel); font-size:1.1rem; letter-spacing:.2em;" id="jp-counter">000000</div>
+            <p style="font-size:.7rem; margin:.3rem 0 0;">あなたは <span id="jp-counter-num">000000</span> 人目の訪問者です!<br>キリ番踏んだ方は掲示板へ!</p>
+          </div>
+        </section>
+        <section class="jp-box" aria-labelledby="jp-link-h">
+          <h2 class="jp-box__title" id="jp-link-h">相互リンク</h2>
+          <div class="jp-box__body">
+            <ul class="link-list" style="margin:0;">
+              <li><a href="https://www.mxrza.xyz" target="_blank" rel="noopener">mxrza</a></li>
+              <li><a href="https://anthonny.fyi/" target="_blank" rel="noopener">Anthonny</a></li>
+              <li><a href="friends.html">相互リンク募集中! →</a></li>
+            </ul>
+            <p style="font-size:.7rem; margin:.4rem 0 0;">※リンクフリーです。報告不要!</p>
+          </div>
+        </section>
+      </aside>
+      </div><!-- /.jp-layout -->
+      <footer class="jp-footer" aria-label="Site map">
+        <div class="jp-footer__map">
+          <div><h3>案内</h3><ul><li><a href="index.html">ホーム</a></li><li><a href="about.html">自己紹介</a></li><li><a href="today.html">今日の日記</a></li></ul></div>
+          <div><h3>学び</h3><ul><li><a href="mathematics.html">数学</a></li><li><a href="foundational-mathematics.html">本</a></li><li><a href="topics.html">Topics</a></li></ul></div>
+          <div><h3>趣味</h3><ul><li><a href="favorites.html">お気に入り</a></li><li><a href="mood-gallery.html">画廊</a></li><li><a href="garage.html">車庫</a></li></ul></div>
+          <div><h3>交流</h3><ul><li><a href="friends.html">友達・相互リンク</a></li><li><a href="guestbook.html">掲示板</a></li><li><a href="feed.xml">RSS</a></li></ul></div>
+        </div>
+        <div class="jp-footer__copy"><span>© rokurooooo · ろくろおのホームページ</span><span>当サイトはリンクフリーです · <a href="feed.xml" style="color:#ffe600;">RSS</a></span></div>
+      </footer>
     </main>
     <script defer src="js/analytics.js"></script>
 </body>

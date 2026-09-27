@@ -679,12 +679,24 @@ document.addEventListener("DOMContentLoaded", () => {
   if (clockEl) {
     function updateClock() {
       const now = new Date();
-      clockEl.textContent = now.toLocaleString('en-US', { 
-        hour: 'numeric', 
-        minute: 'numeric', 
-        second: 'numeric', 
-        hour12: true 
-      });
+      if (document.body.classList.contains("jp")) {
+        try {
+          clockEl.textContent = new Intl.DateTimeFormat("ja-JP", {
+            year: "numeric", month: "long", day: "numeric", weekday: "short",
+            hour: "2-digit", minute: "2-digit", second: "2-digit",
+            hour12: false, timeZone: "Asia/Kuala_Lumpur"
+          }).format(now);
+        } catch (err) {
+          clockEl.textContent = now.toLocaleString();
+        }
+      } else {
+        clockEl.textContent = now.toLocaleString('en-US', { 
+          hour: 'numeric', 
+          minute: 'numeric', 
+          second: 'numeric', 
+          hour12: true 
+        });
+      }
     }
     setInterval(updateClock, 1000);
     updateClock();
@@ -842,6 +854,38 @@ function initMarquee(track, speed, minFillWidth) {
 
 document.addEventListener("DOMContentLoaded", () => {
   initMarquee(document.getElementById("marquee-track"), 0.5, 0);
+
+  // JP extras: breadcrumb date, clap button, local counter. No network.
+  const jpToday = document.getElementById("jp-today");
+  if (jpToday) {
+    try {
+      jpToday.textContent = new Intl.DateTimeFormat("ja-JP", {
+        year: "numeric", month: "long", day: "numeric", weekday: "short",
+        timeZone: "Asia/Kuala_Lumpur"
+      }).format(new Date());
+    } catch (err) { jpToday.textContent = new Date().toLocaleDateString(); }
+  }
+  const clapBtn = document.getElementById("jp-clap");
+  const clapCount = document.getElementById("jp-clap-count");
+  if (clapBtn && clapCount) {
+    let n = parseInt(localStorage.getItem("jpClaps") || "0", 10) || 0;
+    clapCount.textContent = String(n);
+    clapBtn.addEventListener("click", () => {
+      n += 1;
+      localStorage.setItem("jpClaps", String(n));
+      clapCount.textContent = String(n);
+    });
+  }
+  const counter = document.getElementById("jp-counter");
+  const counterNum = document.getElementById("jp-counter-num");
+  if (counter || counterNum) {
+    let v = parseInt(localStorage.getItem("jpVisits") || "12340", 10) || 12340;
+    v += 1;
+    localStorage.setItem("jpVisits", String(v));
+    const s = String(v).padStart(6, "0");
+    if (counter) counter.textContent = s;
+    if (counterNum) counterNum.textContent = s;
+  }
 });
 
 window.addEventListener("load", () => {
