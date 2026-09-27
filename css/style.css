@@ -2409,7 +2409,13 @@ body {
   .countdown-grid { grid-template-columns: repeat(4, 1fr); gap: 0.35rem; }
 }
 /* Phase 1 — JP hybrid layer (opt-in via body.jp) */
-body.jp { font-family: var(--font-jp-body); background: var(--bg); }
+body.jp {
+  font-family: var(--font-jp-body);
+  grid-template-columns: 1fr;
+  padding: 1rem 1rem 60px 1rem;
+}
+body.jp .page-nav { display: none; }
+body.jp main { grid-column: 1; width: 100%; }
 body.jp::before { opacity: .35; }
 body.jp h1, body.jp h2, body.jp h3 { font-family: var(--font-jp-head); }
 body.jp a { color: #b5241b; }
