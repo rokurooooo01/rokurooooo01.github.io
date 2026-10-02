@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-season="aki">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
       (function () {
-        document.documentElement.setAttribute("data-theme", localStorage.getItem("retroTheme") || "win95");
+        document.documentElement.setAttribute("data-theme", localStorage.getItem("retroTheme") || "washi");
         if (sessionStorage.getItem("bootSeen") === "true") {
           document.documentElement.classList.add("skip-boot");
         }
@@ -34,19 +34,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
     <script defer src="js/main.js"></script>
   </head>
-  <body>
+  <body class="jp">
     <a class="skip-link" href="#main-content">Skip to content</a>
-        <nav class="page-nav" aria-label="Site pages">
-      <a class="button" href="index.html">Home</a>
-      <a class="button" href="about.html">About</a>
-      <a class="button" href="mathematics.html">Math</a>
-      <a class="button" href="favorites.html">Favorites</a>
-      <a class="button" href="mood-gallery.html">Gallery</a>
-      <a class="button" href="garage.html">Garage</a>
-      <a class="button" href="friends.html">Friends</a>
-      <a class="button" href="today.html">Today</a>
-    </nav>
-    <main class="container page-shell" id="main-content">
+    <main class="container page-shell" id="main-content"><div class="jp-season-bar" role="note">🍁 秋のもみじ祭り開催中! <span class="new-gif">NEW!</span> Foundational Mathematics 公開中</div><header class="jp-masthead"><div class="jp-masthead__top"><div class="jp-hanko" aria-hidden="true">ろ</div><div class="jp-brand"><p class="eyebrow" style="margin:0;">ろくろおのホームページ · personal site</p><div class="jp-site-title"><ruby>六轆<rt>ろくろお</rt></ruby> rokurooooo</div><div class="jp-sub">数学 · 本 · 日記 · since 2026</div></div><div class="jp-masthead__meta"><div id="site-clock" aria-live="polite"></div><div class="jp-last-updated">最終更新: 2026-09-20</div></div></div><nav class="jp-nav" aria-label="Japanese site pages"><a href="index.html">ホーム<small>HOME</small></a><a href="about.html">自己紹介<small>ABOUT</small></a><a href="mathematics.html">数学<small>MATH</small></a><a href="favorites.html">お気に入り<small>FAVES</small></a><a href="mood-gallery.html">画廊<small>GALLERY</small></a><a href="garage.html">車庫<small>GARAGE</small></a><a href="friends.html">友達<small>FRIENDS</small></a><a href="today.html">今日<small>TODAY</small></a></nav><div class="jp-breadcrumb"><a href="index.html">ホーム</a> &gt; エッセイ · Essay · <span id="jp-today"></span></div></header><div class="jp-layout"><aside class="jp-side jp-side--left" aria-label="Left menu"><div class="jp-spine" aria-hidden="true">ろくろおのホームページ</div><section class="jp-box" aria-labelledby="jp-menu-h"><h2 class="jp-box__title" id="jp-menu-h">数学案内</h2><div class="jp-box__body"><ul class="link-list" style="margin:0;"><li><a href="foundational-mathematics.html">教科書 Book</a></li><li><a href="arithmetic.html">算数 Arithmetic</a></li><li><a href="number-system.html">数体系 Numbers</a></li><li><a href="limits-and-continuity.html">極限 Limits</a></li><li><a href="differential-equations.html">微分方程式 DE</a></li><li><a href="topics.html">Topics</a></li></ul></div></section></aside><div class="jp-main">
       <header class="site-header">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
           <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
@@ -72,7 +62,7 @@
           is built slowly. That realization changed the direction of how I study and how I think.
         </p>
       </section>
-    </main>
+    </div><!-- /.jp-main --><aside class="jp-side jp-side--right" aria-label="Updates and links"><section class="jp-box"><h2 class="jp-box__title">数学案内</h2><div class="jp-box__body"><p style='font-size:.8rem;'>なぜ数学が好きなのか。</p></div></section></aside></div><!-- /.jp-layout --><footer class="jp-footer" aria-label="Site map"><div class="jp-footer__map"><div><h3>案内</h3><ul><li><a href="index.html">ホーム</a></li><li><a href="about.html">自己紹介</a></li><li><a href="today.html">今日の日記</a></li></ul></div><div><h3>学び</h3><ul><li><a href="mathematics.html">数学</a></li><li><a href="foundational-mathematics.html">本</a></li><li><a href="topics.html">Topics</a></li></ul></div><div><h3>趣味</h3><ul><li><a href="favorites.html">お気に入り</a></li><li><a href="mood-gallery.html">画廊</a></li><li><a href="garage.html">車庫</a></li></ul></div><div><h3>交流</h3><ul><li><a href="friends.html">友達・相互リンク</a></li><li><a href="guestbook.html">掲示板</a></li><li><a href="feed.xml">RSS</a></li></ul></div></div><div class="jp-footer__copy"><span>© rokurooooo · ろくろおのホームページ</span><span>当サイトはリンクフリーです · <a href="feed.xml" style="color:#ffe600;">RSS</a></span></div></footer></main>
     <script defer src="js/analytics.js"></script>
 </body>
 </html>
