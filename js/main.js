@@ -196,6 +196,7 @@ function initWindowControlsAndTaskbar() {
           <option value="hotdog">Hotdog Stand (legacy)</option>
           <option value="matrix">Matrix CRT (legacy)</option>
         </select>
+        <select class="retro-select" id="jp-season-select" aria-label="Select Season" title="Switch Season"></select>
         <button class="taskbar-tool-btn sound-toggle" aria-label="Toggle Sound" title="Mute/Unmute Sound">🔊</button>
         <button class="taskbar-tool-btn sticker-toggle" title="Toggle Desktop Stickers">🏷️</button>
       </div>
@@ -886,6 +887,56 @@ document.addEventListener("DOMContentLoaded", () => {
     if (counter) counter.textContent = s;
     if (counterNum) counterNum.textContent = s;
   }
+
+  // JP seasonal switcher: <select id="jp-season-select"> + auto-detect by month.
+  // Stored in localStorage ("jpSeason"); explicit data-season on <html> wins
+  // unless the user picks a value from the dropdown.
+  var SEASONS = {
+    haru:  { label: "春 Spring", bar: "🌸 春のさくら祭り開催中!" },
+    natsu: { label: "夏 Summer", bar: "🎆 夏の花火大会開催中!" },
+    aki:   { label: "秋 Autumn", bar: "🍁 秋のもみじ祭り開催中!" },
+    fuyu:  { label: "冬 Winter", bar: "❄ 冬のゆきまつり開催中!" }
+  };
+  function seasonForMonth(m) {
+    if (m >= 2 && m <= 4) return "haru";
+    if (m >= 5 && m <= 7) return "natsu";
+    if (m >= 8 && m <= 10) return "aki";
+    return "fuyu";
+  }
+  function applySeason(key) {
+    if (!SEASONS[key]) return;
+    document.documentElement.setAttribute("data-season", key);
+    document.querySelectorAll(".jp-season-bar").forEach(function (bar) {
+      var msg = bar.querySelector("[data-season-msg]");
+      if (msg) { msg.textContent = SEASONS[key].bar; return; }
+      // Fallback for bars without a dedicated span: replace leading emoji run.
+      bar.innerHTML = SEASONS[key].bar + ' <span class="new-gif">NEW!</span> Foundational Mathematics 公開中';
+    });
+    var sel = document.getElementById("jp-season-select");
+    if (sel) sel.value = key;
+  }
+  var savedSeason = null;
+  try { savedSeason = localStorage.getItem("jpSeason"); } catch (err) {}
+  if (savedSeason && SEASONS[savedSeason]) {
+    applySeason(savedSeason);
+  } else if (!document.documentElement.getAttribute("data-season")) {
+    applySeason(seasonForMonth(new Date().getMonth()));
+  }
+  var seasonSel = document.getElementById("jp-season-select");
+  if (seasonSel && !seasonSel.dataset.ready) {
+    seasonSel.dataset.ready = "true";
+    Object.keys(SEASONS).forEach(function (k) {
+      var o = document.createElement("option");
+      o.value = k; o.textContent = SEASONS[k].label;
+      seasonSel.appendChild(o);
+    });
+    seasonSel.value = document.documentElement.getAttribute("data-season") || "aki";
+    seasonSel.addEventListener("change", function () {
+      try { localStorage.setItem("jpSeason", seasonSel.value); } catch (err) {}
+      applySeason(seasonSel.value);
+    });
+  }
+  window.__applyJpSeason = applySeason;
 });
 
 window.addEventListener("load", () => {

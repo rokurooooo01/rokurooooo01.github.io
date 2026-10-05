@@ -2549,4 +2549,24 @@ body.jp main.page-shell { max-width: 1180px; }
   .jp-footer__map { grid-template-columns: repeat(2, 1fr); }
   .jp-spine { writing-mode: horizontal-tb; letter-spacing: .2em; }
 }
+/* JP seasonal variants — driven by <html data-season="haru|natsu|aki|fuyu"> */
+html[data-season="haru"] .jp-season-bar { background: linear-gradient(90deg, #e0879a, #274776); }
+html[data-season="natsu"] .jp-season-bar { background: linear-gradient(90deg, #1a7a8c, #274776); }
+html[data-season="aki"] .jp-season-bar { background: linear-gradient(90deg, #b5241b, #274776); }
+html[data-season="fuyu"] .jp-season-bar { background: linear-gradient(90deg, #3a5a8c, #1a3358); }
+html[data-season="haru"] .jp-hanko { background: #d16a8a; }
+html[data-season="natsu"] .jp-hanko { background: #1a7a8c; }
+html[data-season="aki"] .jp-hanko { background: #b5241b; }
+html[data-season="fuyu"] .jp-hanko { background: #3a5a8c; }
+/* JP chrome must never pollute print / PDF output */
+@media print {
+  .jp-season-bar, .jp-masthead, .jp-side, .jp-footer, .jp-spine,
+  .retro-taskbar, #loading-screen, .skip-link, .sticker { display: none !important; }
+  body.jp { background: #fff !important; padding: 0; display: block; }
+  body.jp main.page-shell, body.jp .jp-layout, body.jp .jp-main {
+    display: block; max-width: 100%; margin: 0; padding: 0;
+  }
+  body.jp a { color: #111; text-decoration: none; }
+}
+
 
