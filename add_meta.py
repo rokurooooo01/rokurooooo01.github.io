@@ -14,12 +14,10 @@ BASE = "https://rokurooooo01.github.io"
 SITE_NAME = "rokurooooo"
 OG_IMAGE = f"{BASE}/images/og-cover.png"
 
-PAGES = [
-    "index.html", "about.html", "mathematics.html", "arithmetic.html",
-    "number-system.html", "limits-and-continuity.html",
-    "differential-equations.html", "why-mathematics.html", "topics.html",
-    "favorites.html", "mood-gallery.html", "today.html", "twitter.html",
-]
+PAGES = sorted(
+    p.name for p in ROOT.glob("*.html")
+    if p.name not in {"404.html", "foundational-mathematics-print.html"}
+)
 
 
 def grab(text, pattern):

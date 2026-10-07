@@ -12,6 +12,7 @@ Usage:
 import json
 import sys
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from html import escape
 from pathlib import Path
 
@@ -21,11 +22,27 @@ MAX_ITEMS = 20
 ROOT = Path(__file__).resolve().parent
 
 
-def utc(value: str) -> str:
-    dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+def parse_dt(value: str) -> datetime:
+    """Parse ISO-8601 or RFC-2822 into an aware datetime (UTC fallback)."""
+    value = (value or "").strip()
+    if not value:
+        return datetime(2026, 1, 1, tzinfo=timezone.utc)
+    try:
+        # RFC-2822 (already-formatted feed dates, e.g. from a previous run)
+        return parsedate_to_datetime(value)
+    except (TypeError, ValueError):
+        pass
+    try:
+        dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return datetime(2026, 1, 1, tzinfo=timezone.utc)
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
+    return dt
+
+
+def utc(value: str) -> str:
+    return parse_dt(value).astimezone(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 
 def load(name):
@@ -35,25 +52,43 @@ def load(name):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def is_placeholder_tweet(tw: dict) -> bool:
+    """Skip local test fixtures (ids 1830000000000000001..3) once real data lands."""
+    tid = str(tw.get("id", ""))
+    return tid.startswith("183000000000000000")
+
+
 def build():
     items = []
     for it in load("feed_items.json"):
+        raw_date = it.get("date", "2026-01-01T00:00:00Z")
         items.append({
             "title": it.get("title", "Update"),
             "link": it.get("link", BASE + "/"),
-            "date": utc(it.get("date", "2026-01-01T00:00:00Z")),
+            "date": utc(raw_date),
+            "sort_key": parse_dt(raw_date).astimezone(timezone.utc),
             "desc": it.get("description", ""),
         })
-    for tw in load("twitter_posts.json"):
+    tweets = load("twitter_posts.json")
+    has_real = any(not is_placeholder_tweet(tw) for tw in tweets)
+    for tw in tweets:
+        if has_real and is_placeholder_tweet(tw):
+            continue
+        if not tw.get("id") or not tw.get("text"):
+            continue
+        raw_date = tw.get("created_at", "2026-01-01T00:00:00Z")
         first_line = tw.get("text", "").splitlines()[0][:80]
         items.append({
             "title": "post: " + first_line,
             "link": f"https://x.com/rokurooooo07/status/{tw.get('id', '')}",
-            "date": utc(tw.get("created_at", "2026-01-01T00:00:00Z")),
+            "date": utc(raw_date),
+            "sort_key": parse_dt(raw_date).astimezone(timezone.utc),
             "desc": tw.get("text", ""),
         })
 
-    items.sort(key=lambda e: e["date"], reverse=True)
+    # Sort by actual datetime, NOT by the RFC-2822 string
+    # (string sort puts "Wed, 02 Sep" before "Sat, 19 Sep" — wrong).
+    items.sort(key=lambda e: e["sort_key"], reverse=True)
     items = items[:MAX_ITEMS]
 
     def x(s):

@@ -1,4 +1,4 @@
-name: Build RSS Feed
+name: Build site feeds
 
 on:
   push:
@@ -6,6 +6,10 @@ on:
     paths:
       - "feed_items.json"
       - "generate_feed.py"
+      - "twitter_posts.json"
+      - "sync_tweets.py"
+      - "build_sitemap.py"
+      - "*.html"
   schedule:
     # Runs daily; tweets in twitter_posts.json flow into the feed too
     - cron: "17 4 * * *"
@@ -26,12 +30,17 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Generate feed.xml
-        run: python generate_feed.py --write
+      - name: Generate feed.xml + sitemap.xml
+        run: |
+          python generate_feed.py --write
+          python build_sitemap.py --write
 
-      - name: Commit updated feed.xml
+      - name: Link check (internal links + anchors)
+        run: python check_links.py
+
+      - name: Commit updated feed.xml + sitemap.xml
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add feed.xml
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update RSS feed [skip ci]" && git push)
+          git add feed.xml sitemap.xml
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update RSS feed + sitemap [skip ci]" && git push)
