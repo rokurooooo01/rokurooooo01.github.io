@@ -17,8 +17,4 @@
 #   so readers can cite an exact version. The page always serves
 #   the unversioned foundational-mathematics.pdf as "latest".
 #
-# NOTE: the old auto-generated placeholder PDF
-# (assets/foundational-mathematics-v0.1.0.pdf, ~19 KB, built by build_book.py
-# from web synopses) is now superseded. Once you drop your LaTeX PDF in,
-# you can delete build_book.py's PDF output or keep versioned copies.
 # Also see CITATION.bib next to this file for the BibTeX entry.
