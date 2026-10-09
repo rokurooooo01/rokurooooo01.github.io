@@ -124,7 +124,7 @@ def build():
         "  <channel>\n"
         "    <title>rokurooooo</title>\n"
         f"    <link>{BASE}/</link>\n"
-        "    <description>rokuro's website — math notes, daily log & site updates.</description>\n"
+        "    <description>rokuro&apos;s website — math notes, daily log &amp; site updates.</description>\n"
         "    <language>en</language>\n"
         f"    <lastBuildDate>{now}</lastBuildDate>\n"
         f'    <atom:link href="{BASE}/feed.xml" rel="self" type="application/rss+xml" />\n'
