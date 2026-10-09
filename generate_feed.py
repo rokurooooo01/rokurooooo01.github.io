@@ -10,6 +10,7 @@ Usage:
   python generate_feed.py --write    # write feed.xml
 """
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -104,7 +105,19 @@ def build():
         "    </item>"
         for i in items
     )
+    # Stability: keep the previous lastBuildDate when the items are unchanged,
+    # so the scheduled workflow only commits (and redeploys Pages) on real
+    # content changes instead of every timestamp refresh.
     now = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S +0000")
+    try:
+        old = (ROOT / "feed.xml").read_text(encoding="utf-8")
+        old_items = "\n".join(re.findall(r"    <item>.*?</item>", old, re.DOTALL))
+        if old_items.strip() == body.strip():
+            m = re.search(r"<lastBuildDate>(.*?)</lastBuildDate>", old)
+            if m:
+                now = m.group(1)
+    except OSError:
+        pass
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'

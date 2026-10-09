@@ -9,7 +9,6 @@ Changefreq/priority heuristics:
   404.html and *-print.html are excluded (not indexable content).
 """
 import sys
-from datetime import date
 from pathlib import Path
 
 BASE = "https://rokurooooo01.github.io"
@@ -32,10 +31,12 @@ def entry(page: str) -> str:
         changefreq = "weekly"
     else:
         changefreq = "monthly"
+    # Stability: no <lastmod> — it refreshed to today's date on every run,
+    # which made the scheduled workflow commit (and redeploy Pages) daily
+    # even when nothing changed. changefreq/priority carry the signal.
     return (
         "  <url>\n"
         f"    <loc>{loc}</loc>\n"
-        f"    <lastmod>{date.today().isoformat()}</lastmod>\n"
         f"    <changefreq>{changefreq}</changefreq>\n"
         f"    <priority>{priority}</priority>\n"
         "  </url>"

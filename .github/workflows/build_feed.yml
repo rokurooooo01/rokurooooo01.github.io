@@ -11,8 +11,10 @@ on:
       - "build_sitemap.py"
       - "*.html"
   schedule:
-    # Runs daily; tweets in twitter_posts.json flow into the feed too
-    - cron: "17 4 * * *"
+    # Weekly is plenty for this cadence — the push trigger above already
+    # rebuilds on every real edit, so the cron is just a safety net.
+    # (Daily + timestamp churn used to redeploy Pages every day for nothing.)
+    - cron: "17 4 * * 1"
   workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
 
 permissions:
