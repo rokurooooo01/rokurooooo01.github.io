@@ -1,3 +1,0 @@
-requests
-pillow
-fpdf2  # for build_book.py (Foundational Mathematics PDF)
