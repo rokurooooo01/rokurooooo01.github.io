@@ -1,8 +1,8 @@
 /* Site analytics loader.
  *
  * Umami (https://umami.is) is a privacy-friendly, self-hostable analytics
- * tool — a good companion to Vercel Insights. Host it (free tier works on
- * Cloudflare Workers or Vercel), then paste your assigned values below.
+ * tool. Host it (free tier works on Cloudflare Workers), then paste your
+ * assigned values below.
  *
  * Until BOTH constants are filled in, this script does nothing, so the live
  * site stays error-free while you set it up.
