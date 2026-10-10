@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent
 
 EXCLUDE = {"404.html", "foundational-mathematics-print.html"}
 
-WEEKLY = {"mathematics.html", "foundational-mathematics.html"}
+WEEKLY = {"mathematics.html", "foundational-mathematics.html", "fyp.html"}
 DAILY = {"index.html", "today.html", "twitter.html"}
 
 

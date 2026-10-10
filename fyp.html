@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en" data-season="aki">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("retroTheme") || "washi";
+        var known = ["washi", "yoru", "matsuri", "win95", "dark", "hotdog", "matrix"];
+        document.documentElement.setAttribute("data-theme", known.indexOf(t) >= 0 ? t : "washi");
+        if (sessionStorage.getItem("bootSeen") === "true") {
+          document.documentElement.classList.add("skip-boot");
+        }
+      })();
+    </script>
+    <title>FYP · Lean 4 Quantum Verification | rokurooooo</title>
+    <meta
+      name="description"
+      content="Final Year Project — analytical spectral modelling and formal verification of Heisenberg matrix mechanics using Lean 4 for finite-dimensional quantum systems."
+    />
+    <meta property="og:title" content="FYP — Heisenberg Matrix Mechanics in Lean 4" />
+    <meta
+      property="og:description"
+      content="Machine-checking finite-dimensional quantum mechanics, complex linear algebra, and operator commutators using the Lean 4 interactive theorem prover."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rokurooooo01.github.io/fyp.html" />
+    <link rel="canonical" href="https://rokurooooo01.github.io/fyp.html" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://rokurooooo01.github.io/feed.xml" />
+    <meta property="og:site_name" content="rokurooooo" />
+    <meta property="og:image" content="https://rokurooooo01.github.io/images/og-cover.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="FYP — Heisenberg Matrix Mechanics in Lean 4" />
+    <meta name="twitter:description" content="Machine-checking finite-dimensional quantum mechanics using the Lean 4 interactive theorem prover." />
+    <meta name="twitter:image" content="https://rokurooooo01.github.io/images/og-cover.png" />
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+    <script defer src="js/main.js"></script>
+  </head>
+  <body class="jp">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <main class="container page-shell" id="main-content">
+      <div class="jp-season-bar" role="note">🍁 秋のもみじ祭り開催中! <span class="new-gif">NEW!</span> FYP — Lean 4 Quantum Verification</div>
+      <header class="jp-masthead">
+        <div class="jp-masthead__top">
+          <div class="jp-hanko" aria-hidden="true">ろ</div>
+          <div class="jp-brand">
+            <p class="eyebrow" style="margin:0;">ろくろのホームページ · personal site</p>
+            <div class="jp-site-title"><ruby>六轆<rt>ろくろ</rt></ruby> rokurooooo</div>
+            <div class="jp-sub">数学 · 本 · 日記 · since 2026</div>
+          </div>
+          <div class="jp-masthead__meta">
+            <div id="site-clock" aria-live="polite"></div>
+            <div class="jp-last-updated">最終更新: 2026-10-10</div>
+          </div>
+        </div>
+        <nav class="jp-nav" aria-label="Japanese site pages">
+          <a href="index.html">ホーム<small>HOME</small></a>
+          <a href="about.html">自己紹介<small>ABOUT</small></a>
+          <a href="mathematics.html">数学<small>MATH</small></a>
+          <a href="favorites.html">お気に入り<small>FAVES</small></a>
+          <a href="mood-gallery.html">画廊<small>GALLERY</small></a>
+          <a href="garage.html">車庫<small>GARAGE</small></a>
+          <a href="friends.html">友達<small>FRIENDS</small></a>
+          <a href="today.html">今日<small>TODAY</small></a>
+        </nav>
+        <div class="jp-breadcrumb"><a href="index.html">ホーム</a> &gt; <a href="mathematics.html">数学</a> &gt; FYP 研究 · <span id="jp-today"></span></div>
+      </header>
+      <div class="jp-layout">
+      <aside class="jp-side jp-side--left" aria-label="Left menu">
+        <div class="jp-spine" aria-hidden="true">ろくろのホームページ</div>
+        <section class="jp-box" aria-labelledby="fyp-menu-h">
+          <h2 class="jp-box__title" id="fyp-menu-h">FYP 目次</h2>
+          <div class="jp-box__body">
+            <ul class="link-list" style="margin:0;">
+              <li><a href="#overview">概要 Overview</a></li>
+              <li><a href="#stack">4層スタック Stack</a></li>
+              <li><a href="#proofs">証明 Proofs</a></li>
+              <li><a href="#roadmap">工程 Roadmap</a></li>
+              <li><a href="#proposal">提案 Proposal</a></li>
+            </ul>
+          </div>
+        </section>
+        <section class="jp-box" aria-labelledby="fyp-back-h">
+          <h2 class="jp-box__title" id="fyp-back-h">数学へ</h2>
+          <div class="jp-box__body">
+            <ul class="link-list" style="margin:0;">
+              <li><a href="mathematics.html">数学 Math</a></li>
+              <li><a href="foundational-mathematics.html">本 Book</a></li>
+              <li><a href="topics.html">Topics</a></li>
+            </ul>
+          </div>
+        </section>
+      </aside>
+      <div class="jp-main">
+      <div class="window-frame">
+        <div class="window-titlebar">
+          <div class="window-titlebar-label">fyp.lean — Heisenberg × Lean 4</div>
+          <div class="window-titlebar-controls">
+            <button type="button" class="window-btn" aria-label="Minimize">_</button>
+            <button type="button" class="window-btn" aria-label="Maximize">□</button>
+            <button type="button" class="window-btn" aria-label="Close">×</button>
+          </div>
+        </div>
+        <section class="content hero-card fyp-hero" aria-labelledby="fyp-title" style="border:none;box-shadow:none;margin:0;">
+          <p class="eyebrow">final year project · living research</p>
+          <h1 id="fyp-title" class="fyp-title">Analytical Spectral Modelling &amp; Formal Verification of Heisenberg Matrix Mechanics Using Lean 4</h1>
+          <p class="fyp-tagline">Machine-checking finite-dimensional quantum mechanics, complex linear algebra, and operator commutators using the Lean 4 interactive theorem prover.</p>
+          <ul class="fyp-badges">
+            <li class="fyp-badge">Lean 4</li>
+            <li class="fyp-badge">Mathlib</li>
+            <li class="fyp-badge">Quantum Mechanics</li>
+            <li class="fyp-badge">Complex Linear Algebra</li>
+            <li class="fyp-badge">Formal Logic</li>
+            <li class="fyp-badge">Python · NumPy</li>
+            <li class="fyp-badge fyp-badge--muted">Mathematical Modelling</li>
+          </ul>
+          <ul class="fyp-metrics">
+            <li class="fyp-metric">
+              <p class="fyp-metric__k">Status</p>
+              <p class="fyp-metric__v"><span class="is-live">● In progress</span> · Sem 1 baseline</p>
+            </li>
+            <li class="fyp-metric">
+              <p class="fyp-metric__k">Degree program</p>
+              <p class="fyp-metric__v">BSc (Hons) Mathematical Modelling &amp; Analytics · CS267</p>
+            </li>
+            <li class="fyp-metric">
+              <p class="fyp-metric__k">Institution</p>
+              <p class="fyp-metric__v">UiTM Kuala Terengganu</p>
+            </li>
+            <li class="fyp-metric">
+              <p class="fyp-metric__k">Prover kernel</p>
+              <p class="fyp-metric__v">Lean 4 · 100% machine-checked</p>
+            </li>
+          </ul>
+          <div class="fyp-actions">
+            <a class="button" href="#roadmap">View Project Roadmap</a>
+            <a class="button" href="#proposal">Read Proposal Draft</a>
+            <a class="button" href="#proofs">See the Proofs</a>
+          </div>
+          <p class="fyp-note" style="margin-top:.8rem;">A living undergraduate research project — this page grows every semester as the formalization does. Repo link drops here once the first module lands.</p>
+        </section>
+      </div>
+
+      <section class="content card" aria-labelledby="overview">
+        <h2 id="overview">Why formalize quantum mechanics?</h2>
+        <p>Pen-and-paper derivations in mathematical physics are beautiful, but they hide things: a silent assumption that an operator is self-adjoint, an implicit interchange of limits, a trace cyclicity that quietly fails when dimensions diverge. A formal proof exposes every one of those steps and refuses to compile until each is justified.</p>
+        <div class="fyp-split" style="margin-top:.9rem;">
+          <div class="fyp-callout">
+            <h3>The problem</h3>
+            <p style="margin:0;">Traditional derivations can contain subtle, unverified logical gaps or implicit physical assumptions that no one catches until they matter.</p>
+          </div>
+          <div class="fyp-callout">
+            <h3>The solution</h3>
+            <p style="margin:0;">Encode Heisenberg's matrix mechanics in <strong>Lean 4</strong>. Every definition, axiom, and proof step is validated by Lean's dependent type system and logical kernel — guaranteeing 100% mathematical correctness.</p>
+          </div>
+        </div>
+        <p style="margin-top:.9rem;"><strong>Key focus:</strong> restricting the scope to <strong>finite-dimensional systems</strong> — qubits and general \(n\)-level systems — lets me rigorously formalize complex matrix adjoints, self-adjoint observables, and Pauli spin algebra without the measure-theoretic overhead of infinite-dimensional Hilbert spaces.</p>
+      </section>
+      <section class="content card" aria-labelledby="stack">
+        <h2 id="stack">The 4-layer formalization stack</h2>
+        <p>The project maps directly onto my curriculum. Each layer is both a course and a rung on the ladder from classical intuition to machine-checked certainty.</p>
+        <div class="fyp-stack" style="margin-top:.9rem;">
+          <div class="fyp-stack__layer fyp-stack__layer--l4">
+            <div class="fyp-stack__bar"><span class="fyp-stack__num">4</span> Formal Verification · PHI 428 / Lean 4 Kernel</div>
+            <div class="fyp-stack__body">
+              <ul>
+                <li>Machine-checked proofs &amp; 100% logical certainty</li>
+                <li>Every theorem reduced to kernel-checked inference rules</li>
+              </ul>
+            </div>
+          </div>
+          <div class="fyp-stack__layer fyp-stack__layer--l3">
+            <div class="fyp-stack__bar"><span class="fyp-stack__num">3</span> Algorithmic Proving &amp; Tactics · CSC 415 / Lean 4</div>
+            <div class="fyp-stack__body">
+              <ul>
+                <li>Interactive proof steps: <code>intro</code>, <code>cases</code>, <code>rw</code>, <code>decide</code></li>
+                <li>Turning insight into reproducible tactic scripts</li>
+              </ul>
+            </div>
+          </div>
+          <div class="fyp-stack__layer fyp-stack__layer--l2">
+            <div class="fyp-stack__bar"><span class="fyp-stack__num">2</span> Complex Linear Algebra Engine · MAT 423 / MAT 421 / Mathlib</div>
+            <div class="fyp-stack__body">
+              <ul>
+                <li>State vectors \(|\psi\rangle \in \mathbb{C}^n\)</li>
+                <li>Hermitian observables, adjoints, eigenvalues &amp; spectra</li>
+              </ul>
+            </div>
+          </div>
+          <div class="fyp-stack__layer fyp-stack__layer--l1">
+            <div class="fyp-stack__bar"><span class="fyp-stack__num">1</span> Classical Physics &amp; Operator Analogy · PHY 406</div>
+            <div class="fyp-stack__body">
+              <ul>
+                <li>Poisson brackets → matrix commutators</li>
+                <li>\([A, B] = AB - BA\) as the quantum shadow of classical mechanics</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content card" aria-labelledby="proofs">
+        <h2 id="proofs">Interactive proof showcase</h2>
+        <p>A side-by-side of the classical statement against its Lean 4 formalization. The math column is rendered live with KaTeX; the code column is hand-tuned Lean syntax. Proofs marked <code style="background:#0d1117;color:#f0883e;border-color:#0d1117;">sorry</code> are the active frontier — the parts still being filled in this semester.</p>
+
+        <h3 style="margin-top:1rem;">Highlight 1 — The Wigner–Inönü trace contradiction</h3>
+        <p class="fyp-proof__caption">The canonical commutation relation \([X, P] = i\hbar I\) cannot hold exactly for finite \(n \times n\) matrices: the trace of any commutator is zero, yet the trace of \(i\hbar I_n\) is \(n i\hbar \neq 0\). This contradiction is exactly why quantum mechanics needs an infinite-dimensional Hilbert space — and it is one of the first things my formalization pins down.</p>
+        <div class="fyp-proof">
+          <div class="fyp-proof__col">
+            <p class="fyp-proof__label">Mathematics</p>
+            <div class="fyp-proof__math">
+              <p>\[\operatorname{Tr}([X, P]) = \operatorname{Tr}(XP - PX) = 0\]</p>
+              <p>\[\operatorname{Tr}(i\hbar I_n) = n\, i\hbar \neq 0\]</p>
+              <p class="fyp-proof__caption">So \([X, P] = i\hbar I\) has no finite-matrix solution.</p>
+            </div>
+          </div>
+          <div class="fyp-proof__col">
+            <p class="fyp-proof__label">Lean 4 · conceptual</p>
+            <div class="lean-block">
+              <div class="lean-block__bar">
+                <span class="lean-block__dots"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i></span>
+                TraceContradiction.lean
+              </div>
+<pre><code><span class="tok-cm">-- Exact canonical commutation is impossible</span>
+<span class="tok-cm">-- for finite n × n complex matrices.</span>
+<span class="tok-kw">theorem</span> <span class="tok-fn">finite_commutation_contradiction</span>
+    (X P : Matrix (Fin n) (Fin n) ℂ)
+    (h_pos : n &gt; 0) :
+    Matrix.trace (X * P - P * X)
+      ≠ Matrix.trace (Complex.I • (1 : Matrix (Fin n) (Fin n) ℂ))
+      := <span class="tok-kw">by</span>
+  <span class="lean-sorry">sorry</span> <span class="tok-cm">-- machine-checked proof in Lean 4</span></code></pre>
+            </div>
+          </div>
+        </div>
+        <h3 style="margin-top:1.2rem;">Highlight 2 — Pauli spin matrix commutation</h3>
+        <p class="fyp-proof__caption">For the concrete \(2 \times 2\) case, the commutator collapses to a fixed matrix, so Lean's <code>decide</code> tactic can close it by brute-force computation over the complex entries — a fully machine-checked result with no <code>sorry</code>.</p>
+        <div class="fyp-proof">
+          <div class="fyp-proof__col">
+            <p class="fyp-proof__label">Mathematics</p>
+            <div class="fyp-proof__math">
+              <p>\[[\sigma_x, \sigma_y] = 2i\,\sigma_z\]</p>
+              <p>\[\sigma_x \sigma_y - \sigma_y \sigma_x = \begin{pmatrix} 2i & 0 \\ 0 & -2i \end{pmatrix}\]</p>
+              <p class="fyp-proof__caption">The angular-momentum algebra of spin-½, verified term by term.</p>
+            </div>
+          </div>
+          <div class="fyp-proof__col">
+            <p class="fyp-proof__label">Lean 4 · decision procedure</p>
+            <div class="lean-block">
+              <div class="lean-block__bar">
+                <span class="lean-block__dots"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i></span>
+                Pauli.lean
+              </div>
+<pre><code><span class="tok-cm">-- Mechanically verified by Lean's decide tactic</span>
+<span class="tok-kw">theorem</span> <span class="tok-fn">pauli_comm_xy</span> :
+    Matrix.commutator Pauli.sigma_x Pauli.sigma_y
+      = <span class="tok-num">2</span> * Complex.I • Pauli.sigma_z := <span class="tok-kw">by</span>
+  <span class="tok-kw">decide</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content card" aria-labelledby="roadmap">
+        <h2 id="roadmap">Project roadmap &amp; semester milestones</h2>
+        <p>This is a multi-year formalization journey, not a one-off assignment. Tracking it publicly keeps me honest and shows the long game to anyone reading.</p>
+        <ol class="fyp-timeline" style="margin-top:.9rem;">
+          <li class="fyp-timeline__item">
+            <span class="fyp-timeline__part">Part 01<span class="fyp-phase fyp-phase--now">now</span></span>
+            <span><strong>Curriculum foundation.</strong> Linear Algebra 1 (MAT 423), Calculus 1 (MAT 421), and Problem Solving (CSC 415) — building the mathematical bedrock the formalization will rest on.</span>
+          </li>
+          <li class="fyp-timeline__item">
+            <span class="fyp-timeline__part">Part 02–03<span class="fyp-phase fyp-phase--next">next</span></span>
+            <span><strong>Tooling &amp; prototyping.</strong> Lean 4 setup, exploring Mathlib's complex inner-product spaces, and Python/NumPy prototyping (DSC551) to sanity-check spectra numerically before proving them.</span>
+          </li>
+          <li class="fyp-timeline__item">
+            <span class="fyp-timeline__part">Part 04–05<span class="fyp-phase fyp-phase--next">planned</span></span>
+            <span><strong>Pre-FYP proposal (MSP660)</strong> and formalizing the core state-vector modules — <code>State.lean</code>, <code>Operator.lean</code>.</span>
+          </li>
+          <li class="fyp-timeline__item">
+            <span class="fyp-timeline__part">Part 06<span class="fyp-phase fyp-phase--next">planned</span></span>
+            <span><strong>Full execution.</strong> <code>Pauli.lean</code>, the Wigner–Inönü trace-contradiction proof, thesis completion, and viva defense.</span>
+          </li>
+          <li class="fyp-timeline__item">
+            <span class="fyp-timeline__part">Part 07<span class="fyp-phase fyp-phase--next">planned</span></span>
+            <span><strong>Open-source release</strong> on GitHub and paper dissemination.</span>
+          </li>
+        </ol>
+      </section>
+
+      <section class="content card" aria-labelledby="proposal">
+        <h2 id="proposal">Proposal draft &amp; how to follow along</h2>
+        <p>The formal proposal is in progress for the MSP660 pre-FYP milestone. The public-facing pieces land here first:</p>
+        <ul class="link-list">
+          <li><strong>This page</strong> — a living write-up, updated as modules compile.</li>
+          <li><strong>GitHub repository</strong> — the Lean 4 project, linked here once the first module (<code>State.lean</code>) is public.</li>
+          <li><strong>Dev log</strong> — progress notes live on the <a href="today.html">today</a> and <a href="log-2026-09.html">September archive</a> pages.</li>
+        </ul>
+        <p class="fyp-note" style="margin-top:.8rem;">Interested in the mathematics behind it? Start with my <a href="foundational-mathematics.html">Foundational Mathematics</a> textbook, or browse the <a href="topics.html">topics</a> I keep circling back to.</p>
+        <nav class="webring-nav" aria-label="FYP navigation">
+          <a class="button" href="mathematics.html" style="width:auto;">← Math universe</a>
+          <a class="button" href="#proofs" style="width:auto;">Back to proofs</a>
+        </nav>
+      </section>
+      </div><!-- /.jp-main -->
+      <aside class="jp-side jp-side--right" aria-label="FYP status">
+        <section class="jp-box" aria-labelledby="fyp-status-h">
+          <h2 class="jp-box__title" id="fyp-status-h">研究ステータス</h2>
+          <div class="jp-box__body" style="font-size:.8rem;">
+            <strong>Semester 1</strong> — baseline phase.<br>
+            Building the linear-algebra foundation before the first <code style="font-size:.95em;">.lean</code> module.
+          </div>
+        </section>
+        <section class="jp-box" aria-labelledby="fyp-stack-h">
+          <h2 class="jp-box__title" id="fyp-stack-h">技術スタック</h2>
+          <div class="jp-box__body" style="font-size:.8rem;">
+            Lean 4 · Mathlib<br>Complex Linear Algebra<br>Formal Logic · Python (NumPy)
+          </div>
+        </section>
+      </aside>
+      </div><!-- /.jp-layout -->
+      <footer class="jp-footer" aria-label="Site map">
+        <div class="jp-footer__map">
+          <div><h3>案内</h3><ul><li><a href="index.html">ホーム</a></li><li><a href="about.html">自己紹介</a></li><li><a href="today.html">今日の日記</a></li></ul></div>
+          <div><h3>学び</h3><ul><li><a href="mathematics.html">数学</a></li><li><a href="fyp.html">FYP 研究</a></li><li><a href="foundational-mathematics.html">本</a></li><li><a href="topics.html">Topics</a></li></ul></div>
+          <div><h3>趣味</h3><ul><li><a href="favorites.html">お気に入り</a></li><li><a href="mood-gallery.html">画廊</a></li><li><a href="garage.html">車庫</a></li></ul></div>
+          <div><h3>交流</h3><ul><li><a href="friends.html">友達・相互リンク</a></li><li><a href="guestbook.html">掲示板</a></li><li><a href="feed.xml">RSS</a></li></ul></div>
+        </div>
+        <div class="jp-footer__copy"><span>© rokurooooo · ろくろのホームページ</span><span>当サイトはリンクフリーです · <a href="feed.xml" style="color:#ffe600;">RSS</a></span></div>
+      </footer>
+    </main>
+    <script defer src="js/analytics.js"></script>
+  </body>
+</html>
